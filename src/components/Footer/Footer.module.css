@@ -1,3 +1,6 @@
+/* ====== Footer.module.css ====== */
+
+/* ====== BASE ====== */
 .footer {
   text-align: center;
   font-family: 'Inter', sans-serif;
@@ -58,8 +61,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 48px;
-  padding-top: 60px;
-  padding-bottom: 32px;
+  padding: 60px 0 32px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
 }
@@ -76,30 +78,33 @@
   color: #1a1a1a;
 }
 
-.linksList {
+.linksList,
+.socialList {
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: center;
 }
 
-.linkItem a {
+.linkItem a,
+.socialItem a,
+.policyItem a {
   color: #444;
   font-size: 15px;
   text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.linkItem a:hover,
+.socialItem a:hover,
+.policyItem a:hover {
+  color: #ff5a5f;
 }
 
 .socialWrapper {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.socialList {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: flex-start;
 }
 
 .socialItem {
@@ -112,9 +117,6 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #444;
-  text-decoration: none;
-  font-size: 15px;
 }
 
 .socialName {
@@ -134,19 +136,7 @@
   padding-top: 40px;
 }
 
-.policyItem a {
-  font-size: 14px;
-  color: #888;
-  text-decoration: none;
-}
-
-.linkItem a:hover,
-.socialItem a:hover,
-.policyItem a:hover {
-  color: #ff5a5f;
-  transition: color 0.3s ease-in-out;
-}
-
+/* ====== TABLET ====== */
 @media screen and (min-width: 768px) {
   .footer {
     text-align: left;
@@ -203,6 +193,7 @@
   }
 }
 
+/* ====== DESKTOP ====== */
 @media screen and (min-width: 1280px) {
   .title {
     font-size: 40px;
@@ -252,8 +243,7 @@
   }
 
   .footerList {
-    padding-top: 80px;
-    padding-bottom: 48px;
+    padding: 80px 0 48px;
   }
 
   .policyList {

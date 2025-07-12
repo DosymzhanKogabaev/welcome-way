@@ -1,5 +1,8 @@
+/* ====== Features.module.css ====== */
+
+/* ====== BASE ====== */
 .featuresSection {
-  padding: 4rem 1rem;
+  padding: 64px 16px;
   background-color: var(--gray);
   color: var(--main);
 }
@@ -8,9 +11,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 32px;
   max-width: 1200px;
-  margin: 0 auto 4rem;
+  margin: 0 auto 64px;
 }
 
 .reverse {
@@ -25,7 +28,7 @@
 .image {
   width: 100%;
   height: auto;
-  border-radius: 1rem;
+  border-radius: 16px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
@@ -35,7 +38,7 @@
 
 .heading {
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px;
 }
 
 .featureList {
@@ -45,11 +48,11 @@
 }
 
 .featureList li {
-  margin-bottom: 1.5rem;
+  margin-bottom: 24px;
 }
 
 .featureList h3 {
-  margin: 0 0 0.5rem;
+  margin: 0 0 8px;
   font-size: 1.25rem;
   color: var(--blue-dark);
 }
@@ -59,13 +62,18 @@
   line-height: 1.6;
 }
 
-@media (min-width: 768px) {
+/* ====== TABLET ====== */
+@media screen and (min-width: 768px) {
   .featuresContainer {
     flex-direction: row;
     align-items: flex-start;
   }
 
   .textContent {
-    padding: 0 2rem;
+    padding: 0 32px;
   }
+}
+
+/* ====== DESKTOP ====== */
+@media screen and (min-width: 1280px) {
 }
