@@ -16,11 +16,16 @@
   width: 100%;
 }
 
-.title {
+.mainTitle {
   font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--main);
-  margin-bottom: 16px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgb(95, 95, 95);
   text-align: center;
 }
 
@@ -57,20 +62,30 @@
   align-items: center;
   gap: 16px;
   margin-bottom: 16px;
+  flex-direction: row;
 }
 
 .profileImage {
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
   border-radius: 50%;
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .name {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: var(--main);
   margin: 0;
+}
+
+.personWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  justify-content: center;
 }
 
 .testimonialText {
@@ -92,6 +107,14 @@
   .subtitle {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .cardHeader {
+    gap: 24px;
+  }
+  .personWrapper {
+    align-items: center;
+    text-align: center;
   }
 }
 

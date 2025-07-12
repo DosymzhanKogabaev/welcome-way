@@ -5,21 +5,25 @@
   text-align: center;
   font-family: 'Inter', sans-serif;
   color: #333;
-  padding-bottom: 24px;
+  padding-bottom: 32px;
+  padding-top: 32px;
+  background-color: var(--badge);
 }
 
 .title {
-  font-size: 32px;
+  text-align: right;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #1a1a1a;
-  padding-bottom: 16px;
+  padding-bottom: 24px;
 }
 
 .subtitle {
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 400;
   color: #666;
   max-width: 480px;
-  padding-bottom: 20px;
+  padding-bottom: 48px;
 }
 
 .emailInput {
@@ -53,7 +57,7 @@
 .license {
   font-size: 14px;
   color: #999;
-  padding-top: 24px;
+  padding-top: 48px;
 }
 
 .footerList {
@@ -72,7 +76,7 @@
 }
 
 .sectionTitle {
-  font-size: 18px;
+  font-size: 1.4rem;
   font-weight: 600;
   padding-bottom: 12px;
   color: #1a1a1a;
