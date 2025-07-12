@@ -1,10 +1,10 @@
-import { OpenAPIRoute } from "chanfana";
-import { z } from "zod";
-import { IRequest } from "itty-router";
-import { LoginUserRequest, LoginUserResponse } from "@/shared/types/login";
-import { handleError } from "@/worker/apps/common/handleError";
-import { verifyUser } from "@/worker/apps/auth/services/user";
-import { generateTokens } from "@/worker/apps/auth/services/jwt";
+import { OpenAPIRoute } from 'chanfana';
+import { z } from 'zod';
+import { IRequest } from 'itty-router';
+import { LoginUserRequest, LoginUserResponse } from '@/shared/types/login';
+import { handleError } from '@/worker/apps/common/handleError';
+import { verifyUser } from '@/worker/apps/auth/services/user';
+import { generateTokens } from '@/worker/apps/auth/services/jwt';
 
 const REQUEST_BODY_SCHEMA = z.object({
   email: z.string(),
@@ -21,16 +21,16 @@ export class PrivateLoginAPI extends OpenAPIRoute {
     request: {
       body: {
         content: {
-          "application/json": {
+          'application/json': {
             schema: REQUEST_BODY_SCHEMA,
           },
         },
       },
     },
     response: {
-      "200": {
+      '200': {
         content: {
-          "application/json": {
+          'application/json': {
             schema: RESPONSE_SCHEMA,
           },
         },

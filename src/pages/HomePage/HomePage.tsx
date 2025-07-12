@@ -7,8 +7,7 @@ import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { HeroSection } from '../../components/LandingComp/HeroSection/HeroSection';
 import { CTA } from '../../components/LandingComp/CTA/CTA';
-import { Features1 } from '../../components/LandingComp/Features1/Features1';
-import { Features2 } from '../../components/LandingComp/Features2/Features2';
+import { Features } from '../../components/LandingComp/Features1/Features';
 
 export const HomePage: React.FC = () => {
   return (
@@ -17,8 +16,7 @@ export const HomePage: React.FC = () => {
         <Header />
 
         <HeroSection />
-        <Features1 />
-        <Features2 />
+        <Features />
         <CTA />
 
         <Footer />
