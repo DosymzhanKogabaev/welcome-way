@@ -25,7 +25,6 @@ export const StepsSection: React.FC = () => {
     return () => timeouts.forEach(clearTimeout);
   }, []);
 
-  // Возможно переделаем
   // const stepsData = [
   //   {
   //     id: 1,
@@ -73,7 +72,6 @@ export const StepsSection: React.FC = () => {
           </Link>
         </div>
 
-        {/* Обёртка с фиксированной высотой для скролла */}
         <div className={styles.stepsWrapper}>
           <ul className={styles.cardList}>
             <li
