@@ -16,7 +16,7 @@ export const registerAuthRoutes: RegisterAppRoutes = (
   router.post(`${urlPrefix}/auth/register`, PrivateRegisterAPI);
   router.post(`${urlPrefix}/auth/login`, PrivateLoginAPI);
   router.get(
-    `${urlPrefix}/private/auth/me/:id`,
+    `${urlPrefix}/private/auth/me/:user_id`,
     auth,
     PrivateGetUserInfoAPI as any
   );
