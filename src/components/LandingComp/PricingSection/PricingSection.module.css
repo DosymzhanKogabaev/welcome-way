@@ -180,6 +180,11 @@
 
 /* ====== DESKTOP ====== */
 @media screen and (min-width: 1280px) {
+  .pricingSection {
+    background-color: var(--light-gray);
+    padding: 64px 32px 64px;
+  }
+
   .pricingContainer {
     max-width: 1100px;
   }

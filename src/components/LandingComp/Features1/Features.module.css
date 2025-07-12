@@ -2,7 +2,7 @@
 
 /* ====== BASE ====== */
 .featuresSection {
-  padding: 32px 16px 32px;
+  padding: 32px 24px 32px;
   background-color: var(--gray);
   color: var(--main);
 }
@@ -76,8 +76,23 @@
   .textContent {
     padding: 0 32px;
   }
+
+  .reverse {
+    padding-top: 16px;
+  }
 }
 
 /* ====== DESKTOP ====== */
 @media screen and (min-width: 1280px) {
+  .featuresSection {
+    padding: 64px;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .featureList h3 {
+    font-size: 1.3rem;
+  }
 }
