@@ -9,6 +9,7 @@
   box-sizing: border-box;
 }
 
+/* ====== VARIABLES ====== */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
@@ -28,6 +29,11 @@
   --light-gray: #f4f4f4;
   --white: #ffffff;
   --black: #000000;
+  --primary: #ed2a4f;
+  --primary-hover: #d42f4e;
+  --text-dark: #2f2f2f;
+  --border: #ccc;
+  --badge: #ffefef;
 }
 
 a {
@@ -53,6 +59,16 @@ h6,
 p {
   color: var(--main);
   margin: 0;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 650;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 600;
 }
 
 p {
@@ -106,7 +122,7 @@ img {
 }
 
 .section {
-  padding: 16px;
+  /* padding: 16px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,11 +147,21 @@ fieldset {
   .container {
     max-width: 768px;
   }
+
+  p {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .container {
     max-width: 1280px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 28px;
   }
 }
 
