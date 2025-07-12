@@ -19,9 +19,12 @@
 		"drizzle-kit": "^0.31.4",
 		"drizzle-orm": "^0.44.2",
 		"itty-router": "^5.0.18",
+		"normalize.css": "^8.0.1",
 		"path": "^0.12.7",
 		"react": "^19.1.0",
 		"react-dom": "^19.1.0",
+		"react-icons": "^5.5.0",
+		"react-router-dom": "^7.6.3",
 		"zod": "^4.0.5"
 	},
 	"devDependencies": {
