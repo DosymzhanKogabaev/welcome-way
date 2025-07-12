@@ -7,6 +7,8 @@ export type Post = {
   type: 'Need' | 'Offer' | 'Question';
   text: string;
   time: string;
+  created_at: string; // Added for sorting
+  location: string; // Added for location sorting
 };
 
 export const PostsList: React.FC<{ posts: Post[] }> = ({ posts }) => (
@@ -16,6 +18,7 @@ export const PostsList: React.FC<{ posts: Post[] }> = ({ posts }) => (
         <div className={styles.postHeader}>
           <span className={styles.postUser}>{post.user}</span>
           <span className={styles.postType}>{post.type}</span>
+          <span className={styles.postLocation}>{post.location}</span>
           <span className={styles.postTime}>{post.time}</span>
         </div>
         <div className={styles.postText}>{post.text}</div>

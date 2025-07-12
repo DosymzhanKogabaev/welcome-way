@@ -14,10 +14,14 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
   const [formData, setFormData] = useState({
     type: 'Need' as Post['type'],
     text: '',
+    created_at: new Date().toISOString(),
+    location: 'Berlin', // Default location
   });
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLSelectElement | HTMLTextAreaElement | HTMLInputElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -25,8 +29,8 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.text.trim()) return; // Basic validation
-    onSave(formData);
+    if (!formData.text.trim() || !formData.location.trim()) return; // Basic validation
+    onSave({ ...formData, created_at: new Date().toISOString() });
   };
 
   return (
@@ -56,6 +60,18 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
             <option value="Offer">Offer</option>
             <option value="Question">Question</option>
           </select>
+          <label htmlFor="location" className={styles.formLabel}>
+            Location
+          </label>
+          <input
+            id="location"
+            name="location"
+            type="text"
+            value={formData.location}
+            onChange={handleInputChange}
+            className={styles.formSelect} // Reuse select styling for consistency
+            required
+          />
           <label htmlFor="text" className={styles.formLabel}>
             Description
           </label>

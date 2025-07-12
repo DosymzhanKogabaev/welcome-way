@@ -40,6 +40,15 @@
   font-weight: 500;
 }
 
+.postLocation {
+  background: var(--green);
+  color: var(--main);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 500;
+}
+
 .postTime {
   margin-left: auto;
   font-size: 0.8125rem; /* 13px */
