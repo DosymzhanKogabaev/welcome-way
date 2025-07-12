@@ -24,7 +24,7 @@ export const StepsSection: React.FC = () => {
   }, []);
 
   return (
-    <section className={styles.section} id="products">
+    <section className={`${styles.section} container`} id="products">
       <div className={styles.container}>
         <div className={styles.intro}>
           <h2 className={styles.title}>Discover the Power of Our Products</h2>
@@ -38,6 +38,7 @@ export const StepsSection: React.FC = () => {
             Main action
           </Link>
         </div>
+
         <ul className={styles.cardList}>
           <li
             className={`${styles.card} ${
