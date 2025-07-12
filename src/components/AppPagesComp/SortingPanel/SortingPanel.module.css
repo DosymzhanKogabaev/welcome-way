@@ -1,0 +1,73 @@
+.sortingBar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px */
+  padding: 16px 12px;
+  margin-top: 64px;
+  margin-bottom: 16px;
+  background: var(--white);
+  border-bottom: 1px solid var(--light-gray);
+  position: sticky;
+  top: 2.75rem; /* Below AppHeader */
+  z-index: 5;
+  flex-wrap: wrap;
+}
+
+.sortGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* 8px */
+}
+
+.sortLabel {
+  font-size: 0.8125rem; /* 13px */
+  color: var(--main);
+}
+
+.sortSelect {
+  font-size: 0.8125rem; /* 13px */
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--cards);
+  background: var(--light-gray);
+  cursor: pointer;
+}
+
+.searchInput {
+  font-size: 0.8125rem; /* 13px */
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--cards);
+  background: var(--white);
+  flex: 1;
+  min-width: 150px;
+}
+
+.searchInput::placeholder {
+  color: var(--main);
+  opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+  .sortingBar {
+    padding: 1.25rem 2.5rem; /* 20px 40px */
+    top: 3.75rem; /* Below larger AppHeader */
+    flex-wrap: nowrap;
+  }
+
+  .sortLabel,
+  .sortSelect,
+  .searchInput {
+    font-size: 0.9375rem; /* 15px */
+  }
+
+  .searchInput {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sortingBar {
+    padding: 1.25rem 3rem; /* 20px 48px */
+  }
+}
