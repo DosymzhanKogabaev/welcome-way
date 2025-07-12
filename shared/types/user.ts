@@ -17,6 +17,6 @@ export type UserInfo = {
   help_categories: string | null;
   reputation_score: number;
   verified: boolean;
-  created_at: string;
-  updated_at: string;
+  created_at: number;
+  updated_at: number;
 };

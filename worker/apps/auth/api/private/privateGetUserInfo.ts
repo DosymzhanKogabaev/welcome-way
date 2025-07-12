@@ -21,8 +21,8 @@ const RESPONSE_SCHEMA = z.object({
   help_categories: z.string().nullable(),
   reputation_score: z.number(),
   verified: z.boolean(),
-  created_at: z.string(),
-  updated_at: z.string(),
+  created_at: z.number(),
+  updated_at: z.number(),
 }) satisfies z.ZodType<UserInfo>;
 
 export class PrivateGetUserInfoAPI extends OpenAPIRoute {
@@ -58,8 +58,8 @@ export class PrivateGetUserInfoAPI extends OpenAPIRoute {
         help_categories: user.help_categories,
         reputation_score: user.reputation_score || 0,
         verified: !!user.verified,
-        created_at: user.created_at?.toISOString() || new Date().toISOString(),
-        updated_at: user.updated_at?.toISOString() || new Date().toISOString(),
+        created_at: user.created_at,
+        updated_at: user.updated_at,
       };
 
       return Response.json(userInfo);
