@@ -10,37 +10,13 @@
   display: none; /* Chrome, Safari */
 }
 
-.sortingBar {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem; /* 12px */
-  padding: 0.625rem 0.375rem; /* 10px 6px */
-  background: var(--white);
-  border-bottom: 1px solid var(--light-gray);
-  position: sticky;
-  top: 2.75rem; /* Adjusted for smaller header */
-  z-index: 5;
-}
-
-.sortLabel {
-  font-size: 0.8125rem; /* 13px */
-  color: var(--main);
-}
-
-.sortSelect {
-  font-size: 0.8125rem; /* 13px */
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--cards);
-  background: var(--light-gray);
-  cursor: pointer;
-}
-
 .postsSection {
   max-width: 600px;
   margin: 0 auto;
-  padding: 12px 2px 32px;
+  padding: 0 4px 32px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .createPostBtn {
@@ -65,43 +41,45 @@
 }
 
 @media (min-width: 768px) {
-  .sortingBar {
-    padding: 1.25rem 2.5rem; /* 20px 40px */
-    top: 3.75rem; /* Adjusted for larger header */
-  }
-
-  .sortLabel,
-  .sortSelect {
-    font-size: 0.9375rem; /* 15px */
-  }
-
   .postsSection {
     padding: 40px 0 80px;
+    align-items: start;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .postsList {
     max-width: 800px;
   }
 
   .createPostBtn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: auto;
+    margin-bottom: 24px;
+    margin-right: 24px;
     padding: 14px 24px;
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
     border-radius: 12px;
     box-shadow: none;
+    width: 200px;
+    align-self: start;
   }
 }
 
 @media (min-width: 1280px) {
-  .sortingBar {
-    padding: 1.25rem 3rem; /* 20px 48px */
+  .postsSection {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    max-width: 1200px;
+    gap: 64px;
+    padding-top: 64px;
   }
 
-  .postsSection {
+  .postsList {
     max-width: 1000px;
   }
 
   .createPostBtn {
+    position: static;
     padding: 16px 28px;
+    width: 220px;
   }
 }

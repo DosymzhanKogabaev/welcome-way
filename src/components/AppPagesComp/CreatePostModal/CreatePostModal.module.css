@@ -62,7 +62,6 @@
   font-size: 0.875rem; /* 14px */
   font-weight: 600;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s ease;
 }

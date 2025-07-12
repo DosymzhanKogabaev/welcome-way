@@ -21,6 +21,8 @@ const posts: Post[] = [
     type: 'Need',
     text: 'Looking for a translator for documents in Berlin.',
     time: '2 min ago',
+    created_at: '2025-07-12T17:29:00Z',
+    location: 'Berlin',
   },
   {
     id: 2,
@@ -28,6 +30,8 @@ const posts: Post[] = [
     type: 'Offer',
     text: 'Can provide guidance on navigating public transport in Berlin.',
     time: '15 min ago',
+    created_at: '2025-07-12T17:14:00Z',
+    location: 'Berlin',
   },
 ];
 
