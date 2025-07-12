@@ -9,14 +9,13 @@ import { HeroSection } from '../../components/LandingComp/HeroSection/HeroSectio
 import { Features } from '../../components/LandingComp/Features1/Features';
 import { PricingSection } from '@/src/components/LandingComp/PricingSection/PricingSection';
 import { Testimonials } from '@/src/components/LandingComp/Testimonials/Testimonials';
-import { Footer } from '@/src/components/Footer/Footer';
 import { ContactSection } from '@/src/components/LandingComp/ContactSection/ContactSection';
 import { StepsSection } from '@/src/components/LandingComp/StepsSection/StepsSection';
 
 export const HomePage: React.FC = () => {
   return (
     <section className={`${styles.homeSection}`}>
-      <div className={`${styles.homeContainer} container`}>
+      <div className={`${styles.homeContainer}`}>
         <Header />
 
         <HeroSection />
