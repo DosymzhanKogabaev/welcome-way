@@ -1,6 +1,7 @@
+/* ====== BASE ====== */
 .wrapper {
   background-color: transparent;
-  padding: 6rem 1rem;
+  padding: 16px 0;
   position: relative;
 }
 
@@ -39,14 +40,16 @@
   background-color: transparent;
   padding: 2.5rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .textBlock {
   flex: 1 1 60%;
   color: var(--main);
+  margin-bottom: 16px;
 }
 
 .textBlock h2 {
@@ -62,7 +65,8 @@
 .buttonWrapper {
   flex: 1 1 30%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .ctaButton {
@@ -79,15 +83,17 @@
   background-color: var(--button-hover);
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .content {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
     gap: 1.5rem;
   }
 
   .buttonWrapper {
-    justify-content: flex-start;
-    width: 100%;
+    justify-content: flex-end;
+    width: auto;
   }
 }

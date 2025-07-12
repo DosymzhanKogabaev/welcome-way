@@ -8,7 +8,8 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-top: 24px;
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
 .intro {
@@ -53,7 +54,6 @@
   gap: 24px;
   position: relative;
   top: 0;
-  height: 1000px;
 }
 
 .card {
@@ -138,6 +138,7 @@
     flex-direction: column;
     gap: 24px;
     align-items: center;
+    height: 1000px;
   }
   .card {
     width: 90%;
