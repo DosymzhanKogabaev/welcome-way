@@ -19,7 +19,7 @@ export const registerPostRoutes: RegisterAppRoutes = (
   // Public routes
   router.get(`${urlPrefix}/public/posts`, PublicGetAllPostsAPI);
   router.get(`${urlPrefix}/public/posts/:id`, PublicGetPostByIdAPI);
-  router.get(`${urlPrefix}/users/:id/posts`, PublicGetUserPostsAPI);
+  router.get(`${urlPrefix}/public/users/:id/posts`, PublicGetUserPostsAPI);
 
   // Private routes (require authentication)
   router.post(
