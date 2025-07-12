@@ -23,9 +23,9 @@ export const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <a href="#home" className={styles.logo}>
-          Logo
-        </a>
+        <Link to="/asking-for-help" className={styles.logo}>
+          WelcomeWay
+        </Link>
 
         <button
           className={styles.menuButton}

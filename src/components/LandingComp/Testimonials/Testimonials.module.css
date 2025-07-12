@@ -1,3 +1,6 @@
+/* ====== Testimonials.module.css ====== */
+
+/* ====== BASE ====== */
 .section {
   background-color: var(--white);
   padding: 16px;
@@ -17,7 +20,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   color: var(--main);
-  margin-bottom: 1rem;
+  margin-bottom: 16px;
   text-align: center;
 }
 
@@ -25,7 +28,7 @@
   font-size: 14px;
   line-height: 1.5em;
   color: var(--main);
-  margin-bottom: 2rem;
+  margin-bottom: 32px;
   text-align: center;
 }
 
@@ -35,12 +38,12 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 24px;
 }
 
 .testimonialCard {
   background-color: var(--cards);
-  padding: 1.5rem;
+  padding: 24px;
   text-align: center;
   transition: background-color 0.3s ease;
 }
@@ -52,8 +55,8 @@
 .cardHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .profileImage {
@@ -70,19 +73,14 @@
   margin: 0;
 }
 
-.title {
-  font-size: 14px;
-  color: var(--main);
-  margin: 0;
-}
-
 .testimonialText {
   font-size: 14px;
   line-height: 1.5em;
   color: var(--main);
 }
 
-@media (min-width: 768px) {
+/* ====== TABLET ====== */
+@media screen and (min-width: 768px) {
   .section {
     padding: 32px;
   }
@@ -97,7 +95,8 @@
   }
 }
 
-@media (min-width: 1280px) {
+/* ====== DESKTOP ====== */
+@media screen and (min-width: 1280px) {
   .section {
     padding: 42px;
   }
@@ -109,7 +108,7 @@
   .testimonialList {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 32px;
   }
 
   .testimonialCard {

@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem; /* 32px */
+  font-size: 1.8rem; /* 32px */
   font-weight: 600;
   margin-bottom: 0.75rem; /* 12px */
 }
