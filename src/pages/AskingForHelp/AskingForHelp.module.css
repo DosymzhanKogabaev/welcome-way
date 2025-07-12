@@ -13,7 +13,7 @@
 .postsSection {
   max-width: 600px;
   margin: 0 auto;
-  padding: 12px 2px 32px;
+  padding: 0 4px 32px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -43,39 +43,42 @@
 @media (min-width: 768px) {
   .postsSection {
     padding: 40px 0 80px;
-    max-width: 1000px; /* Accommodate button */
-    flex-direction: row;
-    gap: 1.5rem; /* 24px */
-    align-items: flex-start;
+    align-items: start;
+    justify-content: center;
+    align-items: center;
   }
 
   .postsList {
-    flex: 1;
-    max-width: 800px; /* Original width */
-    margin: 0 auto; /* Center posts */
+    max-width: 800px;
   }
 
   .createPostBtn {
-    position: static;
-    align-self: flex-start;
+    margin-bottom: 24px;
+    margin-right: 24px;
     padding: 14px 24px;
-    font-size: 1rem; /* 16px */
+    font-size: 1rem;
     border-radius: 12px;
     box-shadow: none;
-    width: 200px; /* Sidebar width */
+    width: 200px;
+    align-self: start;
   }
 }
 
 @media (min-width: 1280px) {
   .postsSection {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
     max-width: 1200px;
+    gap: 64px;
+    padding-top: 64px;
   }
 
   .postsList {
-    max-width: 1000px; /* Original width */
+    max-width: 1000px;
   }
 
   .createPostBtn {
+    position: static;
     padding: 16px 28px;
     width: 220px;
   }

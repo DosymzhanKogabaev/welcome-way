@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   gap: 0.75rem; /* 12px */
-  padding: 0.625rem 0.375rem; /* 10px 6px */
+  padding: 16px 12px;
+  margin-top: 64px;
+  margin-bottom: 16px;
   background: var(--white);
   border-bottom: 1px solid var(--light-gray);
   position: sticky;

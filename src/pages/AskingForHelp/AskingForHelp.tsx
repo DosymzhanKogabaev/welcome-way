@@ -17,7 +17,7 @@ const initialPosts: Post[] = [
     type: 'Need',
     text: 'Looking for a translator for documents in Berlin.',
     time: '2 min ago',
-    created_at: '2025-07-12T14:52:00Z',
+    created_at: '2025-07-12T17:29:00Z',
     location: 'Berlin',
   },
   {
@@ -26,7 +26,7 @@ const initialPosts: Post[] = [
     type: 'Offer',
     text: 'Can help with finding housing in Hamburg.',
     time: '10 min ago',
-    created_at: '2025-07-12T14:44:00Z',
+    created_at: '2025-07-12T17:21:00Z',
     location: 'Hamburg',
   },
   {
@@ -35,7 +35,7 @@ const initialPosts: Post[] = [
     type: 'Question',
     text: 'Where do I register my child for school in Munich?',
     time: '20 min ago',
-    created_at: '2025-07-12T14:34:00Z',
+    created_at: '2025-07-12T17:11:00Z',
     location: 'Munich',
   },
 ];

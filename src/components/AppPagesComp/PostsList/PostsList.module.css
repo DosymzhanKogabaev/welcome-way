@@ -4,14 +4,14 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 1.125rem; /* 18px */
+  gap: 18px;
 }
 
 .postCard {
   background: var(--white);
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  padding: 12px 8px;
+  padding: 16px 12px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem; /* 8px */
