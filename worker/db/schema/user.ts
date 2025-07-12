@@ -17,10 +17,10 @@ export const userSchema = sqliteTable('users', {
   help_categories: text('help_categories'),
   reputation_score: integer('reputation_score').default(0),
   verified: integer('verified').default(0),
-  created_at: integer('created_at', { mode: 'timestamp' }).default(
-    sql`(unixepoch())`
-  ),
-  updated_at: integer('updated_at', { mode: 'timestamp' }).default(
-    sql`(unixepoch())`
-  ),
+  created_at: integer('created_at', { mode: 'timestamp' })
+    .notNull()
+    .default(sql`(unixepoch())`),
+  updated_at: integer('updated_at', { mode: 'timestamp' })
+    .notNull()
+    .default(sql`(unixepoch())`),
 });

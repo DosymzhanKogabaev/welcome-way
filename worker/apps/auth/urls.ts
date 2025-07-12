@@ -1,5 +1,5 @@
 import auth from '@/worker/middlewares/jwtAuth';
-import { RouterOpenApiType } from '../../types';
+import { RouterOpenApiType } from '@/worker/types';
 import { RegisterAppRoutes } from '../types';
 import {
   PrivateLoginAPI,
@@ -13,14 +13,17 @@ export const registerAuthRoutes: RegisterAppRoutes = (
   router: RouterOpenApiType,
   urlPrefix = null
 ) => {
-  router.get(`${urlPrefix}/auth/test`, PublicTestApi);
-  router.post(`${urlPrefix}/auth/register`, PrivateRegisterAPI);
-  router.post(`${urlPrefix}/auth/login`, PrivateLoginAPI);
-  router.post(`${urlPrefix}/auth/refresh`, PrivateRefreshAPI);
+  // Public routes
+  router.get(`${urlPrefix}/public/auth/test`, PublicTestApi);
+
+  // Private routes
+  router.post(`${urlPrefix}/private/auth/register`, PrivateRegisterAPI);
+  router.post(`${urlPrefix}/private/auth/login`, PrivateLoginAPI);
+  router.post(`${urlPrefix}/private/auth/refresh`, PrivateRefreshAPI);
 
   // Private routes with JWT auth
   router.get(
-    `${urlPrefix}/private/auth/me/:user_id`,
+    `${urlPrefix}/private/auth/me`,
     auth,
     PrivateGetUserInfoAPI as any
   );

@@ -1,0 +1,1 @@
+export { PrivateCreatePostAPI } from './privateCreatePost';

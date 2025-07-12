@@ -19,11 +19,6 @@ export default async function auth(
     }
     try {
       const payload = (await verifyJwt(token, env)) as JwtPayload;
-      if (!checkUserAccess(request, payload)) {
-        return new Response('Access denied: Insufficient permissions', {
-          status: 403,
-        });
-      }
       request.user = {
         user_id: payload.user_id,
       };
@@ -90,21 +85,4 @@ function getJwt(request: Request): string | null {
   }
 
   return authHeader.split(' ')[1].trim();
-}
-
-function checkUserAccess(request: IRequest, payload: JwtPayload): boolean {
-  const { user_id } = payload;
-  const userIdFromUrl = request.params?.user_id;
-  console.log('userIdFromUrl', userIdFromUrl);
-  console.log('user_id', user_id);
-
-  if (!userIdFromUrl) {
-    return false;
-  }
-
-  if (userIdFromUrl === user_id.toString()) {
-    return true;
-  }
-
-  return false;
 }

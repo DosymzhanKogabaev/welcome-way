@@ -19,7 +19,7 @@ export const registerUser = createAsyncThunk(
       RegisterUserResponse,
       RegisterUserRequest
     >(
-      'api/auth/register',
+      'api/private/auth/register',
       {
         body: userData,
       },
@@ -40,7 +40,7 @@ export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (credentials: LoginUserRequest) => {
     const response = await ApiClient.post<LoginUserResponse, LoginUserRequest>(
-      'api/auth/login',
+      'api/private/auth/login',
       {
         body: credentials,
       },
@@ -63,7 +63,7 @@ export const refreshAccessToken = createAsyncThunk(
       { access: string },
       { refresh: string }
     >(
-      'api/auth/refresh',
+      'api/private/auth/refresh',
       {
         body: { refresh: refreshToken },
       },
@@ -82,9 +82,9 @@ export const refreshAccessToken = createAsyncThunk(
 // Async thunk for getting user info
 export const getUserInfo = createAsyncThunk(
   'auth/getUserInfo',
-  async (userId: number) => {
+  async () => {
     const response = await ApiClient.get<UserInfo, any>(
-      `api/private/auth/me/${userId}`,
+      `api/private/auth/me`,
       {},
       true,
       false
