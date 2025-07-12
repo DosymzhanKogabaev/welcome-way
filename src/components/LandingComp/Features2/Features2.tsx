@@ -1,7 +1,7 @@
 // src/components/LandingComp/Features2/Features2.tsx
 
 import React from 'react';
-import styles from './Contact.module.css';
+import styles from './Features2.module.css';
 
 export const Features2: React.FC = () => {
   return (

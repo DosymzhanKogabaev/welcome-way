@@ -1,5 +1,5 @@
 .header {
-  background-color: #ffffff;
+  background-color: var(--white);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
@@ -72,8 +72,8 @@
 }
 
 .signUpButton {
-  background-color: #2563eb;
-  color: #ffffff;
+  background-color: var(--button);
+  color: var(--white);
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
@@ -81,13 +81,13 @@
 }
 
 .signUpButton:hover {
-  background-color: #1d4ed8;
+  background-color: var(--button-hover);
 }
 
 .mobileNav {
   display: block;
-  background-color: #ffffff;
-  border-top: 1px solid #e5e7eb;
+  background-color: var(--white);
+  border-top: 1px solid var(--green);
 }
 
 .mobileNavList {
