@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import { AppHeader } from '../../components/AppPagesComp/AppHeader/AppHeader';
 import {
@@ -32,7 +32,7 @@ const posts: Post[] = [
 ];
 
 export const ProfilePage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  // const { id } = useParams<{ id: string }>();
   const [user, setUser] = useState(initialUserData);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ name: user.name, bio: user.bio });
