@@ -95,6 +95,8 @@ function getJwt(request: Request): string | null {
 function checkUserAccess(request: IRequest, payload: JwtPayload): boolean {
   const { user_id } = payload;
   const userIdFromUrl = request.params?.user_id;
+  console.log('userIdFromUrl', userIdFromUrl);
+  console.log('user_id', user_id);
 
   if (!userIdFromUrl) {
     return false;
