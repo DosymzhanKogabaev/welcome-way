@@ -59,7 +59,10 @@ export const loginUser = createAsyncThunk(
 export const refreshAccessToken = createAsyncThunk(
   'auth/refreshAccessToken',
   async (refreshToken: string) => {
-    const response = await ApiClient.post<any, any>(
+    const response = await ApiClient.post<
+      { access: string },
+      { refresh: string }
+    >(
       'api/auth/refresh',
       {
         body: { refresh: refreshToken },
@@ -68,7 +71,7 @@ export const refreshAccessToken = createAsyncThunk(
       false
     );
 
-    if (!response.access_token) {
+    if (!response.access) {
       throw new Error('Refresh token failed');
     }
 

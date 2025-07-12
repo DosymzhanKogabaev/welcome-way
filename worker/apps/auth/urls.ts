@@ -7,6 +7,7 @@ import {
   PrivateGetUserInfoAPI,
 } from './api/private';
 import { PublicTestApi } from './api/public/testApi';
+import { PrivateRefreshAPI } from './api/private/privateRefresh';
 
 export const registerAuthRoutes: RegisterAppRoutes = (
   router: RouterOpenApiType,
@@ -15,6 +16,9 @@ export const registerAuthRoutes: RegisterAppRoutes = (
   router.get(`${urlPrefix}/auth/test`, PublicTestApi);
   router.post(`${urlPrefix}/auth/register`, PrivateRegisterAPI);
   router.post(`${urlPrefix}/auth/login`, PrivateLoginAPI);
+  router.post(`${urlPrefix}/auth/refresh`, PrivateRefreshAPI);
+
+  // Private routes with JWT auth
   router.get(
     `${urlPrefix}/private/auth/me/:user_id`,
     auth,
