@@ -8,26 +8,40 @@ const pricingPlans = [
     id: 'basic',
     name: 'Basic',
     description: 'Best for personal use.',
-    monthlyPrice: '$19',
-    yearlyPrice: '$190',
-    features: ['Feature One', 'Feature Two'],
+    monthlyPrice: 'FREE',
+    yearlyPrice: 'FREE',
+    features: [
+      'Access the Live Help Feed',
+      'Personalized Integration Roadmap',
+      'Ask questions in your native language',
+    ],
   },
   {
     id: 'standard',
     name: 'Standard',
-    description: 'Ideal for small teams.',
-    monthlyPrice: '$39',
-    yearlyPrice: '$390',
-    features: ['Feature One', 'Feature Two', 'Feature Three'],
+    description: 'Ideal for small teams or volunteer groups.',
+    monthlyPrice: '$18',
+    yearlyPrice: '$199',
+    features: [
+      'All Basic Features',
+      'Manage multiple requests at once',
+      'AI Companion (Beta access)',
+      'Verified Helper Profile with Reviews',
+    ],
     popular: true,
   },
   {
     id: 'premium',
     name: 'Premium',
-    description: 'For growing businesses.',
-    monthlyPrice: '$69',
-    yearlyPrice: '$690',
-    features: ['Feature One', 'Feature Two', 'Feature Three', 'Feature Four'],
+    description: 'For growing NGOs, municipalities, or support networks.',
+    monthlyPrice: '$49',
+    yearlyPrice: '$499',
+    features: [
+      'All Standard Features',
+      'Team Dashboard & Role Management',
+      'Analytics & Community Insights',
+      'Priority Support & Onboarding',
+    ],
   },
 ];
 
@@ -41,7 +55,7 @@ export const PricingSection: FC = () => {
         <h2 className={styles.heading}>Choose the perfect plan for you</h2>
         <p className={styles.subheading}>Pricing plan</p>
         <p className={styles.description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Simple, transparent pricing for individuals, teams, and organizations.
         </p>
 
         <div className={styles.toggleWrapper}>

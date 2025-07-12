@@ -2,7 +2,7 @@
 
 /* ====== BASE ====== */
 .featuresSection {
-  padding: 64px 16px;
+  padding: 32px 16px 32px;
   background-color: var(--gray);
   color: var(--main);
 }
@@ -13,7 +13,7 @@
   align-items: center;
   gap: 32px;
   max-width: 1200px;
-  margin: 0 auto 64px;
+  margin: 0 auto;
 }
 
 .reverse {
@@ -34,6 +34,10 @@
 
 .textContent {
   flex: 1;
+}
+
+.textContentSecond {
+  padding-top: 16px;
 }
 
 .heading {

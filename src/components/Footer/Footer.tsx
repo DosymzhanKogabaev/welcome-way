@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
       <ul className={style.footerList}>
         {footerList.map((section, index) => (
           <li key={index} className={style.footerItem}>
-            <h4 className={style.sectionTitle}>{section.name}</h4>
+            <h3 className={style.sectionTitle}>{section.name}</h3>
             <ul className={style.linksList}>
               {section.about.map((item, idx) => (
                 <li key={idx} className={style.linkItem}>
@@ -67,7 +67,7 @@ export const Footer: React.FC = () => {
         ))}
 
         <li className={style.footerItem}>
-          <h4 className={style.sectionTitle}>Connect with Us</h4>
+          <h3 className={style.sectionTitle}>Connect with Us</h3>
           <div className={style.socialWrapper}>
             <ul className={style.socialList}>
               {socialLinks.map((social, idx) => (
