@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './StepsSection.module.css';
-import { FaUserPlus, FaBullhorn, FaGlobe } from 'react-icons/fa6';
-import { FaHandsHelping } from 'react-icons/fa';
+// import { FaUserPlus, FaBullhorn, FaGlobe } from 'react-icons/fa6';
+// import { FaHandsHelping } from 'react-icons/fa';
 
 export const StepsSection: React.FC = () => {
   const [visibleCards, setVisibleCards] = useState([
@@ -26,36 +26,36 @@ export const StepsSection: React.FC = () => {
   }, []);
 
   // Возможно переделаем
-  const stepsData = [
-    {
-      id: 1,
-      title: 'Create an Account',
-      text: 'Sign up on WelcomeWay platform using your email or social media accounts.',
-      icon: <FaUserPlus />,
-      className: 'rotate1',
-    },
-    {
-      id: 2,
-      title: 'Post Your Needs or Offers',
-      text: 'Share what you need help with or what you can offer to others in the community.',
-      icon: <FaBullhorn />,
-      className: 'rotate2',
-    },
-    {
-      id: 3,
-      title: 'Connect with Locals',
-      text: 'Engage with locals and other migrants to receive guidance, information, and support.',
-      icon: <FaHandsHelping />,
-      className: 'rotate3',
-    },
-    {
-      id: 4,
-      title: 'Explore Resources',
-      text: 'Access personalized integration roadmap, community support, and AI companion for further assistance.',
-      icon: <FaGlobe />,
-      className: 'rotate4',
-    },
-  ];
+  // const stepsData = [
+  //   {
+  //     id: 1,
+  //     title: 'Create an Account',
+  //     text: 'Sign up on WelcomeWay platform using your email or social media accounts.',
+  //     icon: <FaUserPlus />,
+  //     className: 'rotate1',
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'Post Your Needs or Offers',
+  //     text: 'Share what you need help with or what you can offer to others in the community.',
+  //     icon: <FaBullhorn />,
+  //     className: 'rotate2',
+  //   },
+  //   {
+  //     id: 3,
+  //     title: 'Connect with Locals',
+  //     text: 'Engage with locals and other migrants to receive guidance, information, and support.',
+  //     icon: <FaHandsHelping />,
+  //     className: 'rotate3',
+  //   },
+  //   {
+  //     id: 4,
+  //     title: 'Explore Resources',
+  //     text: 'Access personalized integration roadmap, community support, and AI companion for further assistance.',
+  //     icon: <FaGlobe />,
+  //     className: 'rotate4',
+  //   },
+  // ];
 
   return (
     <section className={`${styles.section} container`} id="products">
