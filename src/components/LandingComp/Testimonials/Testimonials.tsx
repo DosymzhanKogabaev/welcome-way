@@ -3,10 +3,10 @@
 import React from 'react';
 import styles from './Testimonials.module.css';
 
-import AnnaSmithImg from '@/src/assets/Landing/AnnaSmith.jpg';
-import MohammedAliImg from '@/src/assets/Landing/MohammedAli.jpeg';
+import AnnaSmithImg from '@/src/assets/Landing/AnnaSmith.webp';
+import MohammedAliImg from '@/src/assets/Landing/MohammedAli.webp';
 import ElenaPetrovaImg from '@/src/assets/Landing/ElenaPetrova.webp';
-import DavidMullerImg from '@/src/assets/Landing/DavidMuller.jpeg';
+import DavidMullerImg from '@/src/assets/Landing/DavidMuller.webp';
 
 export const Testimonials: React.FC = () => {
   return (
