@@ -1,0 +1,140 @@
+.homeSection {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--white) 0%, #f0f4f8 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.homeContainer {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.content {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--main);
+  margin-bottom: 0.5rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--main);
+  margin-bottom: 1rem;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.message {
+  font-size: 1rem;
+  color: var(--main);
+  margin-bottom: 2rem;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.backButton {
+  background-color: var(--button);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  animation: fadeIn 2.5s ease-in-out;
+}
+
+.backButton:hover {
+  background-color: var(--button-hover);
+}
+
+.homeSection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(237, 42, 79, 0.1) 0%,
+    transparent 70%
+  );
+  z-index: 1;
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 32px;
+  }
+
+  .title {
+    font-size: 8rem;
+  }
+
+  .subtitle {
+    font-size: 2rem;
+  }
+
+  .message {
+    font-size: 1.2rem;
+  }
+
+  .content {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section {
+    padding: 42px;
+  }
+
+  .title {
+    font-size: 10rem;
+  }
+
+  .subtitle {
+    font-size: 2.5rem;
+  }
+
+  .message {
+    font-size: 1.5rem;
+  }
+
+  .content {
+    padding: 4rem;
+  }
+}
