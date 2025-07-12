@@ -40,9 +40,8 @@ export const Footer: React.FC = () => {
         Subscribe to Newsletter
       </button>
       <span className={style.license}>
-        © 2023 WelcomeWay. All Rights Reserved.
+        © 2025 WelcomeWay. All Rights Reserved.
       </span>
-
       <ul className={style.footerList}>
         {footerList.map((section, index) => (
           <li key={index} className={style.footerItem}>
@@ -50,12 +49,19 @@ export const Footer: React.FC = () => {
             <ul className={style.linksList}>
               {section.about.map((item, idx) => (
                 <li key={idx} className={style.linkItem}>
-                  {item}
+                  <a href="">{item}</a>
                 </li>
               ))}
             </ul>
           </li>
         ))}
+      </ul>
+      <p className={style.welcomeTeam}>Designed with ❤️ by WelcomeWay Team</p>
+
+      <ul className={style.policeList}>
+        <li className={style.poleceItem}>/privacy-policy</li>
+        <li className={style.poleceItem}>/terms-of-use</li>
+        <li className={style.poleceItem}>/cookie-policy</li>
       </ul>
     </footer>
   );

@@ -82,15 +82,15 @@ img {
   height: auto;
 }
 
-button {
+/* button {
   font-family: inherit;
   color: currentColor;
   border: none;
-}
+} */
 
-input {
+/* input {
   font-family: inherit;
-}
+} */
 
 .visually-hidden {
   position: absolute;
