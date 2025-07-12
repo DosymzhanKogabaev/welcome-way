@@ -36,7 +36,7 @@ export class PrivateGetUserInfoAPI extends OpenAPIRoute {
 
   async handle(request: IRequest, env: Env, _ctx: ExecutionContext) {
     try {
-      const userId = Number(request.params.id);
+      const userId = Number(request.params?.user_id);
       const user = await getUserById(env, userId);
 
       if (!user) {
