@@ -13,7 +13,11 @@
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {
+		"@tsndr/cloudflare-worker-jwt": "^3.2.0",
+		"@vitejs/plugin-react-swc": "^3.10.2",
 		"chanfana": "^2.8.1",
+		"drizzle-kit": "^0.31.4",
+		"drizzle-orm": "^0.44.2",
 		"itty-router": "^5.0.18",
 		"normalize.css": "^8.0.1",
 		"path": "^0.12.7",
@@ -25,6 +29,7 @@
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "^1.9.4",
+		"@cloudflare/workers-types": "^4.20250712.0",
 		"@eslint/js": "^9.29.0",
 		"@types/node": "^24.0.13",
 		"@types/react": "^19.1.8",

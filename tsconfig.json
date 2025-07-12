@@ -1,19 +1,43 @@
 {
-	"files": [],
-	"references": [
-		{
-			"path": "./tsconfig.app.json"
-		},
-		{
-			"path": "./tsconfig.node.json"
-		},
-		{
-			"path": "./tsconfig.worker.json"
-		}
-	],
 	"compilerOptions": {
-		"types": [
-			"./worker-configuration.d.ts"
-		]
-	}
+		"baseUrl": ".",
+		"paths": {
+		"@/*": ["/*"],
+		"@/src/*": ["src/*"],
+		"@/worker/*": ["worker/*"],
+		"@/assets/*": ["src/assets/*"],
+		"@/components/*": ["src/components/*"],
+		"@worker-config": ["worker-configuration.d.ts"],
+		"@/shared/*": ["shared/*"]
+		},
+		"target": "es2021",
+		"lib": ["es2021", "DOM", "DOM.Iterable"],
+		"jsx": "react-jsx",
+		"module": "ESNext",
+		"moduleResolution": "Bundler",
+		"types": ["@cloudflare/workers-types/2023-07-01", "./worker-configuration"],
+		"resolveJsonModule": true,
+		"allowJs": true,
+		"checkJs": false,
+		"noEmit": true,
+		"isolatedModules": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"allowImportingTsExtensions": true,
+		"moduleDetection": "force",
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true
+	},
+	"include": [
+		"src/**/*",
+		"worker-configuration.d.ts",
+		"vite.config.ts",
+		"worker/**/*",
+		"shared/**/*",
+	],
+	"exclude": ["test"]
 }
+  
