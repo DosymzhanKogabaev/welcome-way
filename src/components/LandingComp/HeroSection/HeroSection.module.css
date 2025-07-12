@@ -119,7 +119,7 @@
 }
 
 /* ====== DESKTOP ====== */
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
   .hero {
     padding: 42px;
   }
@@ -135,7 +135,7 @@
 }
 
 /* ====== EXTRA ====== */
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .hero {
     background-attachment: scroll;
   }
