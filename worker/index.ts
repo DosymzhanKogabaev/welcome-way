@@ -3,6 +3,7 @@ import { composeMiddlewares, Middleware } from './middlewareComposer';
 import { optionsMiddleware } from './middlewares/options';
 import { IRequest } from 'itty-router';
 import { serveAssetsMiddleware } from './middlewares/serveAssets';
+import docsRouter from './apps/docsRouter';
 
 const middlewares: Middleware[] = [optionsMiddleware, serveAssetsMiddleware];
 
@@ -25,6 +26,11 @@ async function serveApi(
   env: Env,
   ctx: ExecutionContext
 ): Promise<Response | null> {
+  const url = new URL(request.url);
+  if (url.pathname.startsWith('/docs')) {
+    return await docsRouter.fetch(request, env, ctx);
+  }
+
   const response = await apiRouter.fetch(request, env, ctx);
   if (!response) {
     return null;
