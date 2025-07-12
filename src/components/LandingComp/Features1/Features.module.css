@@ -63,7 +63,7 @@
 }
 
 /* ====== TABLET ====== */
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .featuresContainer {
     flex-direction: row;
     align-items: flex-start;
@@ -75,5 +75,5 @@
 }
 
 /* ====== DESKTOP ====== */
-@media (min-width: 1280px) {
+@media screen and (min-width: 1280px) {
 }

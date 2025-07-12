@@ -16,7 +16,7 @@
 }
 
 .heading {
-  font-size: 24px;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--text-dark);
   text-align: center;
@@ -98,7 +98,7 @@
 }
 
 .planTitle {
-  font-size: 18px;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 8px;
