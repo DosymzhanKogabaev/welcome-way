@@ -6,8 +6,10 @@ import {
   PostsList,
   Post,
 } from '../../components/AppPagesComp/PostsList/PostsList';
+import { CreatePostModal } from '../../components/AppPagesComp/CreatePostModal/CreatePostModal';
 
-const posts: Post[] = [
+// Mock posts data (replace with API in a real app)
+const initialPosts: Post[] = [
   {
     id: 1,
     user: 'Anna (UA)',
@@ -34,6 +36,8 @@ const posts: Post[] = [
 export const AskingForHelp: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sort, setSort] = useState('latest');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [posts, setPosts] = useState(initialPosts);
 
   const filteredPosts = posts.filter(post =>
     sort === 'latest'
@@ -45,10 +49,26 @@ export const AskingForHelp: React.FC = () => {
       : post.type === 'Question'
   );
 
+  const handleCreatePost = (newPost: Omit<Post, 'id' | 'time' | 'user'>) => {
+    // Mock user and ID (replace with authenticated user and UUID in real app)
+    const mockUser = 'Anna (UA)';
+    const newId = posts.length + 1;
+    setPosts(prev => [
+      ...prev,
+      {
+        id: newId,
+        user: mockUser,
+        type: newPost.type,
+        text: newPost.text,
+        time: 'Just now',
+      },
+    ]);
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles.page}>
       <AppHeader menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
       <div className={styles.sortingBar}>
         <label htmlFor="sort" className={styles.sortLabel}>
           Sort by:
@@ -65,10 +85,21 @@ export const AskingForHelp: React.FC = () => {
           <option value="question">Questions</option>
         </select>
       </div>
-
       <main className={styles.postsSection}>
-        <button className={styles.createPostBtn}>+ Create Post</button>
+        <button
+          className={styles.createPostBtn}
+          onClick={() => setIsModalOpen(true)}
+          aria-label="Create new post"
+        >
+          + Create Post
+        </button>
         <PostsList posts={filteredPosts} />
+        {isModalOpen && (
+          <CreatePostModal
+            onClose={() => setIsModalOpen(false)}
+            onSave={handleCreatePost}
+          />
+        )}
       </main>
     </div>
   );

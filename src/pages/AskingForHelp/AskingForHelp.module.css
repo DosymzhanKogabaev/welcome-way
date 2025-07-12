@@ -2,6 +2,12 @@
   font-family: 'Inter', system-ui, sans-serif;
   background: var(--light-gray);
   min-height: 100vh;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.page::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }
 
 .sortingBar {

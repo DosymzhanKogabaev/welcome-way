@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styles from './AppHeader.module.css';
 
 const navLinks = [
@@ -17,7 +17,9 @@ export const AppHeader: React.FC<{
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>WelcomeWay</div>
+      <Link to="/asking-for-help" className={styles.logo}>
+        WelcomeWay
+      </Link>
       <nav className={styles.navDesktop}>
         {navLinks.map(link => (
           <a key={link.name} href={link.href} className={styles.navLink}>
@@ -26,7 +28,7 @@ export const AppHeader: React.FC<{
         ))}
         <button
           className={styles.profileBtn}
-          onClick={() => navigate('/profile/1')}
+          onClick={() => navigate('/profile/1')} // Mock user ID
         >
           Profile
         </button>
@@ -47,7 +49,9 @@ export const AppHeader: React.FC<{
           >
             ×
           </button>
-          <div className={styles.mobileLogo}>WelcomeWay</div>
+          <Link to="/asking-for-help" className={styles.mobileLogo}>
+            WelcomeWay
+          </Link>
           <nav className={styles.navMobile}>
             {navLinks.map(link => (
               <a key={link.name} href={link.href} className={styles.navLink}>
