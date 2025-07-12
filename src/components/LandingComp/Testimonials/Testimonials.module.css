@@ -131,8 +131,16 @@
     padding: 42px;
   }
 
+  .mainTitle {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 21px;
+  }
+
   .title {
-    font-size: 2.5rem;
+    font-size: 1.4rem;
   }
 
   .testimonialList {
@@ -143,5 +151,9 @@
 
   .testimonialCard {
     max-width: none;
+  }
+
+  .name {
+    font-size: 2rem;
   }
 }

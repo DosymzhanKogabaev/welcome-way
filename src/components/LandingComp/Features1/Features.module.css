@@ -84,4 +84,15 @@
 
 /* ====== DESKTOP ====== */
 @media screen and (min-width: 1280px) {
+  .featuresSection {
+    padding: 64px;
+  }
+
+  .heading {
+    font-size: 2rem;
+  }
+
+  .featureList h3 {
+    font-size: 1.3rem;
+  }
 }

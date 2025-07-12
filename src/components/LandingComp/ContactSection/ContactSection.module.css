@@ -124,7 +124,7 @@
 /* ====== DESKTOP ====== */
 @media screen and (min-width: 1280px) {
   .section {
-    padding: 42px;
+    padding: 64px 32px;
   }
 
   .title {

@@ -14,8 +14,9 @@ export const Testimonials: React.FC = () => {
       <div className={styles.container}>
         <h2 className={styles.mainTitle}>Testimonials</h2>
         <p className={styles.subtitle}>
-          "WelcomeWay connected me with a local family who helped me find a job
-          and settle into my new home. I am forever grateful for this platform"
+          “WelcomeWay connected me with a local family who helped me find a job
+          and settle into my new home. I am forever grateful for this platform.”
+          — Amina Okonkwo
         </p>
         <ul className={styles.testimonialList}>
           <li className={styles.testimonialCard}>
