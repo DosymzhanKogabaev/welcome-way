@@ -1,0 +1,139 @@
+.page {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--light-gray);
+  min-height: 100vh;
+}
+
+.profileSection {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 12px 2px 32px;
+}
+
+.profileHeader {
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem; /* 12px */
+  align-items: center;
+  text-align: center;
+}
+
+.avatar {
+  width: 4rem; /* 64px */
+  height: 4rem;
+  border-radius: 50%;
+  background: var(--cards);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem; /* 32px */
+  font-weight: 600;
+  margin-bottom: 0.75rem; /* 12px */
+}
+
+.avatarPlaceholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--button);
+}
+
+.userName {
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  color: var(--main);
+  margin-bottom: 0.5rem; /* 8px */
+}
+
+.bio {
+  font-size: 0.9375rem; /* 15px */
+  color: #444;
+  line-height: 1.5;
+  margin-bottom: 1rem; /* 16px */
+}
+
+.editProfileBtn {
+  background: var(--button);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.editProfileBtn:hover {
+  background: var(--button-hover);
+}
+
+.postsSection {
+  margin-top: 1.5rem; /* 24px */
+}
+
+.postsTitle {
+  font-size: 1.25rem; /* 20px */
+  font-weight: 600;
+  color: var(--main);
+  margin-bottom: 1rem; /* 16px */
+}
+
+@media (min-width: 768px) {
+  .profileSection {
+    max-width: 800px;
+    padding: 40px 0 80px;
+  }
+
+  .profileHeader {
+    padding: 24px 32px;
+    border-radius: 18px;
+  }
+
+  .avatar {
+    width: 5rem; /* 80px */
+    height: 5rem;
+    font-size: 2.5rem; /* 40px */
+  }
+
+  .userName {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  .bio {
+    font-size: 1rem; /* 16px */
+  }
+
+  .editProfileBtn {
+    padding: 10px 20px;
+    font-size: 1rem; /* 16px */
+  }
+
+  .postsTitle {
+    font-size: 1.5rem; /* 24px */
+  }
+}
+
+@media (min-width: 1280px) {
+  .profileSection {
+    max-width: 1000px;
+  }
+
+  .profileHeader {
+    padding: 28px 36px;
+  }
+
+  .avatar {
+    width: 6rem; /* 96px */
+    height: 6rem;
+    font-size: 3rem; /* 48px */
+  }
+}
