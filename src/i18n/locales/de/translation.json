@@ -1,0 +1,5 @@
+{
+    "apiClient": {
+        "accessTokenNotFound": "Zugriffstoken nicht gefunden"
+    }
+}
