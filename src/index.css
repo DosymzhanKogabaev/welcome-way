@@ -9,6 +9,7 @@
   box-sizing: border-box;
 }
 
+/* ====== VARIABLES ====== */
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 
@@ -28,6 +29,11 @@
   --light-gray: #f4f4f4;
   --white: #ffffff;
   --black: #000000;
+  --primary: #ed2a4f;
+  --primary-hover: #d42f4e;
+  --text-dark: #2f2f2f;
+  --border: #ccc;
+  --badge: #ffefef;
 }
 
 a {

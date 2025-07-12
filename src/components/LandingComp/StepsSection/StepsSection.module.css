@@ -6,7 +6,9 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+
+  padding-top: 24px;
 }
 
 .intro {
@@ -52,9 +54,14 @@
   flex-direction: column;
   gap: 1.5rem;
   position: relative;
+  top: 0;
+
+  height: 1000px;
 }
 
 .card {
+  position: sticky;
+  top: 0;
   background-color: var(--cards);
   display: flex;
   flex-direction: column;
@@ -64,10 +71,9 @@
   border-radius: 0;
   text-align: center;
   opacity: 0;
-  /* transition: transform 0.3s ease, opacity 0.3s ease; */
-  /* animation: slideUp 1s ease-out forwards; */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  animation: slideUp 1s ease-out forwards;
   margin-bottom: 0;
-  position: relative;
 }
 
 .card.visible {
@@ -80,15 +86,19 @@
 
 .rotate1 {
   transform: rotate(-1.7deg);
+  z-index: 4;
 }
 .rotate2 {
   transform: rotate(1.4deg);
+  z-index: 3;
 }
 .rotate3 {
   transform: rotate(-1.1deg);
+  z-index: 2;
 }
 .rotate4 {
   transform: rotate(0.7deg);
+  z-index: 1;
 }
 
 .cardTitle {

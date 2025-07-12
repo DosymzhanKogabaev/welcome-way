@@ -1,0 +1,194 @@
+/* PricingSection.module.css */
+
+/* ====== BASE ====== */
+.pricingSection {
+  background-color: var(--light-gray);
+  padding: 32px 16px;
+}
+
+.pricingContainer {
+  max-width: 375px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.subheading {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.description {
+  font-size: 14px;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 24px;
+  max-width: 300px;
+}
+
+.toggleWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.toggleButton {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background-color: var(--white);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-dark);
+}
+
+.toggleButton.active {
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.cardsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--badge);
+  color: var(--primary);
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+.planTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.planDescription {
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.price {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.featureItem {
+  font-size: 14px;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+}
+
+.selectBtn {
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.selectBtn:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ====== TABLET ====== */
+@media screen and (min-width: 768px) {
+  .pricingContainer {
+    max-width: 720px;
+  }
+
+  .heading {
+    font-size: 32px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .toggleButton {
+    font-size: 16px;
+  }
+
+  .cardsWrapper {
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+
+  .card {
+    flex: 1 1 calc(33.333% - 32px);
+    padding: 32px 24px;
+    min-width: 220px;
+  }
+}
+
+/* ====== DESKTOP ====== */
+@media screen and (min-width: 1280px) {
+  .pricingContainer {
+    max-width: 1100px;
+  }
+
+  .card {
+    padding: 40px 32px;
+  }
+
+  .price {
+    font-size: 32px;
+  }
+}

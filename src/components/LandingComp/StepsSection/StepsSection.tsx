@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './StepsSection.module.css';
+import { FaUserPlus, FaBullhorn, FaGlobe } from 'react-icons/fa6';
+import { FaHandsHelping } from 'react-icons/fa';
 
 export const StepsSection: React.FC = () => {
   const [visibleCards, setVisibleCards] = useState([
@@ -23,6 +25,37 @@ export const StepsSection: React.FC = () => {
     return () => timeouts.forEach(clearTimeout);
   }, []);
 
+  const stepsData = [
+    {
+      id: 1,
+      title: 'Create an Account',
+      text: 'Sign up on WelcomeWay platform using your email or social media accounts.',
+      icon: <FaUserPlus />,
+      className: 'rotate1',
+    },
+    {
+      id: 2,
+      title: 'Post Your Needs or Offers',
+      text: 'Share what you need help with or what you can offer to others in the community.',
+      icon: <FaBullhorn />,
+      className: 'rotate2',
+    },
+    {
+      id: 3,
+      title: 'Connect with Locals',
+      text: 'Engage with locals and other migrants to receive guidance, information, and support.',
+      icon: <FaHandsHelping />,
+      className: 'rotate3',
+    },
+    {
+      id: 4,
+      title: 'Explore Resources',
+      text: 'Access personalized integration roadmap, community support, and AI companion for further assistance.',
+      icon: <FaGlobe />,
+      className: 'rotate4',
+    },
+  ];
+
   return (
     <section className={`${styles.section} container`} id="products">
       <div className={styles.container}>
@@ -39,52 +72,55 @@ export const StepsSection: React.FC = () => {
           </Link>
         </div>
 
-        <ul className={styles.cardList}>
-          <li
-            className={`${styles.card} ${
-              visibleCards[0] ? styles.visible : ''
-            } ${styles.rotate1}`}
-          >
-            <h2 className={styles.cardTitle}>Create an Account</h2>
-            <p className={styles.cardText}>
-              Sign up on WelcomeWay platform using your email or social media
-              accounts.
-            </p>
-          </li>
-          <li
-            className={`${styles.card} ${
-              visibleCards[1] ? styles.visible : ''
-            } ${styles.rotate2}`}
-          >
-            <h2 className={styles.cardTitle}>Post Your Needs or Offers</h2>
-            <p className={styles.cardText}>
-              Share what you need help with or what you can offer to others in
-              the community.
-            </p>
-          </li>
-          <li
-            className={`${styles.card} ${
-              visibleCards[2] ? styles.visible : ''
-            } ${styles.rotate3}`}
-          >
-            <h2 className={styles.cardTitle}>Connect with Locals</h2>
-            <p className={styles.cardText}>
-              Engage with locals and other migrants to receive guidance,
-              information, and support.
-            </p>
-          </li>
-          <li
-            className={`${styles.card} ${
-              visibleCards[3] ? styles.visible : ''
-            } ${styles.rotate4}`}
-          >
-            <h2 className={styles.cardTitle}>Explore Resources</h2>
-            <p className={styles.cardText}>
-              Access personalized integration roadmap, community support, and AI
-              companion for further assistance.
-            </p>
-          </li>
-        </ul>
+        {/* Обёртка с фиксированной высотой для скролла */}
+        <div className={styles.stepsWrapper}>
+          <ul className={styles.cardList}>
+            <li
+              className={`${styles.card} ${
+                visibleCards[0] ? styles.visible : ''
+              } ${styles.rotate1}`}
+            >
+              <h2 className={styles.cardTitle}>Create an Account</h2>
+              <p className={styles.cardText}>
+                Sign up on WelcomeWay platform using your email or social media
+                accounts.
+              </p>
+            </li>
+            <li
+              className={`${styles.card} ${
+                visibleCards[1] ? styles.visible : ''
+              } ${styles.rotate2}`}
+            >
+              <h2 className={styles.cardTitle}>Post Your Needs or Offers</h2>
+              <p className={styles.cardText}>
+                Share what you need help with or what you can offer to others in
+                the community.
+              </p>
+            </li>
+            <li
+              className={`${styles.card} ${
+                visibleCards[2] ? styles.visible : ''
+              } ${styles.rotate3}`}
+            >
+              <h2 className={styles.cardTitle}>Connect with Locals</h2>
+              <p className={styles.cardText}>
+                Engage with locals and other migrants to receive guidance,
+                information, and support.
+              </p>
+            </li>
+            <li
+              className={`${styles.card} ${
+                visibleCards[3] ? styles.visible : ''
+              } ${styles.rotate4}`}
+            >
+              <h2 className={styles.cardTitle}>Explore Resources</h2>
+              <p className={styles.cardText}>
+                Access personalized integration roadmap, community support, and
+                AI companion for further assistance.
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
   );
