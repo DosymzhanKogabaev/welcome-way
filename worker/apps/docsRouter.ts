@@ -358,7 +358,7 @@ function generateSwaggerUI(title: string, specUrl: string): string {
                     // Add authorization header if available
                     const token = localStorage.getItem('jwt_token');
                     if (token) {
-                        request.headers.Authorization = 'Bearer ' + token;
+                        request.headers.Authorization = 'JWT ' + token;
                     }
                     return request;
                 }
