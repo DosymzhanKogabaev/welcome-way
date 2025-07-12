@@ -1,9 +1,9 @@
 // src/components/LandingComp/ContactSection/Contact.tsx
 
 import React from 'react';
-import styles from './Contact.module.css';
+import styles from './ContactSection.module.css';
 
-export const Contact: React.FC = () => {
+export const ContactSection: React.FC = () => {
   return (
     <section className={styles.headerSection}>
       <div className={styles.headerContainer}></div>

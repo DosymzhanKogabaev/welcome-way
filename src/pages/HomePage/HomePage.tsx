@@ -5,8 +5,12 @@ import styles from './HomePage.module.css';
 import '../../index.css';
 import { Header } from '../../components/Header/Header';
 import { HeroSection } from '../../components/LandingComp/HeroSection/HeroSection';
-import { CTA } from '../../components/LandingComp/CTA/CTA';
 import { Features } from '../../components/LandingComp/Features1/Features';
+import { PricingSection } from '@/src/components/LandingComp/PricingSection/PricingSection';
+import { Testimonials } from '@/src/components/LandingComp/Testimonials/Testimonials';
+import { Footer } from '@/src/components/Footer/Footer';
+import { ContactSection } from '@/src/components/LandingComp/ContactSection/ContactSection';
+import { StepsSection } from '@/src/components/LandingComp/StepsSection/StepsSection';
 
 export const HomePage: React.FC = () => {
   return (
@@ -15,7 +19,11 @@ export const HomePage: React.FC = () => {
         <Header />
         <HeroSection />
         <Features />
-        <CTA />
+        <PricingSection />
+        <StepsSection />
+        <Testimonials />
+        <ContactSection />
+        <Footer />
       </div>
     </section>
   );
