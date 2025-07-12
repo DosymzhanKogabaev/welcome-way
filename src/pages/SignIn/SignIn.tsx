@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
-import { loginUser, clearError } from '@/src/redux/slices/auth/authSlice';
+import {
+  loginUser,
+  clearError,
+  getUserInfo,
+} from '@/src/redux/slices/auth/authSlice';
 import './SignIn.css';
 import { hashPassword } from '@/src/utils/auth';
+import { decodeAccessToken } from '@/src/utils/jwt';
 
 export const SignIn: React.FC = () => {
   const navigate = useNavigate();
@@ -59,18 +64,23 @@ export const SignIn: React.FC = () => {
         formData.password,
         formData.email
       );
-      await dispatch(
+
+      // First, login the user
+      const response = await dispatch(
         loginUser({
           email: formData.email,
           password: hashedPassword,
         })
       ).unwrap();
 
-      // Show success alert since we don't have user info API yet
-      alert('Successfully logged in! Welcome back.');
+      console.log('response', response);
+      const userId = decodeAccessToken(response.access_token);
+      console.log('userId', userId);
 
-      // TODO: Make API call to get user info when available
-      // For now, just navigate to home or dashboard
+      // After successful login, get user info
+      await dispatch(getUserInfo(userId)).unwrap();
+
+      // Navigate to home or dashboard
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);

@@ -22,7 +22,6 @@ export type ClientOptions<K> = Omit<
 > & {
   body?: BodyInit | K;
   headers?: Record<string, string>;
-  useFullUrl?: boolean;
   withStatus?: boolean;
 };
 
@@ -98,35 +97,12 @@ export class ApiClient {
     };
 
     let apiPrefix: string = import.meta.env.VITE_API_URL;
-    // let apiPrefix: string = 'http://localhost:8787';
-
-    // Проверка на отсутствие API URL
-    if (!apiPrefix) {
-      console.error('VITE_API_URL is not defined in environment variables');
-      throw new Error(
-        'API URL is not configured. Please check your environment variables.'
-      );
-    }
-
-    if (!apiPrefix.endsWith('/')) {
+    // let apiPrefix: string = 'http://127.0.0.1:8787';
+    if (apiPrefix && !apiPrefix.endsWith('/')) {
       apiPrefix = `${apiPrefix}/`;
     }
 
-    const finalUrl = options.useFullUrl ? url : `${apiPrefix}${url}`;
-
-    // Логирование для отладки
-    if (url.includes('apple/oauth')) {
-      console.log('Apple OAuth Request Details:', {
-        apiPrefix,
-        url,
-        finalUrl,
-        method: requestType,
-        headers: {
-          ...headers,
-          Authorization: headers.Authorization ? 'JWT ...' : 'none',
-        },
-      });
-    }
+    const finalUrl = apiPrefix ? `${apiPrefix}${url}` : url;
 
     try {
       const response = await fetch(finalUrl, fetchOptions);
