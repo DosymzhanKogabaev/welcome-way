@@ -1,5 +1,11 @@
 // src/components/Footer/Footer.tsx
 
+import {
+  FaFacebookF,
+  FaXTwitter,
+  FaLinkedinIn,
+  FaYoutube,
+} from 'react-icons/fa6';
 import style from './Footer.module.css';
 
 export const Footer: React.FC = () => {
@@ -18,19 +24,23 @@ export const Footer: React.FC = () => {
         'Cookie Policy',
       ],
     },
-    {
-      name: 'Connect with Us',
-      about: ['Facebook', 'X', 'LinkedIn', 'Youtube'],
-    },
+  ];
+
+  const socialLinks = [
+    { name: 'Facebook', icon: <FaFacebookF />, href: '#' },
+    { name: 'X', icon: <FaXTwitter />, href: '#' },
+    { name: 'LinkedIn', icon: <FaLinkedinIn />, href: '#' },
+    { name: 'Youtube', icon: <FaYoutube />, href: '#' },
   ];
 
   return (
     <footer className={`${style.footer} container`}>
-      <h2 className={style.tytle}>WelcomeWay</h2>
-      <h3>
+      <h2 className={style.title}>WelcomeWay</h2>
+      <h3 className={style.subtitle}>
         Subscribe to our newsletter for the latest updates on new features and
         product releases.
       </h3>
+
       <input
         className={style.emailInput}
         type="email"
@@ -39,9 +49,9 @@ export const Footer: React.FC = () => {
       <button className={style.submitEmailBtn} type="submit">
         Subscribe to Newsletter
       </button>
-      <span className={style.license}>
-        © 2025 WelcomeWay. All Rights Reserved.
-      </span>
+
+      <p className={style.license}>© 2025 WelcomeWay. All Rights Reserved.</p>
+
       <ul className={style.footerList}>
         {footerList.map((section, index) => (
           <li key={index} className={style.footerItem}>
@@ -49,19 +59,40 @@ export const Footer: React.FC = () => {
             <ul className={style.linksList}>
               {section.about.map((item, idx) => (
                 <li key={idx} className={style.linkItem}>
-                  <a href="">{item}</a>
+                  <a href="#">{item}</a>
                 </li>
               ))}
             </ul>
           </li>
         ))}
+
+        <li className={style.footerItem}>
+          <h4 className={style.sectionTitle}>Connect with Us</h4>
+          <ul className={style.socialList}>
+            {socialLinks.map((social, idx) => (
+              <li key={idx} className={style.socialItem}>
+                <a href={social.href} aria-label={social.name}>
+                  {social.icon}
+                  <span className={style.socialName}>{social.name}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
       </ul>
+
       <p className={style.welcomeTeam}>Designed with ❤️ by WelcomeWay Team</p>
 
-      <ul className={style.policeList}>
-        <li className={style.poleceItem}>/privacy-policy</li>
-        <li className={style.poleceItem}>/terms-of-use</li>
-        <li className={style.poleceItem}>/cookie-policy</li>
+      <ul className={style.policyList}>
+        <li className={style.policyItem}>
+          <a href="#">/privacy-policy</a>
+        </li>
+        <li className={style.policyItem}>
+          <a href="#">/terms-of-use</a>
+        </li>
+        <li className={style.policyItem}>
+          <a href="#">/cookie-policy</a>
+        </li>
       </ul>
     </footer>
   );
