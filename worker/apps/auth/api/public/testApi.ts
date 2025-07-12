@@ -1,4 +1,4 @@
-import { handleError } from "../../../common/handleError";
+import { handleError } from "@/worker/apps/common/handleError";
 import { OpenAPIRoute } from "chanfana";
 import { IRequest } from "itty-router";
 

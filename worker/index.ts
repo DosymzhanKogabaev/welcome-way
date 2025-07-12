@@ -1,16 +1,17 @@
-import apiRouter from "./apps/apiRouter";
-import { composeMiddlewares, Middleware } from "./middlewareComposer";
-import { optionsMiddleware } from "./middlewares/options";
-import { IRequest } from "itty-router";
+import apiRouter from './apps/apiRouter';
+import { composeMiddlewares, Middleware } from './middlewareComposer';
+import { optionsMiddleware } from './middlewares/options';
+import { IRequest } from 'itty-router';
+import { serveAssetsMiddleware } from './middlewares/serveAssets';
 
-const middlewares: Middleware[] = [optionsMiddleware];
+const middlewares: Middleware[] = [optionsMiddleware, serveAssetsMiddleware];
 
 function applyCors(response: Response, request: Request): Response {
-  if (request.headers.has("Origin")) {
+  if (request.headers.has('Origin')) {
     const newResponse = new Response(response.body, response);
     newResponse.headers.set(
-      "Access-Control-Allow-Origin",
-      request.headers.get("Origin") || "*"
+      'Access-Control-Allow-Origin',
+      request.headers.get('Origin') || '*'
     );
 
     return newResponse;
@@ -49,13 +50,13 @@ export default {
       const response = await handler(request, env, ctx);
 
       return applyCors(
-        response || new Response("Not found", { status: 404 }),
+        response || new Response('Not found', { status: 404 }),
         request
       );
     } catch (error) {
       console.error(error);
 
-      return new Response("Server error", { status: 500 });
+      return new Response('Server error', { status: 500 });
     }
   },
 };
