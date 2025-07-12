@@ -2,8 +2,6 @@
   text-align: center;
   font-family: 'Inter', sans-serif;
   color: #333;
-  /* background-color: #f8f8f8; */
-
   padding-bottom: 24px;
 }
 
@@ -82,6 +80,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  align-items: center;
 }
 
 .linkItem a {
@@ -90,17 +89,23 @@
   text-decoration: none;
 }
 
+.socialWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .socialList {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .socialItem {
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .socialItem a {
@@ -135,16 +140,12 @@
   text-decoration: none;
 }
 
-/* ========== Animations ========== */
-
 .linkItem a:hover,
 .socialItem a:hover,
 .policyItem a:hover {
   color: #ff5a5f;
   transition: color 0.3s ease-in-out;
 }
-
-/* ===================== TABLET ===================== */
 
 @media screen and (min-width: 768px) {
   .footer {
@@ -173,7 +174,6 @@
   }
 
   .footerItem {
-    /* min-width: 200px; */
     padding-top: 0;
   }
 
@@ -202,8 +202,6 @@
     gap: 40px;
   }
 }
-
-/* ===================== DESCTOP ===================== */
 
 @media screen and (min-width: 1280px) {
   .title {

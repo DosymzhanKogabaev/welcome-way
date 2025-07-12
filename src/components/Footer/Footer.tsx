@@ -68,16 +68,18 @@ export const Footer: React.FC = () => {
 
         <li className={style.footerItem}>
           <h4 className={style.sectionTitle}>Connect with Us</h4>
-          <ul className={style.socialList}>
-            {socialLinks.map((social, idx) => (
-              <li key={idx} className={style.socialItem}>
-                <a href={social.href} aria-label={social.name}>
-                  {social.icon}
-                  <span className={style.socialName}>{social.name}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className={style.socialWrapper}>
+            <ul className={style.socialList}>
+              {socialLinks.map((social, idx) => (
+                <li key={idx} className={style.socialItem}>
+                  <a href={social.href} aria-label={social.name}>
+                    {social.icon}
+                    <span className={style.socialName}>{social.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </li>
       </ul>
 
