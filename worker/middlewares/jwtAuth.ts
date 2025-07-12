@@ -1,6 +1,6 @@
 import jwt from '@tsndr/cloudflare-worker-jwt';
 import { IRequest } from 'itty-router';
-import { JwtPayload } from '@/worker/apps/auth/types/jwt';
+import { JwtPayload } from '@/shared/types/jwt';
 
 // ====================
 // Публичные функции

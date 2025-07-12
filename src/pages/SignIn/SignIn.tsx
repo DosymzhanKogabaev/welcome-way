@@ -8,13 +8,13 @@ import {
 } from '@/src/redux/slices/auth/authSlice';
 import './SignIn.css';
 import { hashPassword } from '@/src/utils/auth';
+import { decodeAccessToken } from '@/src/utils/jwt';
 
 export const SignIn: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
   const { isLoading, error } = useAppSelector(state => state.auth);
-  const { user } = useAppSelector(state => state.auth);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -66,15 +66,17 @@ export const SignIn: React.FC = () => {
       );
 
       // First, login the user
-      await dispatch(
+      const response = await dispatch(
         loginUser({
           email: formData.email,
           password: hashedPassword,
         })
       ).unwrap();
 
+      const userId = decodeAccessToken(response.access_token);
+
       // After successful login, get user info
-      await dispatch(getUserInfo(user?.id || 0)).unwrap();
+      await dispatch(getUserInfo(userId)).unwrap();
 
       // Navigate to home or dashboard
       navigate('/');

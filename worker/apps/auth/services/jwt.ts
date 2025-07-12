@@ -1,6 +1,6 @@
-import { JwtPayload, JwtTokens } from "@/worker/apps/auth/types/jwt";
-import { User } from "@/shared/types/user";
-import jwt from "@tsndr/cloudflare-worker-jwt";
+import { JwtPayload, JwtTokens } from '@/shared/types/jwt';
+import { User } from '@/shared/types/user';
+import jwt from '@tsndr/cloudflare-worker-jwt';
 
 export async function generateTokens(env: Env, user: User): Promise<JwtTokens> {
   const SECRET_TOKEN = env.JWT_SECRET_TOKEN;
@@ -14,13 +14,13 @@ export async function generateTokens(env: Env, user: User): Promise<JwtTokens> {
   };
   const accessPayload: JwtPayload = {
     ...payload,
-    token_type: "access",
+    token_type: 'access',
     jti: crypto.randomUUID(),
     exp: accessExpiresIn,
   };
   const refreshPayload: JwtPayload = {
     ...payload,
-    token_type: "refresh",
+    token_type: 'refresh',
     jti: crypto.randomUUID(),
     exp: refreshExpiresIn,
   };
