@@ -1,0 +1,263 @@
+.footer {
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  padding-bottom: 24px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  padding-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+  max-width: 480px;
+  padding-bottom: 20px;
+}
+
+.emailInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.submitEmailBtn {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submitEmailBtn:hover {
+  background-color: #e84c4f;
+}
+
+.license {
+  font-size: 14px;
+  color: #999;
+  padding-top: 24px;
+}
+
+.footerList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 48px;
+  padding-top: 60px;
+  padding-bottom: 32px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.footerItem {
+  min-width: 160px;
+  padding-top: 12px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.linkItem a {
+  color: #444;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.socialWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.socialList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.socialItem {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.socialItem a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #444;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.socialName {
+  display: inline-block;
+}
+
+.welcomeTeam {
+  font-size: 14px;
+  color: #666;
+  padding-top: 16px;
+}
+
+.policyList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 40px;
+}
+
+.policyItem a {
+  font-size: 14px;
+  color: #888;
+  text-decoration: none;
+}
+
+.linkItem a:hover,
+.socialItem a:hover,
+.policyItem a:hover {
+  color: #ff5a5f;
+  transition: color 0.3s ease-in-out;
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    text-align: left;
+  }
+
+  .subtitle {
+    max-width: 100%;
+    padding-bottom: 20px;
+  }
+
+  .emailInput,
+  .submitEmailBtn {
+    display: inline-block;
+    width: calc(50% - 8px);
+    vertical-align: top;
+  }
+
+  .emailInput {
+    margin-right: 16px;
+    margin-bottom: 0;
+  }
+
+  .footerList {
+    justify-content: space-between;
+  }
+
+  .footerItem {
+    padding-top: 0;
+  }
+
+  .sectionTitle {
+    padding-bottom: 20px;
+  }
+
+  .linksList {
+    gap: 20px;
+  }
+
+  .socialList {
+    gap: 24px;
+  }
+
+  .socialItem {
+    justify-content: flex-start;
+  }
+
+  .welcomeTeam {
+    padding-top: 32px;
+  }
+
+  .policyList {
+    flex-direction: row;
+    gap: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .title {
+    font-size: 40px;
+  }
+
+  .subtitle {
+    font-size: 22px;
+    padding-bottom: 28px;
+  }
+
+  .emailInput {
+    font-size: 18px;
+    padding: 14px 18px;
+  }
+
+  .submitEmailBtn {
+    font-size: 18px;
+    padding: 14px 18px;
+  }
+
+  .license {
+    font-size: 16px;
+    padding-top: 32px;
+  }
+
+  .sectionTitle {
+    font-size: 24px;
+    padding-bottom: 28px;
+  }
+
+  .linkItem a,
+  .socialItem a {
+    font-size: 22px;
+  }
+
+  .socialList {
+    gap: 28px;
+  }
+
+  .welcomeTeam {
+    font-size: 18px;
+    padding-top: 40px;
+  }
+
+  .policyItem a {
+    font-size: 22px;
+  }
+
+  .footerList {
+    padding-top: 80px;
+    padding-bottom: 48px;
+  }
+
+  .policyList {
+    gap: 48px;
+    padding-top: 48px;
+  }
+}
