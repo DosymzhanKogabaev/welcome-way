@@ -22,6 +22,7 @@
 	],
 	"vars": {
 		"ACCESS_TOKEN_EXPIRES_IN": 3600,
-		"REFRESH_TOKEN_EXPIRES_IN": 604800
+		"REFRESH_TOKEN_EXPIRES_IN": 604800,
+		"VITE_API_URL": "https://welcome-may.dkogabayev.workers.dev"
 	}
 }
