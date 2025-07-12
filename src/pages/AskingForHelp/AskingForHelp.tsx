@@ -9,7 +9,6 @@ import {
 import { CreatePostModal } from '../../components/AppPagesComp/CreatePostModal/CreatePostModal';
 import { SortingPanel } from '../../components/AppPagesComp/SortingPanel/SortingPanel';
 
-// Mock posts data (replace with API in a real app)
 const initialPosts: Post[] = [
   {
     id: 1,

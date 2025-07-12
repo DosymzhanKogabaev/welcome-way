@@ -7,8 +7,8 @@ export type Post = {
   type: 'Need' | 'Offer' | 'Question';
   text: string;
   time: string;
-  created_at: string; // Added for sorting
-  location: string; // Added for location sorting
+  created_at: string;
+  location: string;
 };
 
 export const PostsList: React.FC<{ posts: Post[] }> = ({ posts }) => (

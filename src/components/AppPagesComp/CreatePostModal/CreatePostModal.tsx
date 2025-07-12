@@ -15,7 +15,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
     type: 'Need' as Post['type'],
     text: '',
     created_at: new Date().toISOString(),
-    location: 'Berlin', // Default location
+    location: 'Berlin',
   });
 
   const handleInputChange = (
@@ -29,7 +29,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.text.trim() || !formData.location.trim()) return; // Basic validation
+    if (!formData.text.trim() || !formData.location.trim()) return;
     onSave({ ...formData, created_at: new Date().toISOString() });
   };
 
@@ -69,7 +69,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
             type="text"
             value={formData.location}
             onChange={handleInputChange}
-            className={styles.formSelect} // Reuse select styling for consistency
+            className={styles.formSelect}
             required
           />
           <label htmlFor="text" className={styles.formLabel}>
