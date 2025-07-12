@@ -23,6 +23,7 @@ const RESPONSE_SCHEMA = z.object({
   type: z.string(),
   text: z.string(),
   created_at: z.number(),
+  updated_at: z.number(),
 }) satisfies z.ZodType<CreatePostResponse>;
 
 export class PrivateCreatePostAPI extends OpenAPIRoute {
@@ -88,6 +89,7 @@ export class PrivateCreatePostAPI extends OpenAPIRoute {
         type: post.type,
         text: post.text,
         created_at: post.created_at.getTime(),
+        updated_at: post.updated_at.getTime(),
       };
 
       return Response.json(response, { status: 201 });
