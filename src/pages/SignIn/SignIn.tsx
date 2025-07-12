@@ -73,7 +73,9 @@ export const SignIn: React.FC = () => {
         })
       ).unwrap();
 
+      console.log('response', response);
       const userId = decodeAccessToken(response.access_token);
+      console.log('userId', userId);
 
       // After successful login, get user info
       await dispatch(getUserInfo(userId)).unwrap();

@@ -9,3 +9,17 @@ export type JwtTokens = {
   access_token: string;
   refresh_token: string;
 };
+
+export type DecodedToken = {
+  header: {
+    alg: string;
+    typ: string;
+  };
+  payload: {
+    exp: number;
+    iat: number;
+    jti: string;
+    user_id: string;
+    token_type: string;
+  };
+};

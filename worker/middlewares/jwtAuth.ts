@@ -8,7 +8,7 @@ import { JwtPayload } from '@/shared/types/jwt';
 
 export default async function auth(
   request: IRequest,
-  _env: Env,
+  env: Env,
   _ctx: ExecutionContext
 ): Promise<Response | void> {
   const urlPathname = new URL(request.url).pathname;
@@ -16,6 +16,19 @@ export default async function auth(
     const token = getJwt(request);
     if (!token) {
       return new Response('No authorization token provided', { status: 401 });
+    }
+    try {
+      const payload = (await verifyJwt(token, env)) as JwtPayload;
+      if (!checkUserAccess(request, payload)) {
+        return new Response('Access denied: Insufficient permissions', {
+          status: 403,
+        });
+      }
+      request.user = {
+        user_id: payload.user_id,
+      };
+    } catch (error) {
+      return new Response('JWT verification failed', { status: 401 });
     }
   } else {
     return new Response('Invalid url structure', { status: 401 });
@@ -77,4 +90,19 @@ function getJwt(request: Request): string | null {
   }
 
   return authHeader.split(' ')[1].trim();
+}
+
+function checkUserAccess(request: IRequest, payload: JwtPayload): boolean {
+  const { user_id } = payload;
+  const userIdFromUrl = request.params?.user_id;
+
+  if (!userIdFromUrl) {
+    return false;
+  }
+
+  if (userIdFromUrl === user_id.toString()) {
+    return true;
+  }
+
+  return false;
 }
