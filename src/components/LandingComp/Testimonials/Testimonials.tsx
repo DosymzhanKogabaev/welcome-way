@@ -3,6 +3,11 @@
 import React from 'react';
 import styles from './Testimonials.module.css';
 
+import AnnaSmithImg from '@/src/assets/Landing/AnnaSmith.webp';
+import MohammedAliImg from '@/src/assets/Landing/MohammedAli.webp';
+import ElenaPetrovaImg from '@/src/assets/Landing/ElenaPetrova.webp';
+import DavidMullerImg from '@/src/assets/Landing/DavidMuller.webp';
+
 export const Testimonials: React.FC = () => {
   return (
     <section className={styles.section} id="testimonials">
@@ -16,7 +21,7 @@ export const Testimonials: React.FC = () => {
           <li className={styles.testimonialCard}>
             <div className={styles.cardHeader}>
               <img
-                src="https://via.placeholder.com/50"
+                src={AnnaSmithImg}
                 alt="Anna Smith"
                 className={styles.profileImage}
               />
@@ -34,7 +39,7 @@ export const Testimonials: React.FC = () => {
           <li className={styles.testimonialCard}>
             <div className={styles.cardHeader}>
               <img
-                src="https://via.placeholder.com/50"
+                src={MohammedAliImg}
                 alt="Mohammed Ali"
                 className={styles.profileImage}
               />
@@ -52,7 +57,7 @@ export const Testimonials: React.FC = () => {
           <li className={styles.testimonialCard}>
             <div className={styles.cardHeader}>
               <img
-                src="https://via.placeholder.com/50"
+                src={ElenaPetrovaImg}
                 alt="Elena Petrova"
                 className={styles.profileImage}
               />
@@ -70,7 +75,7 @@ export const Testimonials: React.FC = () => {
           <li className={styles.testimonialCard}>
             <div className={styles.cardHeader}>
               <img
-                src="https://via.placeholder.com/50"
+                src={DavidMullerImg}
                 alt="David Müller"
                 className={styles.profileImage}
               />
