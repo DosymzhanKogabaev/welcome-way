@@ -1,3 +1,4 @@
+import { User } from '@/shared/types/user';
 import { RegisterUserRequest } from '@/shared/types/register';
 import { InvalidCredentialsException } from '@/worker/apps/auth/exceptions/user';
 import { initDbConnect } from '@/worker/db';
@@ -43,7 +44,7 @@ export async function verifyUser(env: Env, email: string, password: string) {
   return user;
 }
 
-export async function getUserById(env: Env, id: number) {
+export async function getUserById(env: Env, id: number): Promise<User> {
   const db = initDbConnect(env);
   const [user] = await db
     .select()

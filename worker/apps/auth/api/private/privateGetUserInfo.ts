@@ -36,14 +36,14 @@ export class PrivateGetUserInfoAPI extends OpenAPIRoute {
 
   async handle(request: IRequest, env: Env, _ctx: ExecutionContext) {
     try {
-      const userId = Number(request.params?.user_id);
+      const userId = Number(request.user?.user_id);
       const user = await getUserById(env, userId);
 
       if (!user) {
         throw new UserNotFoundException();
       }
 
-      const userInfo = {
+      const userInfo: UserInfo = {
         id: user.id,
         full_name: user.full_name,
         email: user.email,
@@ -58,8 +58,8 @@ export class PrivateGetUserInfoAPI extends OpenAPIRoute {
         help_categories: user.help_categories,
         reputation_score: user.reputation_score || 0,
         verified: !!user.verified,
-        created_at: user.created_at,
-        updated_at: user.updated_at,
+        created_at: user.created_at.getTime(),
+        updated_at: user.updated_at.getTime(),
       };
 
       return Response.json(userInfo);
