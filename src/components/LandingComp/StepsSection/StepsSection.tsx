@@ -25,6 +25,7 @@ export const StepsSection: React.FC = () => {
     return () => timeouts.forEach(clearTimeout);
   }, []);
 
+  // Возможно переделаем
   const stepsData = [
     {
       id: 1,
