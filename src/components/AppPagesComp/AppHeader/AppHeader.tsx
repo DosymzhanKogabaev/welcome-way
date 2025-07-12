@@ -28,7 +28,7 @@ export const AppHeader: React.FC<{
         ))}
         <button
           className={styles.profileBtn}
-          onClick={() => navigate('/profile/1')} // Mock user ID
+          onClick={() => navigate('/profile/1')}
         >
           Profile
         </button>
@@ -59,7 +59,7 @@ export const AppHeader: React.FC<{
               </a>
             ))}
             <a
-              href="/profile/1" // Mock user ID
+              href="/profile/1"
               className={styles.navLink}
               onClick={() => setMenuOpen(false)}
             >

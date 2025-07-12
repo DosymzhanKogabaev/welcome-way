@@ -8,7 +8,6 @@ import {
 } from '../../components/AppPagesComp/PostsList/PostsList';
 import { CreatePostModal } from '../../components/AppPagesComp/CreatePostModal/CreatePostModal';
 
-// Mock posts data (replace with API in a real app)
 const initialPosts: Post[] = [
   {
     id: 1,
@@ -19,13 +18,27 @@ const initialPosts: Post[] = [
   },
   {
     id: 2,
+    user: 'Anna (UA)',
+    type: 'Need',
+    text: 'Looking for a translator for documents in Berlin.',
+    time: '4 min ago',
+  },
+  {
+    id: 3,
+    user: 'Anna (UA)',
+    type: 'Need',
+    text: 'Looking for a translator for documents in Berlin.',
+    time: '7 min ago',
+  },
+  {
+    id: 4,
     user: 'Mohammed (SY)',
     type: 'Offer',
     text: 'Can help with finding housing in Hamburg.',
     time: '10 min ago',
   },
   {
-    id: 3,
+    id: 5,
     user: 'Julia (DE)',
     type: 'Question',
     text: 'Where do I register my child for school in Munich?',
@@ -50,7 +63,6 @@ export const AskingForHelp: React.FC = () => {
   );
 
   const handleCreatePost = (newPost: Omit<Post, 'id' | 'time' | 'user'>) => {
-    // Mock user and ID (replace with authenticated user and UUID in real app)
     const mockUser = 'Anna (UA)';
     const newId = posts.length + 1;
     setPosts(prev => [

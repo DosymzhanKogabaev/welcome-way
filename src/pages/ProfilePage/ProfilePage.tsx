@@ -7,7 +7,6 @@ import {
   Post,
 } from '../../components/AppPagesComp/PostsList/PostsList';
 
-// Mock user data (replace with API or context in a real app)
 const initialUserData = {
   id: '1',
   name: 'Anna (UA)',
@@ -15,7 +14,6 @@ const initialUserData = {
   avatar: null,
 };
 
-// Mock posts (same as AskingForHelp for demo purposes)
 const posts: Post[] = [
   {
     id: 1,
