@@ -5,6 +5,7 @@ import {
   RegisterUserRequest,
   RegisterUserResponse,
 } from '@/shared/types/register';
+import { UserInfo } from '@/shared/types/user';
 import { DEFAULT_STATE } from './storage';
 import { getAuthStateFromLocalStorage } from './storage';
 
@@ -75,6 +76,21 @@ export const refreshAccessToken = createAsyncThunk(
   }
 );
 
+// Async thunk for getting user info
+export const getUserInfo = createAsyncThunk(
+  'auth/getUserInfo',
+  async (userId: number) => {
+    const response = await ApiClient.get<UserInfo, any>(
+      `api/private/auth/me/${userId}`,
+      {},
+      true,
+      false
+    );
+
+    return response;
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -127,6 +143,20 @@ const authSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Login failed';
+      })
+      // Get user info cases
+      .addCase(getUserInfo.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getUserInfo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isAuthenticated = true;
+      })
+      .addCase(getUserInfo.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || 'Failed to get user info';
       });
   },
 });

@@ -97,7 +97,7 @@ export class ApiClient {
     };
 
     let apiPrefix: string = import.meta.env.VITE_API_URL;
-
+    // let apiPrefix: string = 'http://127.0.0.1:8787';
     if (apiPrefix && !apiPrefix.endsWith('/')) {
       apiPrefix = `${apiPrefix}/`;
     }

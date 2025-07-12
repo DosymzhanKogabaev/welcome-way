@@ -1,7 +1,7 @@
 export type JwtPayload = {
-  id: number;
+  user_id: number;
   jti: string;
-  token_type: "access" | "refresh";
+  token_type: 'access' | 'refresh';
   exp: number;
 };
 

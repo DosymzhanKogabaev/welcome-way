@@ -10,7 +10,7 @@ export async function generateTokens(env: Env, user: User): Promise<JwtTokens> {
   const accessExpiresIn = currentTimestamp + accessTokenExpiresIn;
   const refreshExpiresIn = currentTimestamp + refreshTokenExpiresIn;
   const payload = {
-    id: user.id,
+    user_id: user.id,
   };
   const accessPayload: JwtPayload = {
     ...payload,
