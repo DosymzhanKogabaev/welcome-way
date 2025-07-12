@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './CallToActionCard.module.css';
+import { Link } from 'react-router-dom';
 
 export const CallToActionCard: React.FC = () => {
   return (
@@ -18,7 +19,9 @@ export const CallToActionCard: React.FC = () => {
             </p>
           </div>
           <div className={styles.buttonWrapper}>
-            <button className={styles.ctaButton}>Sign Up Now</button>
+            <Link to="signup" className={styles.ctaButton}>
+              Sign Up Now
+            </Link>
           </div>
         </div>
       </div>

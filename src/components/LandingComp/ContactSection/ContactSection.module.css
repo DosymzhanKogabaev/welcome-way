@@ -1,0 +1,141 @@
+.section {
+  background-color: var(--white);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--main);
+  margin-bottom: 1rem;
+}
+
+.description,
+.subDescription {
+  font-size: 14px;
+  line-height: 1.5em;
+  color: var(--main);
+  margin-bottom: 1rem;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: var(--main);
+}
+
+.itemTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--main);
+}
+
+.itemText {
+  font-size: 14px;
+  line-height: 1.5em;
+  color: var(--main);
+  max-width: 300px;
+}
+
+.itemTextRed {
+  color: var(--button);
+}
+
+.itemLink {
+  font-size: 14px;
+  color: var(--button);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.itemLink:hover {
+  color: var(--button-hover);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 32px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .description,
+  .subDescription {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .contactList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .contactItem {
+    width: calc(50% - 1rem);
+  }
+
+  .contactItem:nth-child(3) {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .itemText,
+  .itemLink {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section {
+    padding: 42px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .contactList {
+    flex-wrap: nowrap;
+  }
+
+  .contactItem {
+    width: 33.33%;
+  }
+
+  .contactItem:nth-child(3) {
+    width: 33.33%;
+    max-width: none;
+  }
+}
