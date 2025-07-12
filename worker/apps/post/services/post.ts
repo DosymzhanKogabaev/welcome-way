@@ -191,7 +191,10 @@ export async function updatePost(
 
     const [updatedPost] = await db
       .update(postSchema)
-      .set(updates)
+      .set({
+        ...updates,
+        updated_at: new Date(),
+      })
       .where(eq(postSchema.id, postId))
       .returning();
 
@@ -226,5 +229,63 @@ export async function deletePost(env: Env, postId: number, authorId: number) {
   } catch (error) {
     console.error('Failed to delete post:', error);
     throw error;
+  }
+}
+
+export async function getUserPosts(
+  env: Env,
+  userId: number,
+  filters: {
+    type?: string;
+    page?: number;
+    limit?: number;
+  } = {}
+) {
+  const db = initDbConnect(env);
+  try {
+    const { type, page = 1, limit = 50 } = filters;
+    const offset = (page - 1) * limit;
+
+    // Build conditions array
+    const conditions = [eq(postSchema.author_id, userId)];
+
+    if (type && ['need', 'offer', 'question'].includes(type.toLowerCase())) {
+      conditions.push(eq(postSchema.type, type.toLowerCase()));
+    }
+
+    // Build the main query
+    const baseQuery = db
+      .select({
+        id: postSchema.id,
+        user_id: postSchema.author_id,
+        type: postSchema.type,
+        text: postSchema.text,
+        created_at: postSchema.created_at,
+        updated_at: postSchema.updated_at,
+      })
+      .from(postSchema);
+
+    // Apply where conditions and execute query
+    const posts = await baseQuery
+      .where(conditions.length === 1 ? conditions[0] : and(...conditions))
+      .orderBy(desc(postSchema.created_at))
+      .limit(limit)
+      .offset(offset);
+
+    // Get total count for pagination
+    const countBaseQuery = db
+      .select({ count: sql<number>`count(*)` })
+      .from(postSchema);
+
+    const totalResult = await countBaseQuery.where(
+      conditions.length === 1 ? conditions[0] : and(...conditions)
+    );
+
+    const total = totalResult[0]?.count || 0;
+
+    return { posts, total };
+  } catch (error) {
+    console.error('Failed to get user posts:', error);
+    return { posts: [], total: 0 };
   }
 }

@@ -62,13 +62,14 @@ export const StepsSection: React.FC = () => {
         <div className={styles.intro}>
           <h2 className={styles.title}>Discover the Power of Our Products</h2>
           <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            varius enim in eros elementum tristique. Duis cursus, mi quis
-            viverra ornare, eros dolor interdum nulla, ut commodo diam libero
-            vitae erat.
+            Start your journey with confidence, connection, and real support.
+            Whether you're new to the country or want to help someone who is —
+            WelcomeWay brings people together in real time. No more confusion,
+            no more feeling alone. Get guidance, answers, and human connection —
+            right when you need it.
           </p>
           <Link to="/signup" className={styles.mainAction}>
-            Main action
+            Start now
           </Link>
         </div>
 

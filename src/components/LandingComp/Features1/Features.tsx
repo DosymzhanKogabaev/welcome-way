@@ -46,18 +46,18 @@ export const Features: React.FC = () => {
       <CallToActionCard />
 
       <div className={`${styles.featuresContainer} ${styles.reverse}`}>
-        <div className={styles.textContent}>
+        <div className={`${styles.textContent} ${styles.textContentSecond}`}>
           <h2 className={styles.heading}>
             More Features for Seamless Integration
           </h2>
           <ul className={styles.featureList}>
             <li>
-              <h3>Feature #1</h3>
+              <h3>Local Help, Real People</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
-                commodo diam libero vitae erat.
+                Get real-time support from people nearby. Whether you need a
+                place to stay, help with paperwork, or someone to translate a
+                document — just post it. Locals and fellow newcomers are ready
+                to respond.
               </p>
             </li>
             <li>
@@ -70,12 +70,10 @@ export const Features: React.FC = () => {
               </p>
             </li>
             <li>
-              <h3>Feature #3</h3>
+              <h3>Why it Matters:</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse varius enim in eros elementum tristique. Duis
-                cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
-                commodo diam libero vitae erat.
+                Because integration starts with information and connection. No
+                one should feel lost in a new country.
               </p>
             </li>
           </ul>
