@@ -1,7 +1,7 @@
-import { User } from '@/shared/types/user';
+import { UserInfo } from '@/shared/types/user';
 
 export interface AuthState {
-  user: User | null;
+  user: UserInfo | null;
   accessToken: string | null;
   refreshToken: string | null;
   isLoading: boolean;
