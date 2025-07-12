@@ -10,6 +10,7 @@ import { AskingForHelp } from '../pages/AskingForHelp/AskingForHelp';
 import { OfferingHelp } from '../pages/OfferingHelp/OfferingHelp';
 import { ProfilePage } from '../pages/ProfilePage/ProfilePage';
 import { StartingPage } from '../pages/StartingPage/StartingPage';
+import { ContactPage } from '../pages/ContactPage/ContactPage';
 import './App.css';
 
 export const App: React.FC = () => {
@@ -22,6 +23,7 @@ export const App: React.FC = () => {
       <Route path="/offering-help" element={<OfferingHelp />} />
       <Route path="/profile/:id" element={<ProfilePage />} />
       <Route path="/start-here" element={<StartingPage />} />
+      <Route path="/contact" element={<ContactPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

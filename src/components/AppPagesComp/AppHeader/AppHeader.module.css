@@ -62,7 +62,6 @@
   background: var(--button);
   color: var(--white);
   border: none;
-  border-radius: 8px;
   padding: 8px 18px;
   font-size: 1rem; /* 16px */
   font-weight: 600;
