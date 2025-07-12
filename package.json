@@ -13,12 +13,17 @@
 		"cf-typegen": "wrangler types"
 	},
 	"dependencies": {
+		"chanfana": "^2.8.1",
+		"itty-router": "^5.0.18",
+		"path": "^0.12.7",
 		"react": "^19.1.0",
-		"react-dom": "^19.1.0"
+		"react-dom": "^19.1.0",
+		"zod": "^4.0.5"
 	},
 	"devDependencies": {
 		"@cloudflare/vite-plugin": "^1.9.4",
 		"@eslint/js": "^9.29.0",
+		"@types/node": "^24.0.13",
 		"@types/react": "^19.1.8",
 		"@types/react-dom": "^19.1.6",
 		"@vitejs/plugin-react": "^4.5.2",
