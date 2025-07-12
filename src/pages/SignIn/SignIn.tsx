@@ -76,7 +76,7 @@ export const SignIn: React.FC = () => {
       await dispatch(getUserInfo()).unwrap();
 
       // Navigate to home or dashboard
-      navigate('/roadmmap');
+      navigate('/roadmap');
     } catch (error) {
       console.error('Login failed:', error);
     }

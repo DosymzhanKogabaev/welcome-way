@@ -23,7 +23,7 @@ export const App: React.FC = () => {
       <Route path="/offering-help" element={<OfferingHelp />} />
       <Route path="/profile/:id" element={<ProfilePage />} />
       <Route path="/contact" element={<ContactPage />} />
-      <Route path="/roadmmap" element={<RoadMapPage />} />
+      <Route path="/roadmap" element={<RoadMapPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
