@@ -96,9 +96,10 @@ async function generateAppSchema(appName: string): Promise<any> {
     components: {
       securitySchemes: {
         BearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT',
+          type: 'apiKey',
+          in: 'header',
+          name: 'Authorization',
+          description: 'JWT token (format: JWT {token})',
         },
       },
     },

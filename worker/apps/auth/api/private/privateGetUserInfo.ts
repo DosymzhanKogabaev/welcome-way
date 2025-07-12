@@ -27,6 +27,7 @@ const RESPONSE_SCHEMA = z.object({
 
 export class PrivateGetUserInfoAPI extends OpenAPIRoute {
   schema = {
+    security: [{ BearerAuth: [] }],
     response: {
       content: {
         'application/json': { schema: RESPONSE_SCHEMA },
