@@ -1,0 +1,93 @@
+.wrapper {
+  background-color: transparent;
+  padding: 6rem 1rem;
+  position: relative;
+}
+
+.cardStack {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  height: auto;
+}
+
+.cardLayerBack,
+.cardLayerFront {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  transform-origin: center;
+  z-index: 0;
+}
+
+.cardLayerBack {
+  background-color: var(--cards-hover);
+  transform: translateX(-50%) rotate(1.5deg);
+}
+
+.cardLayerFront {
+  background-color: var(--cards);
+  transform: translateX(-50%) rotate(-1deg);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  padding: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.textBlock {
+  flex: 1 1 60%;
+  color: var(--main);
+}
+
+.textBlock h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.textBlock p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.buttonWrapper {
+  flex: 1 1 30%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ctaButton {
+  background-color: var(--button);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: var(--button-hover);
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    text-align: left;
+    gap: 1.5rem;
+  }
+
+  .buttonWrapper {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
