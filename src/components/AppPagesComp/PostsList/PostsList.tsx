@@ -1,17 +1,20 @@
+// src/components/AppPagesComp/PostsList/PostsList.tsx
+
 import React from 'react';
 import styles from './PostsList.module.css';
+import { Post, PostPayload } from './types';
 
-export type Post = {
-  id: number;
-  user: string;
-  type: 'Need' | 'Offer' | 'Question';
-  text: string;
-  time: string;
-  created_at: string;
-  location: string;
+type PostsListProps = {
+  posts: Post[];
+  onEdit?: (id: number, updates: Partial<PostPayload>) => void;
+  onDelete?: (id: number) => void;
 };
 
-export const PostsList: React.FC<{ posts: Post[] }> = ({ posts }) => (
+export const PostsList: React.FC<PostsListProps> = ({
+  posts,
+  onEdit,
+  onDelete,
+}) => (
   <ul className={styles.postsList}>
     {posts.map(post => (
       <li key={post.id} className={styles.postCard}>
@@ -22,6 +25,29 @@ export const PostsList: React.FC<{ posts: Post[] }> = ({ posts }) => (
           <span className={styles.postTime}>{post.time}</span>
         </div>
         <div className={styles.postText}>{post.text}</div>
+
+        <div className={styles.postActions}>
+          {onEdit && (
+            <button
+              className={styles.editBtn}
+              onClick={() =>
+                onEdit(post.id, {
+                  text: prompt('Edit post text:', post.text) || post.text,
+                })
+              }
+            >
+              Edit
+            </button>
+          )}
+          {onDelete && (
+            <button
+              className={styles.deleteBtn}
+              onClick={() => onDelete(post.id)}
+            >
+              Delete
+            </button>
+          )}
+        </div>
       </li>
     ))}
   </ul>

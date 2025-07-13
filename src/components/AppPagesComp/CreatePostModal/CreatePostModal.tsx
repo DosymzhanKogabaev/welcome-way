@@ -1,20 +1,21 @@
+// src/components/AppPagesComp/CreatePostModal/CreatePostModal.tsx
+
 import React, { useState } from 'react';
 import styles from './CreatePostModal.module.css';
-import { Post } from '../PostsList/PostsList';
+import { PostCreatePayload } from '../PostsList/types';
 
 interface CreatePostModalProps {
   onClose: () => void;
-  onSave: (post: Omit<Post, 'id' | 'time' | 'user'>) => void;
+  onSave: (post: PostCreatePayload) => void;
 }
 
 export const CreatePostModal: React.FC<CreatePostModalProps> = ({
   onClose,
   onSave,
 }) => {
-  const [formData, setFormData] = useState({
-    type: 'Need' as Post['type'],
+  const [formData, setFormData] = useState<PostCreatePayload>({
+    type: 'need',
     text: '',
-    created_at: new Date().toISOString(),
     location: 'Berlin',
   });
 
@@ -30,7 +31,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.text.trim() || !formData.location.trim()) return;
-    onSave({ ...formData, created_at: new Date().toISOString() });
+    onSave(formData);
   };
 
   return (
@@ -56,9 +57,9 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
             onChange={handleInputChange}
             className={styles.formSelect}
           >
-            <option value="Need">Need</option>
-            <option value="Offer">Offer</option>
-            <option value="Question">Question</option>
+            <option value="need">Need</option>
+            <option value="offer">Offer</option>
+            <option value="question">Question</option>
           </select>
           <label htmlFor="location" className={styles.formLabel}>
             Location

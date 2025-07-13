@@ -1,50 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './AskingForHelp.module.css';
 import '../../index.css';
 import { AppHeader } from '../../components/AppPagesComp/AppHeader/AppHeader';
+import { PostsList } from '../../components/AppPagesComp/PostsList/PostsList';
 import {
-  PostsList,
-  Post,
-} from '../../components/AppPagesComp/PostsList/PostsList';
+  PostCreatePayload,
+  PostPayload,
+} from '../../components/AppPagesComp/PostsList/types';
 import { CreatePostModal } from '../../components/AppPagesComp/CreatePostModal/CreatePostModal';
 import { SortingPanel } from '../../components/AppPagesComp/SortingPanel/SortingPanel';
-
-const initialPosts: Post[] = [
-  {
-    id: 1,
-    user: 'Anna (UA)',
-    type: 'Need',
-    text: 'Looking for a translator for documents in Berlin.',
-    time: '2 min ago',
-    created_at: '2025-07-12T17:29:00Z',
-    location: 'Berlin',
-  },
-  {
-    id: 2,
-    user: 'Mohammed (SY)',
-    type: 'Offer',
-    text: 'Can help with finding housing in Hamburg.',
-    time: '10 min ago',
-    created_at: '2025-07-12T17:21:00Z',
-    location: 'Hamburg',
-  },
-  {
-    id: 3,
-    user: 'Julia (DE)',
-    type: 'Question',
-    text: 'Where do I register my child for school in Munich?',
-    time: '20 min ago',
-    created_at: '2025-07-12T17:11:00Z',
-    location: 'Munich',
-  },
-];
+import { useAppDispatch, useAppSelector } from '@/src/redux/hooks';
+import {
+  fetchPosts,
+  createPost,
+  updatePost,
+  deletePost,
+} from '@/src/redux/slices/posts/postsSlice';
 
 export const AskingForHelp: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sort, setSort] = useState('latest');
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [posts, setPosts] = useState(initialPosts);
+
+  const dispatch = useAppDispatch();
+  const {
+    items: posts = [],
+    loading,
+    error,
+  } = useAppSelector(
+    state => state.posts ?? { items: [], loading: false, error: null }
+  );
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
   const filteredPosts = posts
     .filter(
@@ -71,22 +61,27 @@ export const AskingForHelp: React.FC = () => {
       );
     });
 
-  const handleCreatePost = (newPost: Omit<Post, 'id' | 'time' | 'user'>) => {
-    const mockUser = 'Anna (UA)';
-    const newId = posts.length + 1;
-    setPosts(prev => [
-      {
-        id: newId,
-        user: mockUser,
-        type: newPost.type,
-        text: newPost.text,
-        time: 'Just now',
-        created_at: newPost.created_at,
-        location: newPost.location,
-      },
-      ...prev,
-    ]);
+  const handleCreatePost = async (newPost: PostCreatePayload) => {
+    const fullPost: PostPayload = {
+      ...newPost,
+      user: 'currentUserId',
+      time: new Date().toISOString(),
+    };
+    await dispatch(createPost(fullPost));
     setIsModalOpen(false);
+  };
+
+  const handleUpdatePost = async (
+    id: number,
+    updates: Partial<PostPayload>
+  ) => {
+    console.log(id, updates);
+    await dispatch(updatePost({ id, data: updates }));
+  };
+
+  const handleDeletePost = async (id: number) => {
+    console.log(typeof id, id);
+    await dispatch(deletePost(id));
   };
 
   return (
@@ -99,7 +94,13 @@ export const AskingForHelp: React.FC = () => {
         setSearch={setSearch}
       />
       <main className={styles.postsSection}>
-        <PostsList posts={filteredPosts} />
+        {loading && <div>Loading...</div>}
+        {error && <div className={styles.error}>{error}</div>}
+        <PostsList
+          posts={filteredPosts}
+          onEdit={handleUpdatePost}
+          onDelete={handleDeletePost}
+        />
         {isModalOpen && (
           <CreatePostModal
             onClose={() => setIsModalOpen(false)}
