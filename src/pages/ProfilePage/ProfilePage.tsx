@@ -13,6 +13,7 @@ import {
   setError,
 } from '../../redux/slices/auth/authSlice';
 import ApiClient from '../../api/ApiClient';
+import { ProfileSidebar } from '../../components/AppPagesComp/ProfileSidebar/ProfileSidebar';
 
 interface UserPost {
   id: number;
@@ -253,24 +254,27 @@ export const ProfilePage: React.FC = () => {
             </button>
           )}
         </div>
-
-        <section className={styles.postsSection}>
-          <h2 className={styles.postsTitle}>
-            {isOwnProfile ? 'My Posts' : `${user.full_name}'s Posts`}
-          </h2>
-          {postsLoading ? (
-            <div className={styles.loading}>Loading posts...</div>
-          ) : userPosts.length > 0 ? (
-            <PostsList posts={userPosts} />
-          ) : (
-            <div className={styles.noPosts}>
-              {isOwnProfile
-                ? "You haven't posted anything yet."
-                : 'No posts yet.'}
-            </div>
-          )}
-        </section>
-
+        <div className={styles.profileContentWrapper}>
+          <section className={styles.postsSection}>
+            <ProfileSidebar />
+          </section>
+          <section className={styles.postsSection}>
+            <h2 className={styles.postsTitle}>
+              {isOwnProfile ? 'Recent Posts' : `${user.full_name}'s Posts`}
+            </h2>
+            {postsLoading ? (
+              <div className={styles.loading}>Loading posts...</div>
+            ) : userPosts.length > 0 ? (
+              <PostsList posts={userPosts} />
+            ) : (
+              <div className={styles.noPosts}>
+                {isOwnProfile
+                  ? "You haven't posted anything yet."
+                  : 'No posts yet.'}
+              </div>
+            )}
+          </section>
+        </div>
         {isModalOpen && (
           <div className={styles.modalOverlay} onClick={handleCloseModal}>
             <div
