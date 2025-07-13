@@ -85,7 +85,7 @@ export class PrivateUpdatePostAPI extends OpenAPIRoute {
       }
 
       // Get authenticated user ID from request context
-      const userId = (request as any).userId;
+      const userId = request.user?.user_id;
       if (!userId) {
         return new Response(
           JSON.stringify({ error: 'Authentication required' }),
