@@ -7,7 +7,6 @@ import { isTokenExpired } from '@/src/utils/isTokenExpired';
 import { t } from 'i18next';
 
 export const buildAuthorizationHeader = (accessToken: string) => {
-  console.log('accessToken:', accessToken);
   return `JWT ${accessToken}`;
 };
 
