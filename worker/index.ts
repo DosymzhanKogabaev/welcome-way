@@ -4,8 +4,13 @@ import { optionsMiddleware } from './middlewares/options';
 import { IRequest } from 'itty-router';
 import { serveAssetsMiddleware } from './middlewares/serveAssets';
 import docsRouter from './apps/docsRouter';
+import { cdnMiddleware } from './middlewares/cdn';
 
-const middlewares: Middleware[] = [optionsMiddleware, serveAssetsMiddleware];
+const middlewares: Middleware[] = [
+  optionsMiddleware,
+  cdnMiddleware,
+  serveAssetsMiddleware,
+];
 
 function applyCors(response: Response, request: Request): Response {
   if (request.headers.has('Origin')) {
