@@ -60,7 +60,7 @@ export const AppHeader: React.FC<{
               </a>
             ))}
             <a
-              href="/profile/1"
+              href={`/profile/${user?.id}`}
               className={styles.navLink}
               onClick={() => setMenuOpen(false)}
             >
