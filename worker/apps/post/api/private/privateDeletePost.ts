@@ -41,10 +41,7 @@ export class PrivateDeletePostAPI extends OpenAPIRoute {
   async handle(request: IRequest, env: Env, _ctx: ExecutionContext) {
     try {
       // Get post ID from URL
-      const url = new URL(request.url);
-      const pathSegments = url.pathname.split('/');
-      const idParam = pathSegments[pathSegments.length - 1];
-      const postId = parseInt(idParam);
+      const postId = Number(request.params?.id);
 
       if (isNaN(postId) || postId < 1) {
         return new Response(
