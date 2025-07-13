@@ -6,6 +6,9 @@ import { AiOutlineQuestionCircle } from "react-icons/ai";
 import { VscHistory } from "react-icons/vsc"
 import { PiSignOutBold } from "react-icons/pi";
 import { MdOutlineGroups } from "react-icons/md";
+import { logout } from '../../../redux/slices/auth/authSlice';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 interface SidebarItem {
   label: string;
@@ -14,6 +17,8 @@ interface SidebarItem {
 }
 
 export const ProfileSidebar: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const sidebarItems: SidebarItem[] = [
     { label: 'Profile', icon: <IoPersonCircleOutline /> },
     { label: 'Friends', icon: <LuUsers /> },
@@ -24,8 +29,9 @@ export const ProfileSidebar: React.FC = () => {
     {
       label: 'Sign Out',
       icon: <PiSignOutBold />,
-      onClick: () => {
-        console.log('Signing out...');
+      onClick: async () => {
+        await dispatch(logout());
+        navigate('/signin');
       },
     },
   ];
