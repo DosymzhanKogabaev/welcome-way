@@ -15,11 +15,14 @@
   padding: 12px 2px 32px;
 }
 
+.profileBackgroundAccent {
+  height: 148px;
+  width: 100%;
+  background-color: var(--button);
+  border-radius: 20px 20px 0px 0px;
+}
+
 .profileHeader {
-  background: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  padding: 12px 8px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem; /* 12px */
@@ -42,6 +45,7 @@
   margin-bottom: 0.75rem; /* 12px */
   overflow: hidden;
   transition: all 0.3s ease;
+  margin-top: -120px;
 }
 
 .avatar:hover .avatarOverlay {
@@ -62,7 +66,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: var(--button);
+  background: var(--menuButton);
 }
 
 .avatarOverlay {
@@ -101,6 +105,13 @@
   z-index: 1;
 }
 
+.profileHeaderContent {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+}
+
 .userName {
   font-size: 1.5rem; /* 24px */
   font-weight: 700;
@@ -115,6 +126,11 @@
   margin-bottom: 0.5rem; /* 8px */
 }
 
+.profileHeaderWrapper {
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background-color: var(--white);
+}
 .userStats {
   font-size: 0.875rem; /* 14px */
   color: #888;
@@ -293,7 +309,7 @@
   background: var(--button);
   color: var(--white);
   border: none;
-    transition: background 0.2s ease;
+  transition: background 0.2s ease;
 }
 
 .actionButton:hover {
@@ -306,7 +322,6 @@
   }
 
   .profileHeader {
-    padding: 24px 32px;
     border-radius: 18px;
   }
 
@@ -367,13 +382,12 @@
 }
 
 @media (min-width: 1280px) {
-    .profileSection {
+  .profileSection {
     padding: 0px 0 80px;
   }
 
   .profileHeader {
-    padding: 28px 36px;
-        margin-top: 50px;
+    margin-top: 50px;
     margin-bottom: 40px;
   }
 
@@ -390,13 +404,19 @@
     padding: 9px 22px;
   }
   .avatar {
-    width: 6rem; /* 96px */
-    height: 6rem;
-    font-size: 3rem; /* 48px */
+    width: 180px;
+    height: 180px;
+    font-size: 6rem;
   }
-
+  .profileHeaderWrapper {
+    width: 1311px;
+  }
   .avatarOverlay {
     font-size: 1rem;
+  }
+
+  .profileHeaderContent {
+    padding: 0 48px 64px;
   }
 
   .modal {

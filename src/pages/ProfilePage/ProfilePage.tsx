@@ -201,60 +201,68 @@ export const ProfilePage: React.FC = () => {
       <AppHeader menuOpen={false} setMenuOpen={() => {}} />
       <main className={styles.profileSection}>
         <div className={styles.profileHeader}>
-          <div
-            className={styles.avatar}
-            onClick={isOwnProfile ? handleAvatarClick : undefined}
-            style={{ cursor: isOwnProfile ? 'pointer' : 'default' }}
-          >
-            {uploadingAvatar && (
-              <div className={styles.avatarLoading}>Uploading...</div>
-            )}
-            {user.avatar_url ? (
-              <img src={user.avatar_url} alt={`${user.full_name}'s avatar`} />
-            ) : (
-              <span className={styles.avatarPlaceholder}>
-                {user.full_name.charAt(0).toUpperCase()}
-              </span>
-            )}
-            {isOwnProfile && (
-              <div className={styles.avatarOverlay}>
-                <span>Change Avatar</span>
+          <div className={styles.profileHeaderWrapper}>
+            <div className={styles.profileBackgroundAccent}></div>
+            <div className={styles.profileHeaderContent}>
+              <div
+                className={styles.avatar}
+                onClick={isOwnProfile ? handleAvatarClick : undefined}
+                style={{ cursor: isOwnProfile ? 'pointer' : 'default' }}
+              >
+                {uploadingAvatar && (
+                  <div className={styles.avatarLoading}>Uploading...</div>
+                )}
+                {user.avatar_url ? (
+                  <img
+                    src={user.avatar_url}
+                    alt={`${user.full_name}'s avatar`}
+                  />
+                ) : (
+                  <span className={styles.avatarPlaceholder}>
+                    {user.full_name.charAt(0).toUpperCase()}
+                  </span>
+                )}
+                {isOwnProfile && (
+                  <div className={styles.avatarOverlay}>
+                    <span>Change Avatar</span>
+                  </div>
+                )}
               </div>
-            )}
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
+
+              <h1 className={styles.userName}>{user.full_name}</h1>
+              <p className={styles.userInfo}>
+                {user.country && user.region
+                  ? `${user.region}, ${user.country}`
+                  : user.country || 'Location not set'}
+              </p>
+              <p className={styles.userStats}>
+                Reputation: {user.reputation_score} •
+                {user.verified ? ' Verified' : ' Not verified'}
+              </p>
+
+              {uploadError && (
+                <div className={styles.errorMessage}>{uploadError}</div>
+              )}
+
+              {isOwnProfile && (
+                <button
+                  className={styles.editProfileBtn}
+                  onClick={handleOpenModal}
+                  aria-label="Edit profile"
+                >
+                  Edit Profile
+                </button>
+              )}
+            </div>
           </div>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />
-
-          <h1 className={styles.userName}>{user.full_name}</h1>
-          <p className={styles.userInfo}>
-            {user.country && user.region
-              ? `${user.region}, ${user.country}`
-              : user.country || 'Location not set'}
-          </p>
-          <p className={styles.userStats}>
-            Reputation: {user.reputation_score} •
-            {user.verified ? ' Verified' : ' Not verified'}
-          </p>
-
-          {uploadError && (
-            <div className={styles.errorMessage}>{uploadError}</div>
-          )}
-
-          {isOwnProfile && (
-            <button
-              className={styles.editProfileBtn}
-              onClick={handleOpenModal}
-              aria-label="Edit profile"
-            >
-              Edit Profile
-            </button>
-          )}
         </div>
         <div className={styles.profileContentWrapper}>
           <section className={styles.postsSection}>
