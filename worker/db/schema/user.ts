@@ -6,6 +6,7 @@ export const userSchema = sqliteTable('users', {
   full_name: text('full_name').notNull(),
   email: text('email').notNull().unique(),
   phone: text('phone'),
+  avatar_url: text('avatar_url'),
   password_hash: text('password_hash'),
   language: text('language').notNull(),
   country: text('country'),

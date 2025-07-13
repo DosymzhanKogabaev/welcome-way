@@ -79,20 +79,30 @@ export const refreshAccessToken = createAsyncThunk(
   }
 );
 
-// Async thunk for getting user info
-export const getUserInfo = createAsyncThunk(
-  'auth/getUserInfo',
-  async () => {
-    const response = await ApiClient.get<UserInfo, any>(
-      `api/private/auth/me`,
-      {},
-      true,
-      false
-    );
-
+export const uploadUserAvatar = createAsyncThunk(
+  'auth/uploadUserAvatar',
+  async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await ApiClient.post<
+      { success: boolean; avatar_url: string },
+      FormData
+    >('api/private/auth/upload-avatar', { body: formData }, true, false);
     return response;
   }
 );
+
+// Async thunk for getting user info
+export const getUserInfo = createAsyncThunk('auth/getUserInfo', async () => {
+  const response = await ApiClient.get<UserInfo, any>(
+    `api/private/auth/me`,
+    {},
+    true,
+    false
+  );
+
+  return response;
+});
 
 const authSlice = createSlice({
   name: 'auth',
@@ -114,6 +124,9 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
       state.isAuthenticated = true;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
   },
   extraReducers: builder => {
@@ -160,9 +173,23 @@ const authSlice = createSlice({
       .addCase(getUserInfo.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Failed to get user info';
+      })
+      // Upload user avatar cases
+      .addCase(uploadUserAvatar.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(uploadUserAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user!.avatar_url = action.payload.avatar_url;
+      })
+      .addCase(uploadUserAvatar.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || 'Failed to upload avatar';
       });
   },
 });
 
-export const { logout, clearError, setUser, resetState } = authSlice.actions;
+export const { logout, clearError, setUser, resetState, setError } =
+  authSlice.actions;
 export default authSlice.reducer;

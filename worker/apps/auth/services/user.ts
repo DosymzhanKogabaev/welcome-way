@@ -68,3 +68,12 @@ export async function getUserById(env: Env, id: number): Promise<User> {
     .limit(1);
   return user;
 }
+
+export async function updateUserAvatar(
+  env: Env,
+  id: number,
+  avatar_url: string
+) {
+  const db = initDbConnect(env);
+  await db.update(userSchema).set({ avatar_url }).where(eq(userSchema.id, id));
+}

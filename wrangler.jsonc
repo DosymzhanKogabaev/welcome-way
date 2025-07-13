@@ -23,5 +23,11 @@
 	"vars": {
 		"ACCESS_TOKEN_EXPIRES_IN": 3600,
 		"REFRESH_TOKEN_EXPIRES_IN": 604800
-	}
+	},
+	"r2_buckets": [
+		{
+			"binding": "AVATARS_BUCKET",
+			"bucket_name": "user-avatars"
+		}
+	]
 }

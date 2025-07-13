@@ -4,4 +4,5 @@ interface Env {
   ACCESS_TOKEN_EXPIRES_IN: number;
   REFRESH_TOKEN_EXPIRES_IN: number;
 	ASSETS: Fetcher;
+  AVATARS_BUCKET: R2Bucket;/
 }

@@ -7,6 +7,7 @@ export type UserInfo = {
   full_name: string;
   email: string;
   phone: string | null;
+  avatar_url: string | null;
   language: string;
   country: string | null;
   region: string | null;
