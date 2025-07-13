@@ -43,6 +43,7 @@ export const cdnMiddleware = async (
     ETag: etag,
     'Content-Length': object.size?.toString() ?? '',
     'Content-Disposition': 'inline',
+    'Access-Control-Allow-Origin': '*',
   });
 
   // HEAD – только заголовки
