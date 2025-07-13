@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './AppHeader.module.css';
+import { useAppSelector } from '../../../redux/hooks';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -14,7 +15,7 @@ export const AppHeader: React.FC<{
   setMenuOpen: (open: boolean) => void;
 }> = ({ menuOpen, setMenuOpen }) => {
   const navigate = useNavigate();
-
+  const { user } = useAppSelector(state => state.auth);
   return (
     <header className={styles.header}>
       <Link to="/asking-for-help" className={styles.logo}>
@@ -28,7 +29,7 @@ export const AppHeader: React.FC<{
         ))}
         <button
           className={styles.profileBtn}
-          onClick={() => navigate('/profile/1')}
+          onClick={() => navigate(`/profile/${user?.id}`)}
         >
           Profile
         </button>
@@ -59,7 +60,7 @@ export const AppHeader: React.FC<{
               </a>
             ))}
             <a
-              href="/profile/1"
+              href={`/profile/${user?.id}`}
               className={styles.navLink}
               onClick={() => setMenuOpen(false)}
             >

@@ -102,7 +102,14 @@ export class ApiClient {
       apiPrefix = `${apiPrefix}/`;
     }
 
-    const finalUrl = apiPrefix ? `${apiPrefix}${url}` : url;
+    // Fix: Ensure absolute URL paths when no prefix is set
+    let finalUrl: string;
+    if (apiPrefix) {
+      finalUrl = `${apiPrefix}${url}`;
+    } else {
+      // Use absolute path to prevent relative URL issues
+      finalUrl = url.startsWith('/') ? url : `/${url}`;
+    }
 
     try {
       const response = await fetch(finalUrl, fetchOptions);

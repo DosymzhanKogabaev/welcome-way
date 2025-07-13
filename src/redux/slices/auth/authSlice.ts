@@ -80,17 +80,41 @@ export const refreshAccessToken = createAsyncThunk(
 );
 
 // Async thunk for getting user info
-export const getUserInfo = createAsyncThunk(
-  'auth/getUserInfo',
-  async () => {
-    const response = await ApiClient.get<UserInfo, any>(
-      `api/private/auth/me`,
-      {},
-      true,
-      false
+export const getUserInfo = createAsyncThunk('auth/getUserInfo', async () => {
+  const response = await ApiClient.get<UserInfo, any>(
+    `api/private/auth/me`,
+    {},
+    true,
+    false
+  );
+
+  return response;
+});
+
+// Async thunk for uploading user avatar
+export const uploadUserAvatar = createAsyncThunk(
+  'auth/uploadUserAvatar',
+  async (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await ApiClient.post<
+      { success: boolean; avatar_url: string },
+      FormData
+    >(
+      'api/private/auth/upload-avatar',
+      {
+        body: formData,
+      },
+      true, // Use auth token
+      false // Don't use application language
     );
 
-    return response;
+    if (!response.success) {
+      throw new Error('Avatar upload failed');
+    }
+
+    return response.avatar_url;
   }
 );
 
@@ -110,6 +134,9 @@ const authSlice = createSlice({
     },
     clearError: state => {
       state.error = null;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
     },
     setUser: (state, action) => {
       state.user = action.payload;
@@ -160,9 +187,25 @@ const authSlice = createSlice({
       .addCase(getUserInfo.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Failed to get user info';
+      })
+      // Upload avatar cases
+      .addCase(uploadUserAvatar.pending, state => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(uploadUserAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (state.user) {
+          state.user.avatar_url = action.payload;
+        }
+      })
+      .addCase(uploadUserAvatar.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message || 'Avatar upload failed';
       });
   },
 });
 
-export const { logout, clearError, setUser, resetState } = authSlice.actions;
+export const { logout, clearError, setUser, resetState, setError } =
+  authSlice.actions;
 export default authSlice.reducer;
