@@ -536,6 +536,8 @@
     display: flex;
     justify-content: center;
     gap: 25px;
+    margin: 0 auto;
+    width: 1311px;
   }
 
   .userSubName {
