@@ -1,6 +1,6 @@
-// types.ts
+// src/components/AppPagesComp/PostsList/types.ts
 export interface Post {
-  id: string;
+  id: number; 
   user: string;
   type: string;
   location: string;
@@ -18,7 +18,7 @@ export interface PostPayload {
 }
 
 export interface PostCreatePayload {
-  type: PostPayload['type'];
+  type: 'need' | 'offer' | 'question';
   text: string;
   location: string;
 }

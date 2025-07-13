@@ -47,12 +47,14 @@ export class ApiClient {
     this.getRefreshToken = handlers.getRefreshToken;
   }
 
+  // Added optional apiPrefixOverride to allow fully custom base path if needed
   public static async fetch<T, K>(
     url: string,
     options: ClientOptions<K | null | undefined> = {},
     requestType: RequestMethod = RequestMethod.GET,
     useAccessToken: boolean = true,
-    useApplicationLanguage: boolean = true
+    useApplicationLanguage: boolean = true,
+    apiPrefixOverride?: string
   ): Promise<T> {
     let headers = options.headers || {};
     if (useAccessToken) {
@@ -98,8 +100,7 @@ export class ApiClient {
       body: body as BodyInit,
     };
 
-    let apiPrefix: string = import.meta.env.VITE_API_URL;
-    // let apiPrefix: string = 'http://127.0.0.1:8787';
+    let apiPrefix: string = apiPrefixOverride ?? import.meta.env.VITE_API_URL;
     if (apiPrefix && !apiPrefix.endsWith('/')) {
       apiPrefix = `${apiPrefix}/`;
     }
@@ -109,7 +110,6 @@ export class ApiClient {
     if (apiPrefix) {
       finalUrl = `${apiPrefix}${url}`;
     } else {
-      // Use absolute path to prevent relative URL issues
       finalUrl = url.startsWith('/') ? url : `/${url}`;
     }
 
@@ -124,7 +124,6 @@ export class ApiClient {
         } catch {
           error = { message: responseText };
         }
-        // Обработка ошибки 401 Unauthorized
         if (response.status === 401) {
           const refreshToken = this.getRefreshToken
             ? this.getRefreshToken()
@@ -137,19 +136,15 @@ export class ApiClient {
             this.onLogout
           ) {
             this.isRefreshing = true;
-            // Проверяем, истек ли refresh token
             if (isTokenExpired(refreshToken)) {
               this.isRefreshing = false;
-              // Обнуляем currentUser в состоянии Redux
               this.onLogout();
             } else {
-              // Refresh token действителен, пытаемся обновить access token
               try {
                 await this.onRefreshToken(refreshToken);
                 this.isRefreshing = false;
               } catch (refreshError) {
                 this.isRefreshing = false;
-                // Очищаем currentUser из состояния, так как refresh не удался
                 this.onLogout();
               }
             }
@@ -180,7 +175,6 @@ export class ApiClient {
 
       return responseData as T;
     } catch (error) {
-      // Дополнительное логирование для сетевых ошибок
       if (error instanceof TypeError && error.message === 'Load failed') {
         console.error('Network error details:', {
           url: finalUrl,
@@ -197,14 +191,16 @@ export class ApiClient {
     url: string,
     options: ClientOptions<K> = {},
     useAccessToken: boolean = true,
-    useApplicationLanguage: boolean = true
+    useApplicationLanguage: boolean = true,
+    apiPrefixOverride?: string
   ): Promise<T> {
     return await this.fetch(
       url,
       options,
       RequestMethod.GET,
       useAccessToken,
-      useApplicationLanguage
+      useApplicationLanguage,
+      apiPrefixOverride
     );
   }
 
@@ -212,14 +208,16 @@ export class ApiClient {
     url: string,
     options: ClientOptions<K> = {},
     useAccessToken: boolean = true,
-    useApplicationLanguage: boolean = true
+    useApplicationLanguage: boolean = true,
+    apiPrefixOverride?: string
   ): Promise<T> {
     return await this.fetch(
       url,
       options,
       RequestMethod.POST,
       useAccessToken,
-      useApplicationLanguage
+      useApplicationLanguage,
+      apiPrefixOverride
     );
   }
 
@@ -227,14 +225,16 @@ export class ApiClient {
     url: string,
     options: ClientOptions<K> = {},
     useAccessToken: boolean = true,
-    useApplicationLanguage: boolean = true
+    useApplicationLanguage: boolean = true,
+    apiPrefixOverride?: string
   ): Promise<T> {
     return await this.fetch(
       url,
       options,
       RequestMethod.PUT,
       useAccessToken,
-      useApplicationLanguage
+      useApplicationLanguage,
+      apiPrefixOverride
     );
   }
 
@@ -242,14 +242,16 @@ export class ApiClient {
     url: string,
     options: ClientOptions<K> = {},
     useAccessToken: boolean = true,
-    useApplicationLanguage: boolean = true
+    useApplicationLanguage: boolean = true,
+    apiPrefixOverride?: string
   ): Promise<T> {
     return await this.fetch(
       url,
       options,
       RequestMethod.DELETE,
       useAccessToken,
-      useApplicationLanguage
+      useApplicationLanguage,
+      apiPrefixOverride
     );
   }
 
@@ -257,14 +259,16 @@ export class ApiClient {
     url: string,
     options: ClientOptions<K> = {},
     useAccessToken: boolean = true,
-    useApplicationLanguage: boolean = true
+    useApplicationLanguage: boolean = true,
+    apiPrefixOverride?: string
   ): Promise<T> {
     return await this.fetch(
       url,
       options,
       RequestMethod.PATCH,
       useAccessToken,
-      useApplicationLanguage
+      useApplicationLanguage,
+      apiPrefixOverride
     );
   }
 }

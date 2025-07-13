@@ -24,9 +24,13 @@ export const AskingForHelp: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useAppDispatch();
-  const { items: posts = [], loading, error } = useAppSelector(
-  state => state.posts ?? { items: [], loading: false, error: null }
-);
+  const {
+    items: posts = [],
+    loading,
+    error,
+  } = useAppSelector(
+    state => state.posts ?? { items: [], loading: false, error: null }
+  );
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -68,13 +72,14 @@ export const AskingForHelp: React.FC = () => {
   };
 
   const handleUpdatePost = async (
-    id: string,
+    id: number,
     updates: Partial<PostPayload>
   ) => {
     await dispatch(updatePost({ id, data: updates }));
   };
 
-  const handleDeletePost = async (id: string) => {
+  const handleDeletePost = async (id: number) => {
+    console.log(typeof id, id);
     await dispatch(deletePost(id));
   };
 

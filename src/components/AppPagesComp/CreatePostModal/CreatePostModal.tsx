@@ -1,3 +1,5 @@
+// src/components/AppPagesComp/CreatePostModal/CreatePostModal.tsx
+
 import React, { useState } from 'react';
 import styles from './CreatePostModal.module.css';
 import { PostCreatePayload } from '../PostsList/types';
@@ -12,7 +14,7 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
   onSave,
 }) => {
   const [formData, setFormData] = useState<PostCreatePayload>({
-    type: 'Need',
+    type: 'need',
     text: '',
     location: 'Berlin',
   });
@@ -55,9 +57,9 @@ export const CreatePostModal: React.FC<CreatePostModalProps> = ({
             onChange={handleInputChange}
             className={styles.formSelect}
           >
-            <option value="Need">Need</option>
-            <option value="Offer">Offer</option>
-            <option value="Question">Question</option>
+            <option value="need">Need</option>
+            <option value="offer">Offer</option>
+            <option value="question">Question</option>
           </select>
           <label htmlFor="location" className={styles.formLabel}>
             Location

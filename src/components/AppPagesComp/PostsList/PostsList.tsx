@@ -1,11 +1,13 @@
+// src/components/AppPagesComp/PostsList/PostsList.tsx
+
 import React from 'react';
 import styles from './PostsList.module.css';
 import { Post, PostPayload } from './types';
 
 type PostsListProps = {
   posts: Post[];
-  onEdit?: (id: string, updates: Partial<PostPayload>) => void;
-  onDelete?: (id: string) => void;
+  onEdit?: (id: number, updates: Partial<PostPayload>) => void;
+  onDelete?: (id: number) => void;
 };
 
 export const PostsList: React.FC<PostsListProps> = ({

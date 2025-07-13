@@ -1,6 +1,6 @@
 // src/redux/slices/posts/postsSlice.ts
 
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import ApiClient from '@/src/api/ApiClient';
 import {
   Post,
@@ -10,7 +10,9 @@ import {
 export const fetchPosts = createAsyncThunk<Post[], void>(
   'posts/fetchPosts',
   async () => {
-    const response = await ApiClient.get<{ posts: Post[] }, void>('posts/');
+    const response = await ApiClient.get<{ posts: Post[] }, void>(
+      'api/public/posts'
+    );
     return response.posts;
   }
 );
@@ -18,19 +20,22 @@ export const fetchPosts = createAsyncThunk<Post[], void>(
 export const createPost = createAsyncThunk<Post, PostPayload>(
   'posts/createPost',
   async (payload: PostPayload) => {
-    const data = await ApiClient.post<Post, PostPayload>('posts/', {
-      body: payload,
-    });
+    const data = await ApiClient.post<Post, PostPayload>(
+      'api/private/create-post/',
+      {
+        body: payload,
+      }
+    );
     return data;
   }
 );
 
 export const updatePost = createAsyncThunk<
   Post,
-  { id: string; data: Partial<PostPayload> }
+  { id: number; data: Partial<PostPayload> }
 >('posts/updatePost', async ({ id, data }) => {
   const updated = await ApiClient.put<Post, Partial<PostPayload>>(
-    `posts/${id}/`,
+    `api/private/posts/${id}/`,
     {
       body: data,
     }
@@ -38,21 +43,29 @@ export const updatePost = createAsyncThunk<
   return updated;
 });
 
-export const deletePost = createAsyncThunk<string, string>(
+export const deletePost = createAsyncThunk<number, number>(
   'posts/deletePost',
-  async (id: string) => {
-    await ApiClient.delete<void, void>(`posts/${id}/`);
+  async (id: number) => {
+    await ApiClient.delete<void, void>(`api/private/posts/${id}/`);
     return id;
   }
 );
 
+interface PostsState {
+  items: Post[];
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: PostsState = {
+  items: [],
+  loading: false,
+  error: null,
+};
+
 const postsSlice = createSlice({
   name: 'posts',
-  initialState: {
-    items: [] as Post[],
-    loading: false,
-    error: null as string | null,
-  },
+  initialState,
   reducers: {},
   extraReducers: builder => {
     builder
@@ -60,7 +73,7 @@ const postsSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchPosts.fulfilled, (state, action) => {
+      .addCase(fetchPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
         state.items = action.payload;
         state.loading = false;
       })
@@ -68,10 +81,11 @@ const postsSlice = createSlice({
         state.loading = false;
         state.error = action.error.message || 'Failed to fetch posts';
       })
-      .addCase(createPost.fulfilled, (state, action) => {
+      .addCase(createPost.fulfilled, (state, action: PayloadAction<Post>) => {
+        if (!state.items) state.items = [];
         state.items.unshift(action.payload);
       })
-      .addCase(updatePost.fulfilled, (state, action) => {
+      .addCase(updatePost.fulfilled, (state, action: PayloadAction<Post>) => {
         const index = state.items.findIndex(
           post => post.id === action.payload.id
         );
@@ -79,7 +93,7 @@ const postsSlice = createSlice({
           state.items[index] = action.payload;
         }
       })
-      .addCase(deletePost.fulfilled, (state, action) => {
+      .addCase(deletePost.fulfilled, (state, action: PayloadAction<number>) => {
         state.items = state.items.filter(post => post.id !== action.payload);
       });
   },

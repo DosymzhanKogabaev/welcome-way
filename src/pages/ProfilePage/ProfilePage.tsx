@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import { AppHeader } from '../../components/AppPagesComp/AppHeader/AppHeader';
-import { PostsList } from '../../components/AppPagesComp/PostsList/PostsList';
-import { Post } from '../../components/AppPagesComp/PostsList/types';
+import {
+  PostsList
+} from '../../components/AppPagesComp/PostsList/PostsList';
+import  { Post } from '../../components/AppPagesComp/PostsList/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import {
   getUserInfo,
@@ -177,7 +179,6 @@ export const ProfilePage: React.FC = () => {
     }
   };
 
-  // Show loading state
   if (authLoading || !user) {
     return (
       <div className={styles.page}>
