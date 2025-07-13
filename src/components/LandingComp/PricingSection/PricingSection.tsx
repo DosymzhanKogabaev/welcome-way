@@ -2,6 +2,7 @@
 
 import { FC, useState } from 'react';
 import styles from './PricingSection.module.css';
+import { Link } from 'react-router-dom';
 
 const pricingPlans = [
   {
@@ -50,7 +51,7 @@ export const PricingSection: FC = () => {
     'monthly'
   );
   return (
-    <section className={styles.pricingSection}>
+    <section className={styles.pricingSection} id="get-involved">
       <div className={styles.pricingContainer}>
         <h2 className={styles.heading}>Choose the perfect plan for you</h2>
         <p className={styles.subheading}>Pricing plan</p>
@@ -98,7 +99,9 @@ export const PricingSection: FC = () => {
                   </li>
                 ))}
               </ul>
-              <button className={styles.selectBtn}>Select</button>
+              <Link to="/signup">
+                <button className={styles.selectBtn}>Select</button>
+              </Link>
             </div>
           ))}
         </div>

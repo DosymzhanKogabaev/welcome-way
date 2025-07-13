@@ -13,6 +13,7 @@ export const Footer: React.FC = () => {
     {
       name: 'About Us',
       about: ['About', 'Mission', 'Team', 'Volunteer', 'Donate'],
+      id: ['#about-us'],
     },
     {
       name: 'Get Involved',
@@ -23,6 +24,7 @@ export const Footer: React.FC = () => {
         'Privacy Policy',
         'Cookie Policy',
       ],
+      id: ['#contact-us'],
     },
   ];
 
@@ -62,7 +64,7 @@ export const Footer: React.FC = () => {
               <ul className={style.linksList}>
                 {section.about.map((item, idx) => (
                   <li key={idx} className={style.linkItem}>
-                    <a href="#">{item}</a>
+                    <a href={`${section.id}`}>{item}</a>
                   </li>
                 ))}
               </ul>
