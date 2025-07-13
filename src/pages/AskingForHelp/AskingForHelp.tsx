@@ -1,5 +1,9 @@
 // AskingForHelp.tsx
 import React, { useEffect, useState } from 'react';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { FiSettings } from 'react-icons/fi';
+import { MdHistory, MdOutlineGroups } from 'react-icons/md';
+import { LiaUserFriendsSolid } from 'react-icons/lia';
 import styles from './AskingForHelp.module.css';
 import { AppHeader } from '../../components/AppPagesComp/AppHeader/AppHeader';
 import { PostsList } from '../../components/AppPagesComp/PostsList/PostsList';
@@ -114,17 +118,37 @@ export const AskingForHelp: React.FC = () => {
           </section>
           <nav className={styles.navList}>
             <ul>
-              <li>Saved Posts</li>
-              <li>Friends</li>
-              <li>Groups</li>
-              <li>History</li>
-              <li>Settings</li>
+              <li className={styles.navListItem}>
+                <FaRegUserCircle /> Saved Posts
+              </li>
+              <li className={styles.navListItem}>
+                <LiaUserFriendsSolid /> Friends
+              </li>
+              <li className={styles.navListItem}>
+                <MdOutlineGroups /> Groups
+              </li>
+              <li className={styles.navListItem}>
+                <MdHistory /> History
+              </li>
+              <li className={styles.navListItem}>
+                <FiSettings />
+                Settings
+              </li>
             </ul>
           </nav>
         </aside>
 
         <main className={styles.mainContent}>
-          <div className={styles.createPostInputBox}>
+          <div className={styles.sortingBarSticky}>
+            <SortingPanel
+              sort={sort}
+              setSort={setSort}
+              search={search}
+              setSearch={setSearch}
+            />
+          </div>
+
+          <div className={styles.createPostInputBoxSticky}>
             <button
               className={styles.createPostBtnFull}
               onClick={() => setIsModalOpen(true)}
@@ -132,13 +156,6 @@ export const AskingForHelp: React.FC = () => {
               + Create Post
             </button>
           </div>
-
-          <SortingPanel
-            sort={sort}
-            setSort={setSort}
-            search={search}
-            setSearch={setSearch}
-          />
 
           {loading && <div className={styles.loading}>Loading...</div>}
           {error && <div className={styles.error}>{error}</div>}

@@ -1,8 +1,8 @@
-// src/components/AppPagesComp/PostsList/PostsList.tsx
-
+// PostsList.tsx
 import React from 'react';
 import styles from './PostsList.module.css';
 import { Post, PostPayload } from './types';
+import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 
 type PostsListProps = {
   posts: Post[];
@@ -36,6 +36,7 @@ export const PostsList: React.FC<PostsListProps> = ({
                 })
               }
             >
+              <FiEdit3 size={16} />
               Edit
             </button>
           )}
@@ -44,6 +45,7 @@ export const PostsList: React.FC<PostsListProps> = ({
               className={styles.deleteBtn}
               onClick={() => onDelete(post.id)}
             >
+              <FiTrash2 size={16} />
               Delete
             </button>
           )}
