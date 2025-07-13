@@ -211,6 +211,7 @@
   font-weight: 600;
   color: var(--main);
   margin: auto 0;
+  padding: 8px 0;
 }
 
 .modalOverlay {
