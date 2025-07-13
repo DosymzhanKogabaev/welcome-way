@@ -13,6 +13,13 @@ import {
   setError,
 } from '../../redux/slices/auth/authSlice';
 import ApiClient from '../../api/ApiClient';
+import { ProfileSidebar } from '../../components/AppPagesComp/ProfileSidebar/ProfileSidebar';
+import { FaPlus } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa6';
+import { SlLocationPin } from "react-icons/sl";
+import { HiOutlineLanguage } from "react-icons/hi2"
+import { GoMail } from "react-icons/go";
+import { RiEdit2Line } from "react-icons/ri";
 
 interface UserPost {
   id: number;
@@ -56,7 +63,7 @@ export const ProfilePage: React.FC = () => {
     if (user) {
       setFormData({
         name: user.full_name,
-        bio: '', // Will be implemented when bio field is added to schema
+        bio: '',
       });
     }
   }, [user]);
@@ -197,79 +204,133 @@ export const ProfilePage: React.FC = () => {
       <AppHeader menuOpen={false} setMenuOpen={() => {}} />
       <main className={styles.profileSection}>
         <div className={styles.profileHeader}>
-          <div
-            className={styles.avatar}
-            onClick={isOwnProfile ? handleAvatarClick : undefined}
-            style={{ cursor: isOwnProfile ? 'pointer' : 'default' }}
-          >
-            {uploadingAvatar && (
-              <div className={styles.avatarLoading}>Uploading...</div>
-            )}
-            {user.avatar_url ? (
-              <img src={user.avatar_url} alt={`${user.full_name}'s avatar`} />
+          <div className={styles.profileHeaderWrapper}>
+            <div className={styles.profileBackgroundAccent}></div>
+            <div className={styles.profileHeaderContent}>
+              <div className={styles.profileMainInfo}>
+                <div
+                  className={styles.avatar}
+                  onClick={isOwnProfile ? handleAvatarClick : undefined}
+                  style={{ cursor: isOwnProfile ? 'pointer' : 'default' }}
+                >
+                  {uploadingAvatar && (
+                    <div className={styles.avatarLoading}>Uploading...</div>
+                  )}
+                  {user.avatar_url ? (
+                    <img
+                      src={user.avatar_url}
+                      alt={`${user.full_name}'s avatar`}
+                    />
+                  ) : (
+                    <span className={styles.avatarPlaceholder}>
+                      {user.full_name.charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                  {isOwnProfile && (
+                    <div className={styles.avatarOverlay}>
+                      <span>Change Avatar</span>
+                    </div>
+                  )}
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
+                <h1 className={styles.userName}>{user.full_name}</h1>
+                <h3 className={styles.userSubName}>@usernamehere</h3>
+                <p className={styles.profileDescription}>
+                  This is a short profile description about the user. You can edit it
+                  soon!
+                </p>
+                <p className={styles.userStats}>
+                  Reputation: {user.reputation_score} •
+                  {user.verified ? ' Verified' : ' Not verified'}
+                </p>
+                {uploadError && (
+                  <div className={styles.errorMessage}>{uploadError}</div>
+                )}
+              </div>
+              <div className={styles.profileDetailsContainer}>
+                <div className={styles.changeActionWrapper}>
+                  <div
+                  className={styles.changeAction}
+                  onClick={handleOpenModal}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Edit profile"
+                >
+                  <RiEdit2Line className={styles.changeIcon} />
+                </div></div>
+                <ul className={styles.profileDetailsList}>
+                  <li className={styles.profileDetailsItem}>
+                    <span className={styles.profileDetailsIcon}>
+                      <SlLocationPin />
+                    </span>
+                    <span>
+                      {user.country && user.region
+                        ? `${user.region}, ${user.country}`
+                        : user.country || 'Location not set'}
+                    </span>
+                  </li>
+                  <li className={styles.profileDetailsItem}>
+                    <span className={styles.profileDetailsIcon}>
+                      <HiOutlineLanguage />
+                    </span>
+                    <span>English, Ukrainian</span>
+                  </li>
+                  <li className={styles.profileDetailsItem}>
+                    <span className={styles.profileDetailsIcon}>
+                      <GoMail />
+                    </span>
+                    <span>jhonsona@gmail.com</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.profileContentWrapper}>
+          <section className={styles.postsSection}>
+            <ProfileSidebar />
+          </section>
+          <section className={styles.postsSection}>
+            <div className={styles.postsHeader}>
+              <h2 className={styles.postsTitle}>
+                {isOwnProfile ? 'Recent Posts' : `${user.full_name}'s Posts`}
+              </h2>
+              <div className={styles.postsActions}>
+                <button
+                  className={styles.actionButton}
+                  onClick={() => (window.location.href = '/asking-for-help')}
+                >
+                  Create Post
+                  <FaPlus className={styles.icon} />
+                </button>
+                <button
+                  className={styles.actionButton}
+                  onClick={() => (window.location.href = '/asking-for-help')}
+                >
+                  All Posts
+                  <FaArrowRight className={styles.icon} />
+                </button>
+              </div>
+            </div>
+            {postsLoading ? (
+              <div className={styles.loading}>Loading posts...</div>
+            ) : userPosts.length > 0 ? (
+              <PostsList posts={userPosts} />
             ) : (
-              <span className={styles.avatarPlaceholder}>
-                {user.full_name.charAt(0).toUpperCase()}
-              </span>
-            )}
-            {isOwnProfile && (
-              <div className={styles.avatarOverlay}>
-                <span>Change Avatar</span>
+              <div className={styles.noPosts}>
+                {isOwnProfile
+                  ? "You haven't posted anything yet."
+                  : 'No posts yet.'}
               </div>
             )}
-          </div>
-
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />
-
-          <h1 className={styles.userName}>{user.full_name}</h1>
-          <p className={styles.userInfo}>
-            {user.country && user.region
-              ? `${user.region}, ${user.country}`
-              : user.country || 'Location not set'}
-          </p>
-          <p className={styles.userStats}>
-            Reputation: {user.reputation_score} •
-            {user.verified ? ' Verified' : ' Not verified'}
-          </p>
-
-          {uploadError && (
-            <div className={styles.errorMessage}>{uploadError}</div>
-          )}
-
-          {isOwnProfile && (
-            <button
-              className={styles.editProfileBtn}
-              onClick={handleOpenModal}
-              aria-label="Edit profile"
-            >
-              Edit Profile
-            </button>
-          )}
+          </section>
         </div>
-
-        <section className={styles.postsSection}>
-          <h2 className={styles.postsTitle}>
-            {isOwnProfile ? 'My Posts' : `${user.full_name}'s Posts`}
-          </h2>
-          {postsLoading ? (
-            <div className={styles.loading}>Loading posts...</div>
-          ) : userPosts.length > 0 ? (
-            <PostsList posts={userPosts} />
-          ) : (
-            <div className={styles.noPosts}>
-              {isOwnProfile
-                ? "You haven't posted anything yet."
-                : 'No posts yet.'}
-            </div>
-          )}
-        </section>
-
         {isModalOpen && (
           <div className={styles.modalOverlay} onClick={handleCloseModal}>
             <div
