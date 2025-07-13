@@ -14,6 +14,8 @@ import {
 } from '../../redux/slices/auth/authSlice';
 import ApiClient from '../../api/ApiClient';
 import { ProfileSidebar } from '../../components/AppPagesComp/ProfileSidebar/ProfileSidebar';
+import { FaPlus } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa6';
 
 interface UserPost {
   id: number;
@@ -259,9 +261,27 @@ export const ProfilePage: React.FC = () => {
             <ProfileSidebar />
           </section>
           <section className={styles.postsSection}>
-            <h2 className={styles.postsTitle}>
-              {isOwnProfile ? 'Recent Posts' : `${user.full_name}'s Posts`}
-            </h2>
+            <div className={styles.postsHeader}>
+              <h2 className={styles.postsTitle}>
+                {isOwnProfile ? 'Recent Posts' : `${user.full_name}'s Posts`}
+              </h2>
+              <div className={styles.postsActions}>
+                <button
+                  className={styles.actionButton}
+                  onClick={() => (window.location.href = '/asking-for-help')}
+                >
+                  Create Post
+                  <FaPlus className={styles.icon} />
+                </button>
+                <button
+                  className={styles.actionButton}
+                  onClick={() => (window.location.href = '/asking-for-help')}
+                >
+                  All Posts
+                  <FaArrowRight className={styles.icon} />
+                </button>
+              </div>
+            </div>
             {postsLoading ? (
               <div className={styles.loading}>Loading posts...</div>
             ) : userPosts.length > 0 ? (

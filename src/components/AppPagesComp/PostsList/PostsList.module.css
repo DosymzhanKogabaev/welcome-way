@@ -20,7 +20,6 @@
 .postHeader {
   display: flex;
   align-items: center;
-  gap: 0.625rem; /* 10px */
   font-size: 0.875rem; /* 14px */
   color: var(--cards);
   margin-bottom: 0.25rem; /* 4px */
@@ -32,7 +31,7 @@
 }
 
 .postType {
-  background: var(--light-gray);
+  background: #efefef;
   color: var(--main);
   border-radius: 6px;
   padding: 2px 8px;
@@ -41,7 +40,7 @@
 }
 
 .postLocation {
-  background: var(--green);
+  background: var(--cards);
   color: var(--main);
   border-radius: 6px;
   padding: 2px 8px;
@@ -52,12 +51,12 @@
 .postTime {
   margin-left: auto;
   font-size: 0.8125rem; /* 13px */
-  color: #bbb;
+color: rgba(0, 112, 95, 0.70);
 }
 
 .postText {
   font-size: 0.9375rem; /* 15px */
-  color: #222;
+  color: var(--black);
   line-height: 1.5;
 }
 
@@ -74,7 +73,39 @@
 
 @media (min-width: 1280px) {
   .postCard {
-    padding: 28px 36px;
+    padding: 28px 51px 41px;
     width: 928px;
+    gap: 0;
+  }
+  .postUser {
+    font-size: 24px;
+    font-weight: 700;
+    margin-right: 19px;
+  }
+
+  .postHeader {
+    margin-bottom: 19px;
+  }
+
+  .postType {
+    padding: 4px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 11px;
+  }
+
+  .postLocation {
+    padding: 4px 15px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .postTime {
+    font-size: 20px;
+  }
+
+  .postText {
+    font-weight: 400;
+    font-size: 26px;
   }
 }
