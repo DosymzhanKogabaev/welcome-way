@@ -35,4 +35,5 @@ export type PublicUserInfo = {
   reputation_score: number;
   verified: boolean;
   created_at: number;
+  email: string;
 };

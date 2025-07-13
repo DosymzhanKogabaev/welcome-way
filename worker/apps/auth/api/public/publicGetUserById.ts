@@ -4,6 +4,7 @@ import { IRequest } from 'itty-router';
 import { handleError } from '@/worker/apps/common/handleError';
 import { getUserById } from '@/worker/apps/auth/services/user';
 import { UserNotFoundException } from '../../exceptions/user';
+import { PublicUserInfo } from '@/shared/types/user';
 
 // Response schema for public user info (excluding sensitive data)
 const PUBLIC_USER_INFO_SCHEMA = z.object({
@@ -19,7 +20,8 @@ const PUBLIC_USER_INFO_SCHEMA = z.object({
   reputation_score: z.number(),
   verified: z.boolean(),
   created_at: z.number(),
-});
+  email: z.string(),
+}) satisfies z.ZodType<PublicUserInfo>;
 
 export class PublicGetUserByIdAPI extends OpenAPIRoute {
   schema = {
@@ -75,7 +77,7 @@ export class PublicGetUserByIdAPI extends OpenAPIRoute {
       }
 
       // Return only public user information
-      const publicUserInfo = {
+      const publicUserInfo: PublicUserInfo = {
         id: user.id,
         full_name: user.full_name,
         avatar_url: user.avatar_url,
@@ -88,6 +90,7 @@ export class PublicGetUserByIdAPI extends OpenAPIRoute {
         reputation_score: user.reputation_score || 0,
         verified: !!user.verified,
         created_at: user.created_at.getTime(),
+        email: user.email,
       };
 
       return Response.json(publicUserInfo);

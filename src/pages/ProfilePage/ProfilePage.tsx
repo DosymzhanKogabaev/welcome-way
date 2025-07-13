@@ -284,6 +284,19 @@ export const ProfilePage: React.FC = () => {
     );
   }
 
+  const getLanguageText = (language: string) => {
+    switch (language) {
+      case 'en':
+        return 'English';
+      case 'ru':
+        return 'Russian';
+      case 'uk':
+        return 'Ukrainian';
+      default:
+        return language;
+    }
+  };
+
   return (
     <div className={styles.page}>
       <AppHeader menuOpen={false} setMenuOpen={() => {}} />
@@ -367,13 +380,13 @@ export const ProfilePage: React.FC = () => {
                     <span className={styles.profileDetailsIcon}>
                       <HiOutlineLanguage />
                     </span>
-                    <span>English, Ukrainian</span>
+                    <span>{getLanguageText(displayedUser.language)}</span>
                   </li>
                   <li className={styles.profileDetailsItem}>
                     <span className={styles.profileDetailsIcon}>
                       <GoMail />
                     </span>
-                    <span>jhonsona@gmail.com</span>
+                    <span>{displayedUser.email}</span>
                   </li>
                 </ul>
               </div>
