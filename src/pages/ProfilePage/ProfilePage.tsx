@@ -38,7 +38,6 @@ export const ProfilePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const { user, isLoading: authLoading } = useAppSelector(state => state.auth);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.full_name || '',
