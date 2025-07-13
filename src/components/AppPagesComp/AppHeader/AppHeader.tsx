@@ -1,11 +1,11 @@
 import React from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './AppHeader.module.css';
 import { useAppSelector } from '../../../redux/hooks';
 
 const navLinks = [
   { name: 'Home', href: '/' },
-  { name: 'Help Feed', href: '/help' },
+  { name: 'Help Feed', href: '/asking-for-help' },
   { name: 'Integration Roadmap', href: '/roadmap' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -14,33 +14,44 @@ export const AppHeader: React.FC<{
   menuOpen: boolean;
   setMenuOpen: (open: boolean) => void;
 }> = ({ menuOpen, setMenuOpen }) => {
-  const navigate = useNavigate();
   const { user } = useAppSelector(state => state.auth);
   return (
     <header className={styles.header}>
-      <Link to="/asking-for-help" className={styles.logo}>
-        WelcomeWay
-      </Link>
-      <nav className={styles.navDesktop}>
-        {navLinks.map(link => (
-          <a key={link.name} href={link.href} className={styles.navLink}>
-            {link.name}
-          </a>
-        ))}
+      <div className={styles.headerContainer}>
+        <Link to="/asking-for-help" className={styles.logo}>
+          WelcomeWay
+        </Link>
+
+        <nav className={styles.navDesktop}>
+          {navLinks.map(link => (
+            <a key={link.name} href={link.href} className={styles.navLink}>
+              {link.name}
+            </a>
+          ))}
+          <Link to={`/profile/${user?.id}`} className={styles.avatarButton}>
+            {user?.avatar_url ? (
+              <img
+                src={user.avatar_url}
+                alt="Profile avatar"
+                className={styles.avatarImage}
+              />
+            ) : (
+              <div className={styles.avatarPlaceholder}>
+                {user?.full_name?.[0]?.toUpperCase() || 'U'}
+              </div>
+            )}
+          </Link>
+        </nav>
+
         <button
-          className={styles.profileBtn}
-          onClick={() => navigate(`/profile/${user?.id}`)}
+          className={styles.menuBtn}
+          aria-label="Open menu"
+          onClick={() => setMenuOpen(true)}
         >
-          Profile
+          <span className={styles.menuIcon} />
         </button>
-      </nav>
-      <button
-        className={styles.menuBtn}
-        aria-label="Open menu"
-        onClick={() => setMenuOpen(true)}
-      >
-        <span className={styles.menuIcon} />
-      </button>
+      </div>
+
       {menuOpen && (
         <div className={styles.mobileMenu}>
           <button
