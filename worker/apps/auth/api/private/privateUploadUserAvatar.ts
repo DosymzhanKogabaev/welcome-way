@@ -140,7 +140,7 @@ export class PrivateUploadUserAvatarAPI extends OpenAPIRoute {
       });
 
       // Generate public URL via Cloudflare Images
-      const publicUrl = `https://welcome-may.dkogabayev.workers.dev/cdn/${filename}`;
+      const publicUrl = `https://welcome-way.dkogabayev.workers.dev/cdn/${filename}`;
 
       // Update user avatar URL in database
       await updateUserAvatar(env, userId, publicUrl);

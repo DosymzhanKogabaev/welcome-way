@@ -1,6 +1,6 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "welcome-may",
+	"name": "welcome-way",
 	"main": "worker/index.ts",
 	"compatibility_date": "2025-07-11",
 	"assets": {
