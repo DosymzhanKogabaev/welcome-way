@@ -62,7 +62,7 @@ export class PrivateUploadUserAvatarAPI extends OpenAPIRoute {
   async handle(request: IRequest, env: Env, _ctx: ExecutionContext) {
     try {
       // Get authenticated user ID from request context
-      const userId = (request as any).userId;
+      const userId = Number(request.user?.user_id);
       if (!userId) {
         return new Response(
           JSON.stringify({ error: 'Authentication required' }),
@@ -71,14 +71,6 @@ export class PrivateUploadUserAvatarAPI extends OpenAPIRoute {
             headers: { 'Content-Type': 'application/json' },
           }
         );
-      }
-
-      // Validate request method
-      if (request.method !== 'POST') {
-        return new Response(JSON.stringify({ error: 'Method not allowed' }), {
-          status: 405,
-          headers: { 'Content-Type': 'application/json' },
-        });
       }
 
       // Validate content type
