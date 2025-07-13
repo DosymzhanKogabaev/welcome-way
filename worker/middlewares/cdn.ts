@@ -37,7 +37,8 @@ export const cdnMiddleware = async (
   }
 
   const headers = new Headers({
-    'Content-Type': inferFromKey(key),
+    'Content-Type':
+      object.httpMetadata?.contentType || 'application/octet-stream',
     'Cache-Control': 'public, max-age=86400, immutable',
     ETag: etag,
     'Content-Length': object.size?.toString() ?? '',
@@ -51,20 +52,4 @@ export const cdnMiddleware = async (
   }
 
   return new Response(object.body, { headers });
-};
-
-const inferFromKey = (key: string) => {
-  if (key.endsWith('.png')) {
-    return 'image/png';
-  }
-  if (key.endsWith('.jpg') || key.endsWith('.jpeg')) {
-    return 'image/jpeg';
-  }
-  if (key.endsWith('.gif')) {
-    return 'image/gif';
-  }
-  if (key.endsWith('.svg')) {
-    return 'image/svg+xml';
-  }
-  return 'application/octet-stream';
 };

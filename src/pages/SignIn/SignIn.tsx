@@ -75,8 +75,9 @@ export const SignIn: React.FC = () => {
       // After successful login, get user info
       await dispatch(getUserInfo()).unwrap();
 
-      // Navigate to home or dashboard
-      navigate('/roadmap');
+      // Navigate to the original location or default to roadmap
+      const from = location.state?.from?.pathname || '/roadmap';
+      navigate(from, { replace: true });
     } catch (error) {
       console.error('Login failed:', error);
     }
