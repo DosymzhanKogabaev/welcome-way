@@ -16,6 +16,10 @@ import ApiClient from '../../api/ApiClient';
 import { ProfileSidebar } from '../../components/AppPagesComp/ProfileSidebar/ProfileSidebar';
 import { FaPlus } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa6';
+import { SlLocationPin } from "react-icons/sl";
+import { HiOutlineLanguage } from "react-icons/hi2"
+import { GoMail } from "react-icons/go";
+import { RiEdit2Line } from "react-icons/ri";
 
 interface UserPost {
   id: number;
@@ -59,7 +63,7 @@ export const ProfilePage: React.FC = () => {
     if (user) {
       setFormData({
         name: user.full_name,
-        bio: '', // Will be implemented when bio field is added to schema
+        bio: '',
       });
     }
   }, [user]);
@@ -204,63 +208,88 @@ export const ProfilePage: React.FC = () => {
           <div className={styles.profileHeaderWrapper}>
             <div className={styles.profileBackgroundAccent}></div>
             <div className={styles.profileHeaderContent}>
-              <div
-                className={styles.avatar}
-                onClick={isOwnProfile ? handleAvatarClick : undefined}
-                style={{ cursor: isOwnProfile ? 'pointer' : 'default' }}
-              >
-                {uploadingAvatar && (
-                  <div className={styles.avatarLoading}>Uploading...</div>
-                )}
-                {user.avatar_url ? (
-                  <img
-                    src={user.avatar_url}
-                    alt={`${user.full_name}'s avatar`}
-                  />
-                ) : (
-                  <span className={styles.avatarPlaceholder}>
-                    {user.full_name.charAt(0).toUpperCase()}
-                  </span>
-                )}
-                {isOwnProfile && (
-                  <div className={styles.avatarOverlay}>
-                    <span>Change Avatar</span>
-                  </div>
+              <div className={styles.profileMainInfo}>
+                <div
+                  className={styles.avatar}
+                  onClick={isOwnProfile ? handleAvatarClick : undefined}
+                  style={{ cursor: isOwnProfile ? 'pointer' : 'default' }}
+                >
+                  {uploadingAvatar && (
+                    <div className={styles.avatarLoading}>Uploading...</div>
+                  )}
+                  {user.avatar_url ? (
+                    <img
+                      src={user.avatar_url}
+                      alt={`${user.full_name}'s avatar`}
+                    />
+                  ) : (
+                    <span className={styles.avatarPlaceholder}>
+                      {user.full_name.charAt(0).toUpperCase()}
+                    </span>
+                  )}
+                  {isOwnProfile && (
+                    <div className={styles.avatarOverlay}>
+                      <span>Change Avatar</span>
+                    </div>
+                  )}
+                </div>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  style={{ display: 'none' }}
+                />
+                <h1 className={styles.userName}>{user.full_name}</h1>
+                <h3 className={styles.userSubName}>@usernamehere</h3>
+                <p className={styles.profileDescription}>
+                  This is a short profile description about the user. You can edit it
+                  soon!
+                </p>
+                <p className={styles.userStats}>
+                  Reputation: {user.reputation_score} •
+                  {user.verified ? ' Verified' : ' Not verified'}
+                </p>
+                {uploadError && (
+                  <div className={styles.errorMessage}>{uploadError}</div>
                 )}
               </div>
-
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                style={{ display: 'none' }}
-              />
-
-              <h1 className={styles.userName}>{user.full_name}</h1>
-              <p className={styles.userInfo}>
-                {user.country && user.region
-                  ? `${user.region}, ${user.country}`
-                  : user.country || 'Location not set'}
-              </p>
-              <p className={styles.userStats}>
-                Reputation: {user.reputation_score} •
-                {user.verified ? ' Verified' : ' Not verified'}
-              </p>
-
-              {uploadError && (
-                <div className={styles.errorMessage}>{uploadError}</div>
-              )}
-
-              {isOwnProfile && (
-                <button
-                  className={styles.editProfileBtn}
+              <div className={styles.profileDetailsContainer}>
+                <div className={styles.changeActionWrapper}>
+                  <div
+                  className={styles.changeAction}
                   onClick={handleOpenModal}
+                  role="button"
+                  tabIndex={0}
                   aria-label="Edit profile"
                 >
-                  Edit Profile
-                </button>
-              )}
+                  <RiEdit2Line className={styles.changeIcon} />
+                </div></div>
+                <ul className={styles.profileDetailsList}>
+                  <li className={styles.profileDetailsItem}>
+                    <span className={styles.profileDetailsIcon}>
+                      <SlLocationPin />
+                    </span>
+                    <span>
+                      {user.country && user.region
+                        ? `${user.region}, ${user.country}`
+                        : user.country || 'Location not set'}
+                    </span>
+                  </li>
+                  <li className={styles.profileDetailsItem}>
+                    <span className={styles.profileDetailsIcon}>
+                      <HiOutlineLanguage />
+                    </span>
+                    <span>English, Ukrainian</span>
+                  </li>
+                  <li className={styles.profileDetailsItem}>
+                    <span className={styles.profileDetailsIcon}>
+                      <GoMail />
+                    </span>
+                    <span>jhonsona@gmail.com</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
