@@ -6,7 +6,7 @@ import { CallToActionCard } from './CallToActionCard/CallToActionCard';
 
 export const Features: React.FC = () => {
   return (
-    <section className={styles.featuresSection}>
+    <section className={styles.featuresSection} id="about-us">
       <div className={styles.featuresContainer}>
         <div className={styles.imageWrapper}>
           <img
@@ -45,7 +45,10 @@ export const Features: React.FC = () => {
 
       <CallToActionCard />
 
-      <div className={`${styles.featuresContainer} ${styles.reverse}`}>
+      <div
+        className={`${styles.featuresContainer} ${styles.reverse}`}
+        id="how-it-works"
+      >
         <div className={`${styles.textContent} ${styles.textContentSecond}`}>
           <h2 className={styles.heading}>
             More Features for Seamless Integration
