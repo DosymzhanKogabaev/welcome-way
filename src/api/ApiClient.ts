@@ -1,3 +1,5 @@
+// src/api/ApiClient.ts
+
 import { isLiteralObject } from '@/src/utils/isLiteralObject';
 import { RequestMethod } from '@/shared/enums';
 import i18n from '@/src/i18n/i18n';

@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import { AppHeader } from '../../components/AppPagesComp/AppHeader/AppHeader';
-import {
-  PostsList,
-  Post,
-} from '../../components/AppPagesComp/PostsList/PostsList';
+import { PostsList } from '../../components/AppPagesComp/PostsList/PostsList';
+import { Post } from '../../components/AppPagesComp/PostsList/types';
 
 const initialUserData = {
   id: '1',
@@ -16,7 +14,7 @@ const initialUserData = {
 
 const posts: Post[] = [
   {
-    id: 1,
+    id: '1',
     user: 'Anna (UA)',
     type: 'Need',
     text: 'Looking for a translator for documents in Berlin.',
@@ -25,7 +23,7 @@ const posts: Post[] = [
     location: 'Berlin',
   },
   {
-    id: 2,
+    id: '2',
     user: 'Anna (UA)',
     type: 'Offer',
     text: 'Can provide guidance on navigating public transport in Berlin.',
