@@ -271,6 +271,16 @@ export class ApiClient {
       apiPrefixOverride
     );
   }
+
+  // Specific method for getting user by ID (public endpoint)
+  public static async getUserById<T>(userId: number): Promise<T> {
+    return this.get<T, any>(
+      `api/public/users/${userId}`,
+      {},
+      false, // No auth token needed for public endpoint
+      false // No application language needed
+    );
+  }
 }
 
 export default ApiClient;

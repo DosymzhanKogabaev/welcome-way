@@ -6,16 +6,16 @@ import {
   PrivateRegisterAPI,
   PrivateGetUserInfoAPI,
   PrivateRefreshAPI,
-  PrivateUploadUserAvatarAPI
+  PrivateUploadUserAvatarAPI,
 } from './api/private';
-import { PublicTestApi } from './api/public/testApi';
+import { PublicGetUserByIdAPI } from './api/public';
 
 export const registerAuthRoutes: RegisterAppRoutes = (
   router: RouterOpenApiType,
   urlPrefix = null
 ) => {
   // Public routes
-  router.get(`${urlPrefix}/public/auth/test`, PublicTestApi);
+  router.get(`${urlPrefix}/public/users/:id`, PublicGetUserByIdAPI);
 
   // Private routes
   router.post(`${urlPrefix}/private/auth/register`, PrivateRegisterAPI);

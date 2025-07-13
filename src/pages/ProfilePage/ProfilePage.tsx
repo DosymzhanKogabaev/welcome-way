@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import { AppHeader } from '../../components/AppPagesComp/AppHeader/AppHeader';
-import {
-  PostsList
-} from '../../components/AppPagesComp/PostsList/PostsList';
-import  { Post } from '../../components/AppPagesComp/PostsList/types';
+import { PostsList } from '../../components/AppPagesComp/PostsList/PostsList';
+import { Post } from '../../components/AppPagesComp/PostsList/types';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import {
   getUserInfo,
@@ -13,13 +11,14 @@ import {
   setError,
 } from '../../redux/slices/auth/authSlice';
 import ApiClient from '../../api/ApiClient';
+import { PublicUserInfo } from '@/shared/types/user';
 import { ProfileSidebar } from '../../components/AppPagesComp/ProfileSidebar/ProfileSidebar';
 import { FaPlus } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa6';
-import { SlLocationPin } from "react-icons/sl";
-import { HiOutlineLanguage } from "react-icons/hi2"
-import { GoMail } from "react-icons/go";
-import { RiEdit2Line } from "react-icons/ri";
+import { SlLocationPin } from 'react-icons/sl';
+import { HiOutlineLanguage } from 'react-icons/hi2';
+import { GoMail } from 'react-icons/go';
+import { RiEdit2Line } from 'react-icons/ri';
 
 interface UserPost {
   id: number;
@@ -48,6 +47,9 @@ export const ProfilePage: React.FC = () => {
   const [userPosts, setUserPosts] = useState<Post[]>([]);
   const [postsLoading, setPostsLoading] = useState(false);
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [targetUser, setTargetUser] = useState<PublicUserInfo | null>(null);
+  const [targetUserLoading, setTargetUserLoading] = useState(false);
+  const [targetUserError, setTargetUserError] = useState<string | null>(null);
   const uploadError = useAppSelector(state => state.auth.error);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -57,6 +59,36 @@ export const ProfilePage: React.FC = () => {
       dispatch(getUserInfo());
     }
   }, [dispatch, user, authLoading]);
+
+  // Fetch target user info if viewing someone else's profile
+  useEffect(() => {
+    const fetchTargetUser = async () => {
+      if (!id || (user && parseInt(id) === user.id)) {
+        // If no ID or viewing own profile, clear target user
+        setTargetUser(null);
+        setTargetUserError(null);
+        return;
+      }
+
+      setTargetUserLoading(true);
+      setTargetUserError(null);
+
+      try {
+        const targetUserInfo = await ApiClient.getUserById<PublicUserInfo>(
+          parseInt(id)
+        );
+        setTargetUser(targetUserInfo);
+      } catch (error) {
+        console.error('Failed to fetch target user:', error);
+        setTargetUserError('Failed to load user information');
+        setTargetUser(null);
+      } finally {
+        setTargetUserLoading(false);
+      }
+    };
+
+    fetchTargetUser();
+  }, [id, user]);
 
   // Update form data when user data changes
   useEffect(() => {
@@ -83,10 +115,14 @@ export const ProfilePage: React.FC = () => {
           false
         );
 
+        // Determine which user to use for display
+        const userForDisplay =
+          id && parseInt(id) !== user.id ? targetUser : user;
+
         // Convert API posts to component Post format
         const convertedPosts: Post[] = response.posts.map(post => ({
           id: post.id,
-          user: user.full_name, // Using current user's name for now
+          user: userForDisplay?.full_name || 'Unknown User', // Using displayed user's name
           type: (post.type.charAt(0).toUpperCase() + post.type.slice(1)) as
             | 'Need'
             | 'Offer'
@@ -94,7 +130,8 @@ export const ProfilePage: React.FC = () => {
           text: post.text,
           time: formatTimeAgo(post.created_at),
           created_at: new Date(post.created_at * 1000).toISOString(),
-          location: user.region || user.country || 'Unknown',
+          location:
+            userForDisplay?.region || userForDisplay?.country || 'Unknown',
         }));
 
         setUserPosts(convertedPosts);
@@ -107,7 +144,7 @@ export const ProfilePage: React.FC = () => {
     };
 
     fetchUserPosts();
-  }, [user, id]);
+  }, [user, id, targetUser]);
 
   const formatTimeAgo = (timestamp: number): string => {
     const now = Date.now() / 1000;
@@ -198,6 +235,55 @@ export const ProfilePage: React.FC = () => {
   }
 
   const isOwnProfile = !id || parseInt(id) === user.id;
+  const displayedUser = isOwnProfile ? user : targetUser;
+
+  // Early return if no user to display
+  if (!displayedUser) {
+    return (
+      <div className={styles.page}>
+        <AppHeader menuOpen={false} setMenuOpen={() => {}} />
+        <main className={styles.profileSection}>
+          <div className={styles.loading}>No user data available</div>
+        </main>
+      </div>
+    );
+  }
+
+  // Show loading state when fetching target user
+  if (!isOwnProfile && targetUserLoading) {
+    return (
+      <div className={styles.page}>
+        <AppHeader menuOpen={false} setMenuOpen={() => {}} />
+        <main className={styles.profileSection}>
+          <div className={styles.loading}>Loading user profile...</div>
+        </main>
+      </div>
+    );
+  }
+
+  // Show error state when target user fetch fails
+  if (!isOwnProfile && targetUserError) {
+    return (
+      <div className={styles.page}>
+        <AppHeader menuOpen={false} setMenuOpen={() => {}} />
+        <main className={styles.profileSection}>
+          <div className={styles.loading}>Error: {targetUserError}</div>
+        </main>
+      </div>
+    );
+  }
+
+  // Show error state when target user not found
+  if (!isOwnProfile && !targetUser) {
+    return (
+      <div className={styles.page}>
+        <AppHeader menuOpen={false} setMenuOpen={() => {}} />
+        <main className={styles.profileSection}>
+          <div className={styles.loading}>User not found</div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
@@ -216,14 +302,14 @@ export const ProfilePage: React.FC = () => {
                   {uploadingAvatar && (
                     <div className={styles.avatarLoading}>Uploading...</div>
                   )}
-                  {user.avatar_url ? (
+                  {displayedUser.avatar_url ? (
                     <img
-                      src={user.avatar_url}
-                      alt={`${user.full_name}'s avatar`}
+                      src={displayedUser.avatar_url}
+                      alt={`${displayedUser.full_name}'s avatar`}
                     />
                   ) : (
                     <span className={styles.avatarPlaceholder}>
-                      {user.full_name.charAt(0).toUpperCase()}
+                      {displayedUser.full_name.charAt(0).toUpperCase()}
                     </span>
                   )}
                   {isOwnProfile && (
@@ -239,40 +325,43 @@ export const ProfilePage: React.FC = () => {
                   onChange={handleFileChange}
                   style={{ display: 'none' }}
                 />
-                <h1 className={styles.userName}>{user.full_name}</h1>
+                <h1 className={styles.userName}>{displayedUser.full_name}</h1>
                 <h3 className={styles.userSubName}>@usernamehere</h3>
                 <p className={styles.profileDescription}>
-                  This is a short profile description about the user. You can edit it
-                  soon!
+                  This is a short profile description about the user. You can
+                  edit it soon!
                 </p>
                 <p className={styles.userStats}>
-                  Reputation: {user.reputation_score} •
-                  {user.verified ? ' Verified' : ' Not verified'}
+                  Reputation: {displayedUser.reputation_score} •
+                  {displayedUser.verified ? ' Verified' : ' Not verified'}
                 </p>
                 {uploadError && (
                   <div className={styles.errorMessage}>{uploadError}</div>
                 )}
               </div>
               <div className={styles.profileDetailsContainer}>
-                <div className={styles.changeActionWrapper}>
-                  <div
-                  className={styles.changeAction}
-                  onClick={handleOpenModal}
-                  role="button"
-                  tabIndex={0}
-                  aria-label="Edit profile"
-                >
-                  <RiEdit2Line className={styles.changeIcon} />
-                </div></div>
+                {isOwnProfile && (
+                  <div className={styles.changeActionWrapper}>
+                    <div
+                      className={styles.changeAction}
+                      onClick={handleOpenModal}
+                      role="button"
+                      tabIndex={0}
+                      aria-label="Edit profile"
+                    >
+                      <RiEdit2Line className={styles.changeIcon} />
+                    </div>
+                  </div>
+                )}
                 <ul className={styles.profileDetailsList}>
                   <li className={styles.profileDetailsItem}>
                     <span className={styles.profileDetailsIcon}>
                       <SlLocationPin />
                     </span>
                     <span>
-                      {user.country && user.region
-                        ? `${user.region}, ${user.country}`
-                        : user.country || 'Location not set'}
+                      {displayedUser.country && displayedUser.region
+                        ? `${displayedUser.region}, ${displayedUser.country}`
+                        : displayedUser.country || 'Location not set'}
                     </span>
                   </li>
                   <li className={styles.profileDetailsItem}>
@@ -296,27 +385,31 @@ export const ProfilePage: React.FC = () => {
           <section className={styles.postsSection}>
             <ProfileSidebar />
           </section>
-          <section className={styles.postsSection}>
+          <section className={styles.postsSection} style={{ flex: 1 }}>
             <div className={styles.postsHeader}>
               <h2 className={styles.postsTitle}>
-                {isOwnProfile ? 'Recent Posts' : `${user.full_name}'s Posts`}
+                {isOwnProfile
+                  ? 'Recent Posts'
+                  : `${displayedUser.full_name}'s Posts`}
               </h2>
-              <div className={styles.postsActions}>
-                <button
-                  className={styles.actionButton}
-                  onClick={() => (window.location.href = '/asking-for-help')}
-                >
-                  Create Post
-                  <FaPlus className={styles.icon} />
-                </button>
-                <button
-                  className={styles.actionButton}
-                  onClick={() => (window.location.href = '/asking-for-help')}
-                >
-                  All Posts
-                  <FaArrowRight className={styles.icon} />
-                </button>
-              </div>
+              {isOwnProfile && (
+                <div className={styles.postsActions}>
+                  <button
+                    className={styles.actionButton}
+                    onClick={() => (window.location.href = '/asking-for-help')}
+                  >
+                    Create Post
+                    <FaPlus className={styles.icon} />
+                  </button>
+                  <button
+                    className={styles.actionButton}
+                    onClick={() => (window.location.href = '/asking-for-help')}
+                  >
+                    All Posts
+                    <FaArrowRight className={styles.icon} />
+                  </button>
+                </div>
+              )}
             </div>
             {postsLoading ? (
               <div className={styles.loading}>Loading posts...</div>

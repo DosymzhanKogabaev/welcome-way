@@ -20,6 +20,7 @@
   width: 100%;
   background-color: var(--button);
   border-radius: 20px 20px 0px 0px;
+      user-select: none;
 }
 
 .profileHeader {
@@ -209,7 +210,8 @@
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
   color: var(--main);
-  margin-bottom: 1rem; /* 16px */
+  margin: auto 0;
+  padding: 8px 0;
 }
 
 .modalOverlay {
@@ -322,6 +324,7 @@
   color: var(--white);
   border: none;
   transition: background 0.2s ease;
+  cursor: pointer;
 }
 
 .actionButton:hover {
@@ -463,6 +466,7 @@
 
   .postsTitle {
     font-size: 1.5rem; /* 24px */
+    text-align: center;
   }
 
   .modal {
@@ -507,6 +511,7 @@
   .actionButton {
     font-size: 22px;
     padding: 9px 22px;
+    cursor: pointer;
   }
   .avatar {
     width: 180px;
@@ -532,6 +537,8 @@
     display: flex;
     justify-content: center;
     gap: 25px;
+    margin: 0 auto;
+    width: 1311px;
   }
 
   .userSubName {
