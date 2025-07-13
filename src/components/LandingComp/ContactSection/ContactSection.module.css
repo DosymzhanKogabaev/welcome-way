@@ -8,6 +8,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  scroll-margin-top: 80px;
 }
 
 .container {
@@ -125,6 +127,8 @@
 @media screen and (min-width: 1280px) {
   .section {
     padding: 64px 32px;
+
+    scroll-margin-top: 50px;
   }
 
   .title {
