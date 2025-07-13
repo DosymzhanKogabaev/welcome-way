@@ -11,16 +11,18 @@
 }
 
 .profileSection {
-  max-width: 600px;
   margin: 0 auto;
   padding: 12px 2px 32px;
 }
 
+.profileBackgroundAccent {
+  height: 148px;
+  width: 100%;
+  background-color: var(--button);
+  border-radius: 20px 20px 0px 0px;
+}
+
 .profileHeader {
-  background: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  padding: 12px 8px;
   display: flex;
   flex-direction: column;
   gap: 0.75rem; /* 12px */
@@ -43,6 +45,7 @@
   margin-bottom: 0.75rem; /* 12px */
   overflow: hidden;
   transition: all 0.3s ease;
+  margin-top: -120px;
 }
 
 .avatar:hover .avatarOverlay {
@@ -63,7 +66,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: var(--button);
+  background: var(--menuButton);
 }
 
 .avatarOverlay {
@@ -102,6 +105,22 @@
   z-index: 1;
 }
 
+.profileHeaderContent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 32px 24px 0 24px;
+}
+
+.profileMainInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .userName {
   font-size: 1.5rem; /* 24px */
   font-weight: 700;
@@ -109,6 +128,9 @@
   margin-bottom: 0.25rem; /* 4px */
 }
 
+.userSubName {
+  color: rgba(0, 112, 95, 0.7);
+}
 .userInfo {
   font-size: 0.9375rem; /* 15px */
   color: #666;
@@ -116,6 +138,11 @@
   margin-bottom: 0.5rem; /* 8px */
 }
 
+.profileHeaderWrapper {
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background-color: var(--white);
+}
 .userStats {
   font-size: 0.875rem; /* 14px */
   color: #888;
@@ -176,10 +203,6 @@
 
 .editProfileBtn:hover {
   background: var(--button-hover);
-}
-
-.postsSection {
-  margin-top: 1.5rem; /* 24px */
 }
 
 .postsTitle {
@@ -282,14 +305,128 @@
   background: var(--button-hover);
 }
 
+.postsActions {
+  display: flex;
+  justify-content: center;
+  align-items: top;
+  gap: 19px;
+}
+
+.actionButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  background: var(--button);
+  color: var(--white);
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.actionButton:hover {
+  background: var(--button-hover);
+}
+
+.profileDescription {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.profileDetailsContainer {
+  min-width: 240px;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.changeBtn {
+  background: var(--button);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.2s ease;
+}
+.changeActionWrapper {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.changeBtn:hover {
+  background: var(--button-hover);
+}
+
+.profileDetailsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.profileDetailsItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.75rem;
+}
+
+.profileDetailsIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--main);
+}
+
+.changeAction {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  user-select: none;
+  transition: color 0.2s;
+}
+
+.changeAction:hover {
+  color: var(--button-hover);
+}
+
+.changeIcon {
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.changeText {
+  font-size: 1rem;
+}
+
 @media (min-width: 768px) {
   .profileSection {
-    max-width: 800px;
     padding: 40px 0 80px;
   }
 
   .profileHeader {
-    padding: 24px 32px;
     border-radius: 18px;
   }
 
@@ -351,24 +488,54 @@
 
 @media (min-width: 1280px) {
   .profileSection {
-    max-width: 1000px;
+    padding: 0px 0 80px;
   }
 
   .profileHeader {
-    padding: 28px 36px;
+    margin-top: 50px;
+    margin-bottom: 40px;
   }
 
+  .postsHeader {
+    display: flex;
+    justify-content: space-between;
+  }
+  .postsActions {
+    margin-bottom: 23px;
+  }
+
+  .actionButton {
+    font-size: 22px;
+    padding: 9px 22px;
+  }
   .avatar {
-    width: 6rem; /* 96px */
-    height: 6rem;
-    font-size: 3rem; /* 48px */
+    width: 180px;
+    height: 180px;
+    font-size: 6rem;
   }
-
+  .profileHeaderWrapper {
+    width: 1311px;
+  }
   .avatarOverlay {
     font-size: 1rem;
   }
 
+  .profileHeaderContent {
+    padding: 0 48px 64px;
+  }
+
   .modal {
     max-width: 600px;
+  }
+
+  .profileContentWrapper {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .userSubName {
+    font-size: 24px;
+    font-weight: 400;
   }
 }
