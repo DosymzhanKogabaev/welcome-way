@@ -37,7 +37,7 @@ export const cdnMiddleware = async (
   }
 
   const headers = new Headers({
-    'Content-Type': object.httpMetadata?.contentType || inferFromKey(key),
+    'Content-Type': inferFromKey(key),
     'Cache-Control': 'public, max-age=86400, immutable',
     ETag: etag,
     'Content-Length': object.size?.toString() ?? '',
