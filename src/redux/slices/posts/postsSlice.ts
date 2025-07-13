@@ -20,6 +20,7 @@ export const fetchPosts = createAsyncThunk<Post[], void>(
 export const createPost = createAsyncThunk<Post, PostPayload>(
   'posts/createPost',
   async (payload: PostPayload) => {
+    // console.log(payload);
     const data = await ApiClient.post<Post, PostPayload>(
       'api/private/create-post/',
       {
@@ -35,18 +36,19 @@ export const updatePost = createAsyncThunk<
   { id: number; data: Partial<PostPayload> }
 >('posts/updatePost', async ({ id, data }) => {
   const updated = await ApiClient.put<Post, Partial<PostPayload>>(
-    `api/private/posts/${id}/`,
+    `api/private/posts/${id}`,
     {
       body: data,
     }
   );
+  // console.log(updated);
   return updated;
 });
 
 export const deletePost = createAsyncThunk<number, number>(
   'posts/deletePost',
   async (id: number) => {
-    await ApiClient.delete<void, void>(`api/private/posts/${id}/`);
+    await ApiClient.delete<void, void>(`api/private/posts/${id}`);
     return id;
   }
 );

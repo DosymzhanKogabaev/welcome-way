@@ -75,6 +75,7 @@ export const AskingForHelp: React.FC = () => {
     id: number,
     updates: Partial<PostPayload>
   ) => {
+    console.log(id, updates);
     await dispatch(updatePost({ id, data: updates }));
   };
 
