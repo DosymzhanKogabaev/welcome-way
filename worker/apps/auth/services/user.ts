@@ -5,7 +5,18 @@ import { initDbConnect } from '@/worker/db';
 import { userSchema } from '@/worker/db/schema/user';
 import { eq } from 'drizzle-orm';
 
-export async function createUser(env: Env, userData: RegisterUserRequest) {
+interface GeographicData {
+  country: string | null;
+  region: string | null;
+  coordinates_lat: number | null;
+  coordinates_lng: number | null;
+}
+
+export async function createUser(
+  env: Env,
+  userData: RegisterUserRequest,
+  geographicData?: GeographicData
+) {
   const db = initDbConnect(env);
   const [user] = await db
     .insert(userSchema)
@@ -15,6 +26,10 @@ export async function createUser(env: Env, userData: RegisterUserRequest) {
       password_hash: userData.password,
       language: userData.language,
       user_type: 'newcomer',
+      country: geographicData?.country,
+      region: geographicData?.region,
+      coordinates_lat: geographicData?.coordinates_lat,
+      coordinates_lng: geographicData?.coordinates_lng,
     })
     .returning();
   return user;
@@ -52,4 +67,13 @@ export async function getUserById(env: Env, id: number): Promise<User> {
     .where(eq(userSchema.id, id))
     .limit(1);
   return user;
+}
+
+export async function updateUserAvatar(
+  env: Env,
+  id: number,
+  avatar_url: string
+) {
+  const db = initDbConnect(env);
+  await db.update(userSchema).set({ avatar_url }).where(eq(userSchema.id, id));
 }

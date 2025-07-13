@@ -22,18 +22,10 @@ export const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.container}>
+      <div className={`${styles.headerContainer} container`}>
         <Link to="/asking-for-help" className={styles.logo}>
           WelcomeWay
         </Link>
-
-        <button
-          className={styles.menuButton}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </button>
 
         <nav className={styles.nav}>
           <ul className={styles.navList}>
@@ -45,16 +37,23 @@ export const Header: React.FC = () => {
               </li>
             ))}
           </ul>
-
-          <div className={styles.authButtons}>
-            <Link to="/signin" className={styles.signInButton}>
-              Sign In
-            </Link>
-            <Link to="/signup" className={styles.signUpButton}>
-              Sign Up
-            </Link>
-          </div>
         </nav>
+
+        <div className={styles.authButtons}>
+          <Link to="/signin" className={styles.signInButton}>
+            Sign In
+          </Link>
+          <Link to="/signup" className={styles.signUpButton}>
+            Sign Up
+          </Link>
+        </div>
+        <button
+          className={styles.menuButton}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        </button>
       </div>
 
       {isMenuOpen && (

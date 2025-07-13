@@ -44,21 +44,48 @@ export class PrivateRegisterAPI extends OpenAPIRoute {
     },
   } as any;
 
-  async handle(_request: IRequest, env: Env, _ctx: ExecutionContext) {
+  async handle(request: IRequest, env: Env, _ctx: ExecutionContext) {
     try {
       const data = await this.getValidatedData<typeof this.schema>();
       const userData = { ...(data.body as unknown as RegisterUserRequest) };
+
+      // Extract geographic data from Cloudflare Workers request
+      const cfData = (request as any).cf;
+
+      // Log the full cf object for debugging
+      console.log('Full Cloudflare data:', JSON.stringify(cfData, null, 2));
+
+      const geographicData = {
+        country: cfData?.country || null,
+        region: cfData?.region || null,
+        coordinates_lat: cfData?.latitude ? parseFloat(cfData.latitude) : null,
+        coordinates_lng: cfData?.longitude
+          ? parseFloat(cfData.longitude)
+          : null,
+      };
+
+      console.log('Geographic data extracted:', geographicData);
+
       let user = await getUserByEmail(env, userData.email);
       if (user) {
         throw new UserAlreadyExistsException();
       } else if (!user) {
-        user = await createUser(env, userData);
+        user = await createUser(env, userData, geographicData);
+        console.log('User created with geographic data:', {
+          id: user.id,
+          email: user.email,
+          country: user.country,
+          region: user.region,
+          coordinates_lat: user.coordinates_lat,
+          coordinates_lng: user.coordinates_lng,
+        });
       }
       return Response.json({
         id: user.id,
         email: user.email,
       });
     } catch (error) {
+      console.error('Register API error:', error);
       return handleError(error);
     }
   }

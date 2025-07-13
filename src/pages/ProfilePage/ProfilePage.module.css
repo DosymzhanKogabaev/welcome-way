@@ -29,6 +29,7 @@
 }
 
 .avatar {
+  position: relative;
   width: 4rem; /* 64px */
   height: 4rem;
   border-radius: 50%;
@@ -40,6 +41,19 @@
   font-size: 1.8rem; /* 32px */
   font-weight: 600;
   margin-bottom: 0.75rem; /* 12px */
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.avatar:hover .avatarOverlay {
+  opacity: 1;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .avatarPlaceholder {
@@ -52,11 +66,61 @@
   background: var(--button);
 }
 
+.avatarOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: white;
+  text-align: center;
+  padding: 4px;
+}
+
+.avatarLoading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  color: white;
+  z-index: 1;
+}
+
 .userName {
   font-size: 1.5rem; /* 24px */
   font-weight: 700;
   color: var(--main);
+  margin-bottom: 0.25rem; /* 4px */
+}
+
+.userInfo {
+  font-size: 0.9375rem; /* 15px */
+  color: #666;
+  line-height: 1.5;
   margin-bottom: 0.5rem; /* 8px */
+}
+
+.userStats {
+  font-size: 0.875rem; /* 14px */
+  color: #888;
+  line-height: 1.5;
+  margin-bottom: 1rem; /* 16px */
 }
 
 .bio {
@@ -64,6 +128,38 @@
   color: #444;
   line-height: 1.5;
   margin-bottom: 1rem; /* 16px */
+}
+
+.errorMessage {
+  background: #fee;
+  color: #c33;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 0.9375rem;
+}
+
+.noPosts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #888;
+  font-size: 0.9375rem;
+  text-align: center;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .editProfileBtn {
@@ -145,6 +241,12 @@
   min-height: 80px;
 }
 
+.formTextArea:disabled {
+  background: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
 .modalActions {
   display: flex;
   gap: 0.75rem; /* 12px */
@@ -197,8 +299,20 @@
     font-size: 2.5rem; /* 40px */
   }
 
+  .avatarOverlay {
+    font-size: 0.875rem;
+  }
+
   .userName {
     font-size: 1.75rem; /* 28px */
+  }
+
+  .userInfo {
+    font-size: 1rem; /* 16px */
+  }
+
+  .userStats {
+    font-size: 0.9375rem; /* 15px */
   }
 
   .bio {
@@ -248,6 +362,10 @@
     width: 6rem; /* 96px */
     height: 6rem;
     font-size: 3rem; /* 48px */
+  }
+
+  .avatarOverlay {
+    font-size: 1rem;
   }
 
   .modal {

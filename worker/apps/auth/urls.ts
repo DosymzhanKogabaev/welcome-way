@@ -5,9 +5,10 @@ import {
   PrivateLoginAPI,
   PrivateRegisterAPI,
   PrivateGetUserInfoAPI,
+  PrivateRefreshAPI,
+  PrivateUploadUserAvatarAPI
 } from './api/private';
 import { PublicTestApi } from './api/public/testApi';
-import { PrivateRefreshAPI } from './api/private/privateRefresh';
 
 export const registerAuthRoutes: RegisterAppRoutes = (
   router: RouterOpenApiType,
@@ -26,5 +27,10 @@ export const registerAuthRoutes: RegisterAppRoutes = (
     `${urlPrefix}/private/auth/me`,
     auth,
     PrivateGetUserInfoAPI as any
+  );
+  router.post(
+    `${urlPrefix}/private/auth/upload-avatar`,
+    auth,
+    PrivateUploadUserAvatarAPI as any
   );
 };

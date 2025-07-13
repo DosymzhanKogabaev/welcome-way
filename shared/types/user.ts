@@ -7,9 +7,10 @@ export type UserInfo = {
   full_name: string;
   email: string;
   phone: string | null;
+  avatar_url: string | null;
   language: string;
-  country_of_origin: string | null;
-  current_location: string | null;
+  country: string | null;
+  region: string | null;
   coordinates_lat: number | null;
   coordinates_lng: number | null;
   user_type: string;

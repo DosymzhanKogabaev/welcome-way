@@ -6,14 +6,14 @@ const docsRouter = Router();
 // Define available apps and their configurations
 const API_APPS = {
   auth: {
-    title: 'Welcome May - Auth API',
+    title: 'Welcome Way - Auth API',
     description:
       'User authentication, registration, and profile management endpoints',
     icon: '🔐',
     pathPattern: '/api/auth/', // Routes starting with this pattern belong to auth
   },
   post: {
-    title: 'Welcome May - Posts API',
+    title: 'Welcome Way - Posts API',
     description:
       'Community posts management including creating, reading, and filtering help requests',
     icon: '📝',
@@ -202,7 +202,7 @@ function generateMainDocsPage(): string {
     .map(
       ([appName, app]) => `
     <div class="api-section">
-      <h2>${app.icon} ${app.title.replace('Welcome May - ', '')}</h2>
+      <h2>${app.icon} ${app.title.replace('Welcome Way - ', '')}</h2>
       <p class="description">${app.description}</p>
       <a href="/docs/${appName}" class="api-link">View ${
         appName.charAt(0).toUpperCase() + appName.slice(1)
@@ -219,7 +219,7 @@ function generateMainDocsPage(): string {
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Welcome May - API Documentation</title>
+    <title>Welcome Way - API Documentation</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -284,7 +284,7 @@ function generateMainDocsPage(): string {
 </head>
 <body>
     <div class="container">
-        <h1>Welcome May - API Documentation</h1>
+        <h1>Welcome Way - API Documentation</h1>
         <div class="stats">
             <p>Available APIs: ${Object.keys(API_APPS).length}</p>
         </div>
@@ -292,7 +292,7 @@ function generateMainDocsPage(): string {
         ${appSections}
 
         <div class="footer">
-            <p>Welcome May Community Platform API v1.0.0</p>
+            <p>Welcome Way Community Platform API v1.0.0</p>
         </div>
     </div>
 </body>
