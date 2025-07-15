@@ -17,13 +17,13 @@ export const PostsList: React.FC<PostsListProps> = ({
   onDelete,
 }) => {
   const { user } = useAppSelector(state => state.auth);
-
+  console.log(user, posts);
   return (
     <ul className={styles.postsList}>
       {posts.map(post => (
         <li key={post.id} className={styles.postCard}>
           <div className={styles.postHeader}>
-            <span className={styles.postUser}>{user?.full_name}</span>
+            <span className={styles.postUser}>{post.user_full_name}</span>
             <span className={styles.postType}>{post.type}</span>
             <span
               className={styles.postLocation}
