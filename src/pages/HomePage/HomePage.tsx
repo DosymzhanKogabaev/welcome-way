@@ -17,7 +17,6 @@ export const HomePage: React.FC = () => {
     <section className={`${styles.homeSection}`}>
       <div className={`${styles.homeContainer}`}>
         <Header />
-
         <HeroSection />
         <Features />
         <PricingSection />

@@ -1,139 +1,226 @@
-.roadmapSection {
+.pageWrapper {
+  padding: 12px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: var(--light-gray);
-  padding: 32px 16px;
 }
 
-.container {
-  max-width: 375px;
-  margin: 0 auto;
+.roadmapContainer {
+  width: 100%;
+  max-width: 1312px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
 }
 
-.heading {
-  font-size: 24px;
+.topBlock {
+  border-radius: 20px;
+  border: 2px dashed var(--dark-green);
+  background: var(--white);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  padding: 24px;
+  text-align: center;
+}
+
+.roadmapTitleWrapper {
+  margin-bottom: 12px;
+}
+
+.roadmapTitle {
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--main);
-  text-align: center;
 }
 
-.subheading {
+.roadmapSubtitle {
+  font-size: 18px;
+  color: #747474;
+}
+
+.roadmapIntro p {
   font-size: 16px;
-  color: var(--main);
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.introText p {
-  font-size: 14px;
   line-height: 1.6;
   color: var(--main);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   text-align: center;
+}
+
+.bottomBlock {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  padding: 24px;
 }
 
 .roles {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 24px;
+  gap: 32px;
 }
 
 .roleCard {
-  background-color: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  padding: 18px;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.roleCard:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.3);
+  background: #f9fdfc;
 }
 
 .icon {
-  font-size: 28px;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 8px;
   color: var(--primary);
-  margin-bottom: 12px;
 }
 
 .roleTitle {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: var(--main);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--dark-green);
 }
 
 .roleCard p {
-  font-size: 14px;
-  color: var(--main);
-  line-height: 1.5;
+  font-size: 16px;
+  color: var(--black);
+  line-height: normal;
+  margin-bottom: 12px;
 }
 
-.ctaBox {
-  margin-top: 32px;
-  text-align: center;
-}
-
-.ctaLink {
-  color: var(--primary);
-  text-decoration: underline;
+.cardButton {
+  background-color: var(--button);
+  color: var(--white);
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
   font-weight: 500;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  width: 100%;
 }
 
-.ctaLink:hover {
-  color: var(--primary-hover);
+.cardButton:hover {
+  background-color: var(--button-hover);
 }
 
 /* ============ Tablet ============ */
 @media screen and (min-width: 768px) {
-  .container {
-    max-width: 700px;
+  .pageWrapper {
+    padding: 32px;
   }
 
-  .heading {
-    font-size: 28px;
+  .roadmapTitle {
+    font-size: 34px;
   }
 
-  .subheading {
+  .roadmapSubtitle {
+    font-size: 20px;
+  }
+
+  .roadmapIntro p {
     font-size: 18px;
+  }
+
+  .icon {
+    width: 80px;
+    height: 80px;
   }
 
   .roles {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 16px;
+    gap: 24px;
   }
 
   .roleCard {
-    flex: 1 1 calc(50% - 8px);
+    flex: 1 1 calc(50% - 12px);
+    padding: 18px;
+  }
+
+  .roleCard p {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .roleTitle {
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  .bottomBlock {
+    padding: 36px;
   }
 }
 
 /* ============ Desktop ============ */
 @media screen and (min-width: 1280px) {
-  .container {
-    max-width: 1100px;
+  .pageWrapper {
+    padding: 64px;
   }
 
-  .heading {
-    font-size: 32px;
+  .topBlock {
+    padding: 37px;
   }
 
-  .subheading {
+  .roadmapTitleWrapper {
+    display: flex;
+    justify-content: start;
+  }
+
+  .roadmapTitle {
+    font-size: 40px;
+    margin-right: 49px;
+  }
+
+  .roadmapSubtitle {
+    font-size: 22px;
+    line-height: 2.1;
+  }
+
+  .roadmapIntro p {
     font-size: 20px;
+    margin-bottom: 9px;
+  }
+
+  .icon {
+    width: 96px;
+    height: 96px;
   }
 
   .roles {
-    gap: 24px;
+    gap: 49px;
   }
 
   .roleCard {
     flex: 1 1 30%;
-  }
-
-  .icon {
-    font-size: 32px;
+    padding: 18px 32px 32px;
   }
 
   .roleTitle {
-    font-size: 20px;
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  .bottomBlock {
+    padding: 53px;
+  }
+
+  .roleCard p {
+    font-size: 22px;
+    margin-bottom: 20px;
   }
 }

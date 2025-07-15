@@ -31,7 +31,6 @@
   position: relative;
   z-index: 2;
   margin: 0 auto;
-  padding: 16;
 }
 
 .content {
@@ -39,6 +38,7 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+  transform: translateY(50px);
 }
 
 .title {
@@ -120,6 +120,9 @@
 
   .title {
     font-size: 3.5rem;
+  }
+  .content {
+    transform: translateY(30px);
   }
 }
 
