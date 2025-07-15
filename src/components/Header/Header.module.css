@@ -143,11 +143,11 @@
     align-items: center;
   }
 
-   .authButtons {
+  .authButtons {
     display: flex;
     align-items: center;
   }
-.authButtons a {
+  .authButtons a {
     display: flex;
     align-items: center;
     height: 75%;
@@ -162,7 +162,7 @@
 
 /* ====== DESKTOP ====== */
 @media screen and (min-width: 1280px) {
- .logo {
+  .logo {
     width: 15%;
     font-size: 1.8rem;
   }
@@ -197,7 +197,7 @@
     padding: 0 16px;
   }
 
- .signInButton {
+  .signInButton {
     font-size: 18px;
   }
 

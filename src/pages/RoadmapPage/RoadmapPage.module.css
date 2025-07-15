@@ -24,23 +24,27 @@
   text-align: center;
 }
 
+.roadmapTitleWrapper {
+  margin-bottom: 12px;
+}
+
 .roadmapTitle {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--main);
 }
 
 .roadmapSubtitle {
-  font-size: 16px;
-  color: var(--main);
+  font-size: 18px;
+  color: #747474;
 }
 
 .roadmapIntro p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   color: var(--main);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   text-align: center;
 }
 
@@ -58,7 +62,7 @@
 }
 
 .roleCard {
-    display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -84,17 +88,17 @@
 }
 
 .roleTitle {
-    font-size: 22px;
+  font-size: 22px;
   font-weight: 700;
-    margin-bottom: 12px;
+  margin-bottom: 12px;
   color: var(--dark-green);
 }
 
 .roleCard p {
-    font-size: 16px;
+  font-size: 16px;
   color: var(--black);
   line-height: normal;
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
 .cardButton {
@@ -120,10 +124,14 @@
   }
 
   .roadmapTitle {
-    font-size: 28px;
+    font-size: 34px;
   }
 
   .roadmapSubtitle {
+    font-size: 20px;
+  }
+
+  .roadmapIntro p {
     font-size: 18px;
   }
 
@@ -141,7 +149,7 @@
 
   .roleCard {
     flex: 1 1 calc(50% - 12px);
-      padding: 18px;
+    padding: 18px;
   }
 
   .roleCard p {
@@ -157,8 +165,6 @@
   .bottomBlock {
     padding: 36px;
   }
-
-
 }
 
 /* ============ Desktop ============ */
@@ -170,17 +176,25 @@
   .topBlock {
     padding: 37px;
   }
+
   .roadmapTitleWrapper {
     display: flex;
     justify-content: start;
   }
+
   .roadmapTitle {
-    font-size: 32px;
+    font-size: 40px;
     margin-right: 49px;
   }
 
   .roadmapSubtitle {
+    font-size: 22px;
+    line-height: 2.1;
+  }
+
+  .roadmapIntro p {
     font-size: 20px;
+    margin-bottom: 9px;
   }
 
   .icon {
@@ -197,16 +211,16 @@
     padding: 18px 32px 32px;
   }
 
-    .roleTitle {
-  font-size: 32px;
-  margin-bottom: 20px;
+  .roleTitle {
+    font-size: 32px;
+    margin-bottom: 20px;
   }
   .bottomBlock {
     padding: 53px;
   }
 
   .roleCard p {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
 }
